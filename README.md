@@ -7,3 +7,5 @@ este repositorio es público y acaba publicado en Instagram: no subas nada que n
 aprobada para publicar.
 
 - `instagram/lote-01/`: las 9 primeras publicaciones (`NN-M.jpg` = publicación NN, imagen M del carrusel).
+- `herramientas/`: los scripts que generan cada lote y cómo usarlos.
+- `recursos/`: capturas de la app (con datos de ejemplo inventados) y el icono, que usan los scripts.
