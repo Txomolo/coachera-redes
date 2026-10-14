@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>C2 · 6 preguntas que no salen en la báscula</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<style>
+/* C2 · Educativo: las seis preguntas de la revisión que trae la app de serie
+   (PREGUNTAS_REVISION_POR_DEFECTO, con sus extremos), un porqué de entrenador en cada una
+   y, al final, la comparación con la revisión anterior (un cambio de 3 o más se marca en tinta). */
+.bascula{position:absolute;left:80px;right:80px;bottom:250px;display:flex;align-items:center;gap:40px;padding:40px 44px}
+.pantalla{flex:none;display:flex;align-items:baseline;gap:10px;padding:26px 30px;border-radius:20px;background:#05070A;border:2px solid rgba(214,255,63,.25)}
+.pantalla .num{font-size:84px;font-weight:500;color:var(--voltio);letter-spacing:-.03em}
+.pantalla small{font-family:var(--font-num);font-size:34px;color:var(--gris)}
+.bascula p{margin:0;font-size:36px;line-height:1.35;color:var(--gris)} .bascula b{color:#fff;font-weight:600}
+.guarda{position:absolute;left:80px;bottom:124px;font-size:30px;font-weight:500;color:var(--gris)}
+.cabeza-p{display:flex;align-items:center;gap:30px;margin:30px 0 40px}
+.cabeza-p .n{font-size:120px;font-weight:500;line-height:.8;color:var(--voltio);letter-spacing:-.05em}
+.escala{margin-top:70px}
+.celdas{display:grid;grid-template-columns:repeat(10,1fr);gap:12px}
+.celdas i{height:118px;border-radius:16px;display:grid;place-items:center;font-style:normal;font-family:var(--font-num);font-size:40px;font-weight:500;color:var(--gris);background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.12)}
+.celdas i.sel{background:var(--voltio);border-color:var(--voltio);color:var(--negro);box-shadow:0 0 40px rgba(214,255,63,.45)}
+.extremos{display:flex;justify-content:space-between;margin-top:20px;font-size:32px;color:var(--gris-2)}
+.porque{position:absolute;left:80px;right:80px;bottom:180px;padding-top:44px;border-top:2px solid var(--linea)}
+.porque .texto{font-size:46px;line-height:1.3}
+.comp{margin-top:44px;border-radius:26px;background:var(--negro);padding:16px 36px;color:#fff}
+.fila{display:grid;grid-template-columns:1fr 130px 130px 170px;align-items:center;height:80px;border-top:2px solid rgba(255,255,255,.09);font-size:34px}
+.fila:first-child{border-top:0}
+.fila.cab-f{height:64px;font-size:24px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gris-2)}
+.fila .num{font-size:38px}
+.cambio{justify-self:end;font-family:var(--font-num);font-size:30px;color:var(--gris)}
+.cambio.grande{color:var(--negro);background:#fff;border-radius:10px;padding:6px 14px;font-weight:600}
+</style></head>
+<body>
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">1/8</span></div>
+  <p class="rotulo" style="margin-top:40px">Para tu revisión semanal</p>
+  <h1 class="titular" style="font-size:124px"><span class="v">6 preguntas</span><br>que no salen<br>en la báscula.</h1>
+  <div class="bascula tarjeta">
+    <div class="pantalla"><span class="num">72,4</span><small>kg</small></div>
+    <p>La báscula te dice cuánto pesa.<br><b>No cómo duerme, ni si va a dejarlo.</b></p>
+  </div>
+  <span class="guarda">Guárdalo para tu próxima revisión</span>
+  <span class="desliza">Desliza →</span>
+  <div class="hilo empieza"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">2/8</span></div>
+  <div class="cabeza-p"><span class="n num">01</span><span class="rotulo" style="margin:0">Sueño</span></div>
+  <h2 class="titular" style="font-size:104px">¿Qué tal has dormido?</h2>
+  <div class="escala"><div class="celdas"><i class="">1</i><i class="">2</i><i class="">3</i><i class="sel">4</i><i class="">5</i><i class="">6</i><i class="">7</i><i class="">8</i><i class="">9</i><i class="">10</i></div></div>
+  <div class="extremos"><span>1 · Fatal</span><span>Genial · 10</span></div>
+  <div class="porque"><p class="rotulo">Por qué preguntarlo</p><p class="texto" style="margin:0">Dormir mal sube el hambre y baja el rendimiento. <b>Si cae dos semanas seguidas, mira el descanso antes de tocar la dieta.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">3/8</span></div>
+  <div class="cabeza-p"><span class="n num">02</span><span class="rotulo" style="margin:0">Energía</span></div>
+  <h2 class="titular" style="font-size:104px">¿Cómo has ido de energía?</h2>
+  <div class="escala"><div class="celdas"><i class="">1</i><i class="">2</i><i class="">3</i><i class="">4</i><i class="sel">5</i><i class="">6</i><i class="">7</i><i class="">8</i><i class="">9</i><i class="">10</i></div></div>
+  <div class="extremos"><span>1 · Sin fuerzas</span><span>A tope · 10</span></div>
+  <div class="porque"><p class="rotulo">Por qué preguntarlo</p><p class="texto" style="margin:0">Si cae la energía y también los kilos en la barra, <b>puede que el déficit sea demasiado agresivo.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">4/8</span></div>
+  <div class="cabeza-p"><span class="n num">03</span><span class="rotulo" style="margin:0">Estrés</span></div>
+  <h2 class="titular" style="font-size:104px">¿Cuánto estrés has tenido?</h2>
+  <div class="escala"><div class="celdas"><i class="">1</i><i class="">2</i><i class="">3</i><i class="">4</i><i class="">5</i><i class="">6</i><i class="">7</i><i class="sel">8</i><i class="">9</i><i class="">10</i></div></div>
+  <div class="extremos"><span>1 · Nada</span><span>Muchísimo · 10</span></div>
+  <div class="porque"><p class="rotulo">Por qué preguntarlo</p><p class="texto" style="margin:0">Con estrés alto se retiene agua y la báscula no se mueve. <b>Que eso no te lleve a recortar más.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">5/8</span></div>
+  <div class="cabeza-p"><span class="n num">04</span><span class="rotulo" style="margin:0">Hambre</span></div>
+  <h2 class="titular" style="font-size:104px">¿Cuánta hambre has pasado?</h2>
+  <div class="escala"><div class="celdas"><i class="">1</i><i class="">2</i><i class="">3</i><i class="">4</i><i class="">5</i><i class="">6</i><i class="sel">7</i><i class="">8</i><i class="">9</i><i class="">10</i></div></div>
+  <div class="extremos"><span>1 · Nada</span><span>Muchísima · 10</span></div>
+  <div class="porque"><p class="rotulo">Por qué preguntarlo</p><p class="texto" style="margin:0">Hambre alta varias semanas es un plan en peligro. <b>Mejor ajustarlo antes de que se lo salte.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">6/8</span></div>
+  <div class="cabeza-p"><span class="n num">05</span><span class="rotulo" style="margin:0">Digestiones</span></div>
+  <h2 class="titular" style="font-size:104px">¿Qué tal las digestiones?</h2>
+  <div class="escala"><div class="celdas"><i class="">1</i><i class="">2</i><i class="">3</i><i class="">4</i><i class="">5</i><i class="sel">6</i><i class="">7</i><i class="">8</i><i class="">9</i><i class="">10</i></div></div>
+  <div class="extremos"><span>1 · Muy mal</span><span>Muy bien · 10</span></div>
+  <div class="porque"><p class="rotulo">Por qué preguntarlo</p><p class="texto" style="margin:0">Una mala semana de digestiones mueve el peso de un día a otro. <b>Y te dice qué comida revisar.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">7/8</span></div>
+  <div class="cabeza-p"><span class="n num">06</span><span class="rotulo" style="margin:0">Motivación</span></div>
+  <h2 class="titular" style="font-size:104px">¿Cómo va tu motivación?</h2>
+  <div class="escala"><div class="celdas"><i class="">1</i><i class="">2</i><i class="sel">3</i><i class="">4</i><i class="">5</i><i class="">6</i><i class="">7</i><i class="">8</i><i class="">9</i><i class="">10</i></div></div>
+  <div class="extremos"><span>1 · Por los suelos</span><span>Por las nubes · 10</span></div>
+  <div class="porque"><p class="rotulo">Por qué preguntarlo</p><p class="texto" style="margin:0">Es el primer aviso de un abandono. <b>Si baja, una llamada vale más que un plan nuevo.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia voltio">
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">8/8</span></div>
+  <h2 class="titular" style="margin-top:50px;font-size:108px">En Coachera vienen de serie.</h2>
+  <p class="texto" style="margin-top:26px;font-size:40px">Y cada revisión llega <b>comparada con la anterior</b>, para que veas lo que ha cambiado sin buscarlo.</p>
+  <div class="comp">
+    <div class="fila cab-f"><span>Revisión</span><span>3 oct</span><span>10 oct</span><span></span></div>
+    <div class="fila"><span>Sueño</span><span class="num">7</span><span class="num">4</span><span class="cambio grande">▼ 3</span></div>
+    <div class="fila"><span>Energía</span><span class="num">6</span><span class="num">6</span><span class="cambio">=</span></div>
+    <div class="fila"><span>Hambre</span><span class="num">4</span><span class="num">7</span><span class="cambio grande">▲ 3</span></div>
+    <div class="fila"><span>Motivación</span><span class="num">8</span><span class="num">7</span><span class="cambio">▼ 1</span></div>
+  </div>
+  <p class="texto" style="margin-top:30px;font-size:36px">Cámbialas, quítalas o <b>añade las tuyas.</b></p>
+  <div style="position:absolute;left:80px;bottom:128px;display:flex;align-items:center;gap:28px"><span class="pildora">Gratis hasta 5 clientes</span><span class="texto" style="margin:0;font-size:34px">Sin tarjeta ·<br><b>enlace en la bio</b></span></div>
+  <div class="hilo acaba"></div>
+</section>
+</body></html>

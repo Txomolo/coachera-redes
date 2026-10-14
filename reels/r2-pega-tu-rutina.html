@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>R2 · Pega tu rutina</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/reel.css">
+<style>
+/* R2 · «¿Tus rutinas siguen en Excel?» → se seleccionan y se copian → se pegan en Coachera →
+   la vista previa reconoce días y ejercicios → «Ponerlo en el plan» → plan listo. 16 s.
+   La ventana es la de la app de verdad (Plantillas → Pegar desde Excel), con datos inventados. */
+.titulo{position:absolute;left:80px;right:80px;top:270px}
+.titulo .titular{font-size:104px}
+.titulo .linea>span{animation:subeLinea .65s var(--curva) var(--d) both}
+.t1{animation:baja .4s ease-in 3.35s forwards}
+.t2{animation:baja .4s ease-in 9.75s forwards}
+.t3{animation:baja .4s ease-in 12.6s forwards}
+
+/* la hoja de cálculo (genérica: ni logos ni la barra de un programa concreto) */
+.hoja{position:absolute;left:60px;top:640px;width:960px;border-radius:22px;overflow:hidden;background:#FFFFFF;color:#1F2933;box-shadow:0 50px 120px -30px rgba(0,0,0,.9);
+  animation:desdeAbajo3d .9s var(--curva) .35s both, salHoja .55s cubic-bezier(.6,0,.8,.4) 3.9s forwards}
+@keyframes salHoja{to{opacity:0;transform:translateX(-300px) scale(.9) rotate(-3deg)}}
+.hoja-barra{height:62px;display:flex;align-items:center;gap:14px;padding:0 22px;background:#F1F3F5;border-bottom:2px solid #DDE2E7;font-size:26px;color:#5B6670}
+.hoja-barra i{width:16px;height:16px;border-radius:50%;background:#C9D0D7}
+.hoja-barra b{margin-left:10px;font-weight:600;color:#33404C}
+table.celdas{border-collapse:collapse;width:100%;font-size:29px;table-layout:fixed}
+.celdas th{background:#F7F8FA;color:#7A858F;font-weight:500;font-size:22px;height:42px;border:1px solid #E1E5EA}
+.celdas td{height:62px;border:1px solid #E6E9ED;padding:0 14px;white-space:nowrap;overflow:hidden}
+.celdas td.n{width:58px;background:#F7F8FA;color:#7A858F;font-size:22px;text-align:center;padding:0}
+.celdas td.dia{font-weight:700;color:#0B0F14}
+.celdas td.c{text-align:center;font-family:var(--font-num)}
+.celdas td.cab{font-weight:600;color:#5B6670;font-size:24px;text-transform:uppercase;letter-spacing:.04em}
+.seleccion{position:absolute;left:58px;top:104px;right:0;bottom:0;background:rgba(56,132,255,.16);box-shadow:inset 0 0 0 4px #2F7BF6;clip-path:inset(0 100% 100% 0);animation:selecciona 1.25s cubic-bezier(.4,0,.2,1) 1.55s forwards}
+@keyframes selecciona{0%{clip-path:inset(0 100% 100% 0)}12%{clip-path:inset(0 82% 88% 0)}100%{clip-path:inset(0 0 0 0)}}
+.cursor{position:absolute;width:44px;height:44px;left:110px;top:150px;z-index:5;animation:aparece .2s ease 1.35s both, arrastra 1.25s cubic-bezier(.4,0,.2,1) 1.55s forwards, desaparece .25s ease 3.5s forwards}
+@keyframes arrastra{to{transform:translate(800px,560px)}}
+.cursor svg{width:44px;height:44px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+
+/* las teclas */
+.teclas{position:absolute;left:50%;top:1450px;display:flex;gap:16px;transform:translateX(-50%);z-index:20}
+.tecla{min-width:110px;height:110px;padding:0 26px;border-radius:22px;background:linear-gradient(180deg,#232C38,#161C25);box-shadow:inset 0 -6px 0 rgba(0,0,0,.45), inset 0 0 0 2px rgba(255,255,255,.12), 0 20px 40px -10px rgba(0,0,0,.8);display:grid;place-items:center;font-family:var(--font-num);font-size:44px;font-weight:500;color:#fff}
+.teclas.copia{animation:crece .35s var(--muelle) 2.95s both, encoge .3s ease 3.75s forwards}
+.teclas.pega{animation:crece .35s var(--muelle) 4.55s both, encoge .3s ease 5.3s forwards}
+.teclas .v{background:linear-gradient(180deg,#E6FF80,#D6FF3F);color:var(--negro);box-shadow:inset 0 -6px 0 rgba(0,0,0,.18), 0 20px 50px -10px rgba(214,255,63,.5)}
+
+/* la ventana de Coachera: Pegar desde Excel */
+.ventana-c{position:absolute;left:44px;top:545px;width:992px;border-radius:26px;background:#0E131A;border:2px solid rgba(255,255,255,.1);box-shadow:0 60px 140px -30px rgba(0,0,0,.95), 0 0 120px -40px rgba(214,255,63,.25);overflow:hidden;
+  animation:desdeDerecha .75s var(--curva) 4.05s both, salVentana .5s cubic-bezier(.6,0,.8,.4) 9.85s forwards}
+@keyframes salVentana{to{opacity:0;transform:translateY(-80px) scale(.94)}}
+.vc-cab{display:flex;align-items:center;justify-content:space-between;padding:30px 36px 8px}
+.vc-cab b{font-size:42px;font-weight:600;letter-spacing:-.01em}
+.vc-x{width:62px;height:62px;border-radius:14px;border:2px solid rgba(255,255,255,.14);display:grid;place-items:center;color:var(--gris);font-size:30px}
+.vc-et{padding:12px 36px 14px;font-size:28px;font-weight:600}
+.vc-sub{padding:4px 36px 14px;font-size:24px;color:var(--gris)}
+.pegado{margin:0 36px;height:112px;border-radius:16px;border:3px solid rgba(255,255,255,.12);background:#0A0E13;padding:14px 20px;font-family:var(--font-num);font-size:22px;line-height:1.45;color:#CFD8E3;white-space:pre;overflow:hidden;position:relative}
+.pegado .txt{opacity:0;animation:muestra .01s linear 4.75s forwards}
+.pegado::after{content:"";position:absolute;inset:-3px;border-radius:16px;box-shadow:0 0 0 4px var(--voltio);opacity:0;animation:destello .9s ease-out 4.75s both}
+@keyframes destello{0%{opacity:1}100%{opacity:0}}
+.resumen{padding:24px 36px 6px;font-size:36px;font-weight:600;opacity:0;animation:muestra .01s linear 5.05s forwards}
+.resumen .num{color:var(--voltio)}
+.dia-t{padding:16px 36px 6px;font-size:30px;font-weight:600;animation:sube .4s var(--curva) var(--d) both}
+.fila-e{display:grid;grid-template-columns:minmax(0,1fr) 110px 120px 260px;gap:12px;align-items:center;margin:0 36px;height:56px;border-top:2px solid rgba(255,255,255,.07);font-size:27px;animation:sube .4s var(--curva) var(--d) both}
+.fila-e .c{font-family:var(--font-num);color:#CFD8E3}
+.fila-e .est{justify-self:end;font-size:24px;font-weight:600;padding:6px 14px;border-radius:10px;white-space:nowrap}
+.est.bib{background:rgba(79,208,138,.13);color:#4FD08A}
+.est.nuevo{background:rgba(255,255,255,.08);color:#CFD8E3}
+.vc-pie{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 36px 32px;margin-top:10px;border-top:2px solid rgba(255,255,255,.07);animation:sube .45s var(--curva) 8.25s both}
+.check{display:flex;align-items:center;gap:16px;font-size:27px}
+.check i{width:40px;height:40px;border-radius:10px;border:3px solid rgba(255,255,255,.3);display:grid;place-items:center;font-style:normal;color:var(--negro);font-size:26px;font-weight:700}
+.check i.si{background:var(--voltio);border-color:var(--voltio)}
+.boton-v{height:84px;padding:0 36px;border-radius:16px;background:var(--voltio);color:var(--negro);font-weight:600;font-size:31px;display:grid;place-items:center;white-space:nowrap}
+.boton-v.pulsado{transform:scale(.95);filter:brightness(.92)}
+.toque.t-boton{left:832px;top:1492px;animation:toque .6s ease-out 9.2s both}
+
+/* plan listo */
+.listo{position:absolute;left:60px;right:60px;top:620px;display:flex;flex-direction:column;gap:26px}
+.dia-card{border-radius:24px;background:#0E131A;border:2px solid rgba(255,255,255,.1);padding:30px 34px;animation:desdeAbajo3d .7s var(--curva) var(--d) both, desaparece .3s ease 12.55s forwards}
+.dia-card h4{margin:0 0 14px;font-size:36px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.dia-card h4 span{font-size:26px;color:var(--gris);font-weight:500}
+.dia-card p{margin:0;display:flex;justify-content:space-between;font-size:29px;padding:12px 0;border-top:2px solid rgba(255,255,255,.07);color:#E8EDF3}
+.dia-card p span{font-family:var(--font-num);color:var(--gris)}
+.sello{align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-size:36px;font-weight:600;color:var(--voltio);animation:crece .45s var(--muelle) 10.95s both, desaparece .3s ease 12.55s forwards}
+.sello svg{width:56px;height:56px}
+.sello path{fill:none;stroke:var(--voltio);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .45s ease 11.05s both}
+
+/* final */
+.barrido{position:absolute;left:0;right:0;height:1920px;top:0;background:var(--voltio);transform:scaleX(0);z-index:40;animation:barre .7s cubic-bezier(.7,0,.3,1) var(--d) both}
+.fondo-final{opacity:0;animation:muestra .01s linear 13s forwards;z-index:30;background:var(--fondo)}
+.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:260px;text-align:center;opacity:0;animation:muestra .01s linear 13s forwards}
+.final .titular{font-size:116px;text-align:center}
+.final .titular .linea>span{animation:subeLinea .6s var(--curva) var(--d) both}
+.logo-medio{margin-top:70px;font-size:120px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .55s var(--curva) 13.7s both}
+.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
+.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
+.final .pildora{margin-top:56px;animation:crece .5s var(--muelle) 14.1s both}
+</style></head>
+<body><div id="escena">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+
+  <div class="titulo t1"><h1 class="titular">
+    <span class="linea"><span style="--d:.05s">¿Tus rutinas</span></span>
+    <span class="linea"><span style="--d:.15s">siguen en <span class="v">Excel?</span></span></span></h1></div>
+  <div class="titulo t2"><h1 class="titular">
+    <span class="linea"><span style="--d:3.65s">Cópialas</span></span>
+    <span class="linea"><span style="--d:3.75s">y <span class="v">pégalas.</span></span></span></h1></div>
+  <div class="titulo t3"><h1 class="titular">
+    <span class="linea"><span style="--d:10.05s">Plan listo,</span></span>
+    <span class="linea"><span style="--d:10.15s" class="v">sin reescribir.</span></span></h1></div>
+
+  <div class="hoja">
+    <div class="hoja-barra"><i></i><i></i><i></i><b>Rutina_Marta_v7</b></div>
+    <table class="celdas">
+      <tr><th style="width:58px"></th><th style="width:400px">A</th><th>B</th><th>C</th><th>D</th></tr>
+      <tr><td class="n">1</td><td class="dia">DÍA 1 · TORSO</td><td></td><td></td><td></td></tr>
+      <tr><td class="n">2</td><td class="cab">Ejercicio</td><td class="cab c">Series</td><td class="cab c">Repes</td><td class="cab c">Desc.</td></tr>
+      <tr><td class="n">3</td><td>Press banca</td><td class="c">4</td><td class="c">6-8</td><td class="c">2:00</td></tr>
+      <tr><td class="n">4</td><td>Remo con barra</td><td class="c">4</td><td class="c">8-10</td><td class="c">2:00</td></tr>
+      <tr><td class="n">5</td><td>Press militar</td><td class="c">3</td><td class="c">8-10</td><td class="c">1:30</td></tr>
+      <tr><td class="n">6</td><td>Elevaciones laterales</td><td class="c">3</td><td class="c">12-15</td><td class="c">1:00</td></tr>
+      <tr><td class="n">7</td><td class="dia">DÍA 2 · PIERNA</td><td></td><td></td><td></td></tr>
+      <tr><td class="n">8</td><td>Sentadilla</td><td class="c">4</td><td class="c">6-8</td><td class="c">2:30</td></tr>
+      <tr><td class="n">9</td><td>Peso muerto rumano</td><td class="c">3</td><td class="c">8-10</td><td class="c">2:00</td></tr>
+      <tr><td class="n">10</td><td>Hip thrust</td><td class="c">3</td><td class="c">8-12</td><td class="c">2:00</td></tr>
+    </table>
+    <div class="seleccion"></div>
+  </div>
+  <div class="cursor"><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6L10 19z" fill="#fff" stroke="#0B0F14" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+  <div class="teclas copia"><span class="tecla">Ctrl</span><span class="tecla">C</span></div>
+  <div class="teclas pega"><span class="tecla">Ctrl</span><span class="tecla v">V</span></div>
+
+  <div class="ventana-c">
+    <div class="vc-cab"><b>Pegar desde Excel</b><span class="vc-x">✕</span></div>
+    <div class="vc-et">Pega aquí las celdas de tu hoja</div>
+        <div class="pegado"><span class="txt">DÍA 1 · TORSO
+Ejercicio          Series   Repes   Desc.
+Press banca        4        6-8     2:00
+Remo con barra     4        8-10    2:00</span></div>
+    <div class="resumen"><span class="num">2</span> días · <span class="num">7</span> ejercicios</div>
+    <div class="dia-t" style="--d:5.25s">Día 1 · Torso</div>
+    <div class="fila-e" style="--d:5.45s"><span>Press banca</span><span class="c">6-8</span><span class="c">4</span><span class="est bib">✓ En tu biblioteca</span></div>
+    <div class="fila-e" style="--d:5.8s"><span>Remo con barra</span><span class="c">8-10</span><span class="c">4</span><span class="est bib">✓ En tu biblioteca</span></div>
+    <div class="fila-e" style="--d:6.15s"><span>Press militar</span><span class="c">8-10</span><span class="c">3</span><span class="est bib">✓ En tu biblioteca</span></div>
+    <div class="fila-e" style="--d:6.5s"><span>Elevaciones laterales</span><span class="c">12-15</span><span class="c">3</span><span class="est bib">✓ En tu biblioteca</span></div>
+    <div class="dia-t" style="--d:6.9s">Día 2 · Pierna</div>
+    <div class="fila-e" style="--d:7.1s"><span>Sentadilla</span><span class="c">6-8</span><span class="c">4</span><span class="est bib">✓ En tu biblioteca</span></div>
+    <div class="fila-e" style="--d:7.45s"><span>Peso muerto rumano</span><span class="c">8-10</span><span class="c">3</span><span class="est bib">✓ En tu biblioteca</span></div>
+    <div class="fila-e" style="--d:7.8s"><span>Hip thrust</span><span class="c">8-12</span><span class="c">3</span><span class="est nuevo">Nuevo</span></div>
+    <div class="vc-pie"><span class="check"><i class="si">✓</i>Añadir el nuevo a tu biblioteca</span><span class="boton-v" data-clase="pulsado@9.2">Ponerlo en el plan</span></div>
+  </div>
+  <div class="toque t-boton"></div>
+
+  <div class="listo">
+    <span class="sello"><svg viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.5l4.5 4.5 10.5-11"/></svg>Plan listo · 2 días · 7 ejercicios</span>
+    <div class="dia-card" style="--d:10.35s"><h4>Día 1 · Torso <span>4 ejercicios</span></h4>
+      <p>Press banca<span>4 × 6-8 · 2:00</span></p><p>Remo con barra<span>4 × 8-10 · 2:00</span></p><p>Press militar<span>3 × 8-10 · 1:30</span></p></div>
+    <div class="dia-card" style="--d:10.6s"><h4>Día 2 · Pierna <span>3 ejercicios</span></h4>
+      <p>Sentadilla<span>4 × 6-8 · 2:30</span></p><p>Peso muerto rumano<span>3 × 8-10 · 2:00</span></p><p>Hip thrust<span>3 × 8-12 · 2:00</span></p></div>
+  </div>
+
+  <div class="barrido" style="--d:12.65s"></div>
+  <div class="fondo fondo-final"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
+  <div class="final">
+    <h2 class="titular"><span class="linea"><span style="--d:13.1s">Tu mudanza,</span></span><span class="linea"><span style="--d:13.2s" class="v">en una tarde.</span></span></h2>
+    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
+    <span class="pildora">Gratis hasta 5 clientes</span>
+  </div>
+</div>
+<script src="../motor/reel.js"></script>
+<script>
+window.REEL = {
+  duracion: 16,
+  musica: { estilo: "ambiente", bpm: 84, caida: 4.75, vol: .55 },
+  sonidos: [
+    { t: .35, tipo: "barrido", vol: .6 },
+    { t: 1.6, tipo: "tecla", vol: .7 },
+    { t: 2.95, tipo: "tecla" }, { t: 3.1, tipo: "tecla" },
+    { t: 3.9, tipo: "barrido", vol: .7 },
+    { t: 4.55, tipo: "tecla" }, { t: 4.7, tipo: "tecla" },
+    { t: 4.75, tipo: "golpe", vol: .5 },
+    ...[5.45, 5.8, 6.15, 6.5, 7.1, 7.45].map(t => ({ t, tipo: "toque", vol: .55 })),
+    { t: 7.8, tipo: "pop", vol: .6 },
+    { t: 9.2, tipo: "toque", vol: .9 },
+    { t: 9.85, tipo: "barrido", vol: .6 },
+    { t: 11.05, tipo: "ok" },
+    { t: 12.65, tipo: "barrido", vol: .7 },
+    { t: 13.7, tipo: "marca", vol: .8 },
+  ],
+};
+</script>
+</body></html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>C1 · ¿Así llevas tu asesoría?</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<style>
+/* C1 · Identificación: los cuatro dolores de llevar una asesoría con WhatsApp y Excel, y «Hay otra forma». */
+.avisos{position:absolute;left:100px;right:100px;top:600px;display:flex;flex-direction:column;gap:22px}
+.aviso{display:flex;gap:24px;align-items:flex-start;padding:26px 30px;border-radius:30px;background:rgba(30,38,50,.86);border:2px solid rgba(255,255,255,.12);box-shadow:0 30px 70px -20px rgba(0,0,0,.9);transform:rotate(var(--r))}
+.aviso .ico{flex:none;width:84px;height:84px;border-radius:20px}
+.aviso .ico svg{width:44px;height:44px}
+.aviso b{display:flex;justify-content:space-between;gap:16px;font-size:32px;font-weight:600}
+.aviso b em{font-style:normal;font-weight:400;color:var(--gris-2);font-size:27px}
+.aviso p{margin:6px 0 0;font-size:31px;line-height:1.3;color:#DDE3EA}
+.aviso.atenua{opacity:.55;transform:rotate(var(--r)) scale(.96)}
+.chats{position:absolute;left:80px;right:80px;bottom:200px;display:flex;flex-direction:column;gap:0}
+.chat{display:flex;align-items:center;gap:22px;padding:22px 0;border-top:2px solid var(--linea)}
+.chat i{flex:none;width:70px;height:70px;border-radius:50%;background:#1D2531;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:26px;color:#CFD8E3}
+.chat b{display:block;font-size:32px;font-weight:600} .chat span{font-size:28px;color:var(--gris)}
+.chat .n{margin-left:auto;font-family:var(--font-num);font-size:28px;background:#FF5A4E;color:#fff;border-radius:999px;padding:2px 14px}
+.pdf{position:absolute;left:80px;bottom:210px;display:flex;align-items:center;gap:26px;padding:28px 34px}
+.pdf .ico{width:110px;height:110px} .pdf .ico svg{width:60px;height:60px}
+.pdf b{display:block;font-size:36px;font-weight:600} .pdf span{font-size:30px;color:var(--gris)}
+.cobros{margin-top:50px;padding:6px 40px}
+.cobro{display:flex;align-items:center;gap:20px;height:94px;border-top:2px solid var(--linea);font-size:38px}
+.cobro:first-child{border-top:0}
+.cobro .imp{margin-left:auto;font-family:var(--font-num);color:var(--gris)}
+.cobro .q{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font-family:var(--font-num);font-size:36px;font-weight:600}
+.cobro .q.si{background:rgba(79,208,138,.14);color:var(--ok)} .cobro .q.no{background:rgba(255,255,255,.08);color:#fff}
+.semana{margin-top:70px;display:grid;grid-template-columns:repeat(7,1fr);gap:16px}
+.semana span{text-align:center;font-family:var(--font-num);font-size:30px;color:var(--gris-2);margin-bottom:12px}
+.semana i{height:120px;border-radius:18px;border:3px dashed rgba(255,255,255,.18)}
+.semana i.si{border:0;background:rgba(79,208,138,.14)}
+.mini-app{position:absolute;right:-60px;bottom:200px;width:560px;transform:rotate(-4deg)}
+.mini-app .tarjeta{padding:30px 32px}
+.fila-m{display:flex;align-items:center;gap:16px;height:78px;border-top:2px solid rgba(11,15,20,.1);font-size:28px;color:var(--negro)}
+.hoy{margin-top:44px;border-radius:26px;background:var(--negro);padding:30px 36px 14px;box-shadow:0 40px 80px -30px rgba(11,15,20,.6)}
+.hoy-t{margin:0 0 10px;font-size:26px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--voltio)}
+.tarea{display:grid;grid-template-columns:230px 1fr auto;align-items:center;gap:20px;height:84px;border-top:2px solid rgba(255,255,255,.09);font-size:32px;color:#fff}
+.tarea .tipo{font-size:26px;color:var(--gris)} .tarea b{font-weight:600}
+.tarea .acc{font-size:26px;font-weight:600;color:var(--negro);background:var(--voltio);border-radius:12px;padding:10px 18px}
+</style></head>
+<body>
+
+<!-- 1 · portada -->
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:60%"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">1/6</span></div>
+  <h1 class="titular" style="margin-top:60px;font-size:138px">¿Así llevas<br>tu <span class="v">asesoría?</span></h1>
+  <div class="avisos">
+    <div class="aviso" style="--r:-1.5deg"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div style="flex:1"><b>Marta Soler <em>ahora</em></b><p>¿Muevo pierna al jueves? Esta semana no llego</p></div></div>
+    <div class="aviso" style="--r:1deg"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div style="flex:1"><b>Luis Gómez <em>hace 2 h</em></b><p>Te pago el lunes, que se me ha pasado</p></div></div>
+    <div class="aviso atenua" style="--r:-1deg"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div style="flex:1"><b>Chats <em>hoy</em></b><p>47 mensajes sin leer</p></div></div>
+  </div>
+  <span class="desliza">Desliza →</span>
+  <div class="hilo empieza"></div>
+</section>
+
+<!-- 2 · 47 chats -->
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">2/6</span></div>
+  <p class="cifra" style="margin-top:80px">47</p>
+  <h2 class="titular" style="font-size:92px">chats sin leer.</h2>
+  <p class="texto">Y uno es <b>la revisión que llevas una semana esperando.</b></p>
+  <div class="chats">
+    <div class="chat"><i>IR</i><div><b>Iván Ruiz</b><span>Te paso las fotos y el peso…</span></div><span class="n">6</span></div>
+    <div class="chat"><i>EL</i><div><b>Elena Ríos</b><span>Audio · 2:14</span></div><span class="n">3</span></div>
+    <div class="chat"><i>AP</i><div><b>Andrés Pardo</b><span>Oye, una cosa del plan…</span></div><span class="n">1</span></div>
+  </div>
+  <div class="hilo"></div>
+</section>
+
+<!-- 3 · 23:40 -->
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">3/6</span></div>
+  <p class="cifra" style="margin-top:80px;font-size:280px">23:40</p>
+  <h2 class="titular" style="font-size:92px">Y tú, pasando<br>una rutina a PDF.</h2>
+  <p class="texto">La cuarta versión. Porque <b>el cliente ya no sabe cuál es la buena.</b></p>
+  <div class="pdf tarjeta"><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span><div><b>Rutina_Ivan_v4_FINAL.pdf</b><span>sin enviar</span></div></div>
+  <div class="hilo"></div>
+</section>
+
+<!-- 4 · cobros -->
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">4/6</span></div>
+  <h2 class="titular" style="margin-top:80px;font-size:100px">¿Quién te<br>ha pagado<br><span class="v">este mes?</span></h2>
+  <div class="tarjeta cobros">
+    <div class="cobro"><span>Lucía Fernández</span><span class="imp">60 €</span><span class="q si">✓</span></div>
+    <div class="cobro"><span>Rubén Alcaide</span><span class="imp">45 €</span><span class="q no">?</span></div>
+    <div class="cobro"><span>Elena Ríos</span><span class="imp">60 €</span><span class="q no">?</span></div>
+    <div class="cobro"><span>Pablo Sanz</span><span class="imp">60 €</span><span class="q si">✓</span></div>
+    <div class="cobro"><span>Sara Gil</span><span class="imp">45 €</span><span class="q no">?</span></div>
+  </div>
+  <p class="texto">Si tienes que <b>abrir el banco</b> para saberlo, algo falla.</p>
+  <div class="hilo"></div>
+</section>
+
+<!-- 5 · el que se calla -->
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">5/6</span></div>
+  <h2 class="titular" style="margin-top:80px;font-size:100px">Andrés lleva<br><span class="v">9 días</span> sin<br>entrenar.</h2>
+  <div class="semana">
+    <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <p class="texto">Y no te enteras <b>hasta que te escribe para dejarlo.</b></p>
+  <div class="aviso" style="--r:-1deg;position:absolute;left:100px;right:100px;bottom:210px"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div style="flex:1"><b>Andrés Pardo <em>ahora</em></b><p>Oye, creo que lo voy a dejar un tiempo…</p></div></div>
+  <div class="hilo"></div>
+</section>
+
+<!-- 6 · hay otra forma -->
+<section class="dia voltio">
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">6/6</span></div>
+  <h2 class="titular" style="margin-top:80px;font-size:124px">Hay otra<br>forma.</h2>
+  <p class="texto" style="max-width:900px;margin-top:28px;font-size:40px">Planes, revisiones, cobros y chat <b>en una app con tu marca.</b> Y cada mañana, a quién atender primero.</p>
+  <div class="hoy">
+    <p class="hoy-t">Hoy · 3 tareas</p>
+    <div class="tarea"><span class="tipo">Revisión</span><b>Iván Ruiz</b><span class="acc">Responder</span></div>
+    <div class="tarea"><span class="tipo">Sin registrar</span><b>Andrés Pardo · 9 días</b><span class="acc">Escribirle</span></div>
+    <div class="tarea"><span class="tipo">Cobro</span><b>Rubén Alcaide · 45 €</b><span class="acc">Recordar</span></div>
+  </div>
+  <div style="position:absolute;left:80px;bottom:128px;display:flex;align-items:center;gap:28px"><span class="pildora">Gratis hasta 5 clientes</span><span class="texto" style="margin:0;font-size:34px">Sin tarjeta ·<br><b>enlace en la bio</b></span></div>
+  <div class="hilo acaba"></div>
+</section>
+</body></html>

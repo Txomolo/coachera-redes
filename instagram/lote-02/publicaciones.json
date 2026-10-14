@@ -1,0 +1,127 @@
+{
+  "lote": 2,
+  "zona": "Europe/Madrid",
+  "hashtags": "#entrenadorpersonal #entrenadoronline #asesoriaonline",
+  "publicaciones": [
+    {
+      "n": 1,
+      "fecha": "2026-10-16",
+      "hora": "10:00",
+      "tipo": "reel",
+      "titulo": "¿Cuántas apps usas?",
+      "video": "r1-una-app.mp4",
+      "portada": "portada-1.jpg",
+      "texto": "¿Cuántas apps usas para llevar a un solo cliente?\n\nWhatsApp para hablar, un Excel para la rutina, un PDF para la dieta, audios para las revisiones y la memoria para los cobros.\n\nCoachera lo junta en una. Tú lo llevas desde el panel; tu cliente, desde su móvil y con tu marca.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio."
+    },
+    {
+      "n": 2,
+      "fecha": "2026-10-16",
+      "hora": "14:00",
+      "tipo": "carrusel",
+      "titulo": "¿Así llevas tu asesoría?",
+      "imagenes": [
+        "c1-1.jpg",
+        "c1-2.jpg",
+        "c1-3.jpg",
+        "c1-4.jpg",
+        "c1-5.jpg",
+        "c1-6.jpg"
+      ],
+      "texto": "Si te has visto en más de una, no es que trabajes mal. Es que WhatsApp y Excel no están hechos para llevar una asesoría.\n\nEn Coachera tus clientes anotan en su app, las revisiones te llegan en una bandeja y cada mañana ves a quién atender primero: quién lleva días sin registrar, qué revisión espera y qué cobro toca.\n\nGratis hasta 5 clientes. Enlace en la bio.\n\nCompártelo con ese compañero que tiene 47 chats sin leer."
+    },
+    {
+      "n": 3,
+      "fecha": "2026-10-16",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "Pega tu rutina desde Excel",
+      "video": "r2-pega-tu-rutina.mp4",
+      "portada": "portada-2.jpg",
+      "texto": "Lo que más pereza da de cambiar de herramienta es pasar todo lo que ya tienes.\n\nEn Coachera copias las celdas de tu Excel, Google Sheets o Numbers, las pegas y la app entiende los días, los ejercicios, las series y los descansos. Lo que ya está en tu biblioteca se enlaza solo, y lo nuevo lo añades de un toque.\n\nGratis hasta 5 clientes. Enlace en la bio.",
+      "hashtags_extra": "#rutinasdeentrenamiento"
+    },
+    {
+      "n": 4,
+      "fecha": "2026-10-19",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "Serie a serie",
+      "video": "r3-serie-a-serie.mp4",
+      "portada": "portada-3.jpg",
+      "texto": "«8, 8, 7» en un WhatsApp no te dice si tu cliente progresa.\n\nEn Coachera anota cada serie con sus kilos y sus repeticiones, con lo que hizo la vez anterior al lado. Si bate su marca, se lo dice en ese momento. Y tú ves en su ficha qué ejercicio sube, cuál se ha estancado y cuál baja.\n\nGratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 5,
+      "fecha": "2026-10-21",
+      "hora": "18:00",
+      "tipo": "carrusel",
+      "titulo": "6 preguntas que no salen en la báscula",
+      "imagenes": [
+        "c2-1.jpg",
+        "c2-2.jpg",
+        "c2-3.jpg",
+        "c2-4.jpg",
+        "c2-5.jpg",
+        "c2-6.jpg",
+        "c2-7.jpg",
+        "c2-8.jpg"
+      ],
+      "texto": "La báscula te dice cuánto pesa tu cliente. No si duerme mal, si pasa hambre o si está a punto de dejarlo.\n\nEstas son seis preguntas para la revisión semanal, con lo que te dice cada una. Guárdalo para la próxima.\n\nEn Coachera vienen de serie: tu cliente las contesta del 1 al 10 y te llegan al lado de las de la semana anterior. Puedes cambiarlas, quitarlas o añadir las tuyas.",
+      "hashtags_extra": "#coachingonline"
+    },
+    {
+      "n": 6,
+      "fecha": "2026-10-23",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "Con tu marca",
+      "video": "r4-con-tu-marca.mp4",
+      "portada": "portada-4.jpg",
+      "texto": "Tus clientes no tienen por qué saber qué herramienta usas.\n\nEn su móvil ven tu nombre, tus iniciales y tu color, como si la app fuera tuya. La instalan desde el navegador, en Android y en iPhone, sin pasar por ninguna tienda. Y para ellos es gratis.\n\nGratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 7,
+      "fecha": "2026-10-26",
+      "hora": "18:00",
+      "tipo": "carrusel",
+      "titulo": "5 señales de que tu asesoría necesita un sistema",
+      "imagenes": [
+        "c3-1.jpg",
+        "c3-2.jpg",
+        "c3-3.jpg",
+        "c3-4.jpg",
+        "c3-5.jpg",
+        "c3-6.jpg",
+        "c3-7.jpg"
+      ],
+      "texto": "No necesitas más horas. Necesitas un sistema.\n\nSi te pasan dos o más de estas cinco, tu asesoría ha crecido más que tus herramientas. En cada una, lo que hace Coachera para quitártela.\n\nGuárdalo y pásaselo a ese compañero que las tiene todas.",
+      "hashtags_extra": "#coachingonline"
+    },
+    {
+      "n": 8,
+      "fecha": "2026-10-28",
+      "hora": "18:00",
+      "tipo": "carrusel",
+      "titulo": "La media de 7 días",
+      "imagenes": [
+        "c4-1.jpg",
+        "c4-2.jpg",
+        "c4-3.jpg",
+        "c4-4.jpg",
+        "c4-5.jpg"
+      ],
+      "texto": "Tu cliente sube 800 g de un día para otro. ¿Le cambias la dieta?\n\nAntes, mira la media de 7 días. El peso de una mañana lo mueven el agua, la sal o los hidratos; la media de la semana es la que dice hacia dónde va.\n\nGuárdalo para tu próxima revisión.\n\nEn Coachera la media se hace sola: tu cliente apunta su peso cada mañana y cada revisión te llega con la de 7 días. Gratis hasta 5 clientes. Enlace en la bio.",
+      "hashtags_extra": "#coachingonline"
+    },
+    {
+      "n": 9,
+      "fecha": "2026-10-30",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "Cámbiate en una tarde",
+      "video": "r5-una-tarde.mp4",
+      "portada": "portada-5.jpg",
+      "texto": "Cambiarte a Coachera te lleva una tarde.\n\nPegas tu rutina desde Excel, pegas tu dieta con sus opciones y sus menús de entreno y descanso, e invitas a tus clientes por WhatsApp. Ellos entran desde el enlace, en su móvil.\n\nTus 5 primeros clientes, gratis y sin tarjeta. Para ellos, la app también es gratis. Enlace en la bio."
+    }
+  ]
+}

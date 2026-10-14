@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>R4 · Con tu marca</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/portada.css">
+<link rel="stylesheet" href="../motor/reel.css">
+<style>
+/* R4 · «Tus clientes no ven nuestra marca. Ven la tuya.» El móvil del cliente cambia de
+   entrenador cinco veces (nombre, iniciales y color) → se instala desde el navegador, con el
+   icono del entrenador en la pantalla de inicio → final. 13 s. Entrenadores inventados. */
+.titulo{position:absolute;left:80px;right:80px;top:250px}
+.titulo .titular{font-size:100px}
+.titulo .linea>span{animation:subeLinea .65s var(--curva) var(--d) both}
+.t1{animation:baja .4s ease-in 2.45s forwards}
+.t2{animation:baja .4s ease-in 8.55s forwards}
+.t3{animation:baja .4s ease-in 11.05s forwards}
+
+.muestras{position:absolute;left:0;right:0;top:530px;display:flex;justify-content:center;gap:26px;animation:sube .5s var(--curva) 2.6s both, desaparece .3s ease 8.6s forwards}
+.muestras i{width:64px;height:64px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.2)}
+.muestras i.act{box-shadow:0 0 0 6px var(--fondo), 0 0 0 10px #fff}
+
+.tel-sitio{position:absolute;left:50%;top:640px;margin-left:-283px;animation:desdeAbajo3d .9s var(--curva) .35s both, salTel .55s cubic-bezier(.6,0,.8,.4) 8.65s forwards}
+@keyframes salTel{to{opacity:0;transform:translateY(240px) scale(.8)}}
+.tel-sitio .zoom{zoom:2.4}
+.tel-sitio .tel{box-shadow:0 60px 120px -10px rgba(0,0,0,.95), inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.6), 0 0 180px -30px var(--m)}
+.cli{transition:none}
+.cli.m1{--m:#7C3AED;--on-m:#FFFFFF} .cli.m2{--m:#E11D48;--on-m:#FFFFFF} .cli.m3{--m:#16225E;--on-m:#FFFFFF} .cli.m4{--m:#F59E0B;--on-m:#111111} .cli.m5{--m:#0EA5E9;--on-m:#111111}
+.cli-ini,.cli-boton,.cli-celdas i.hoy,.cli-nav span::before,.cli-segs i.ok{transition:none}
+.ola{position:absolute;inset:0;z-index:5;background:var(--c);clip-path:circle(0% at 22px 30px);opacity:1;animation:ola .55s cubic-bezier(.5,0,.2,1) var(--d) both}
+@keyframes ola{0%{clip-path:circle(0% at 22px 30px);opacity:1}60%{clip-path:circle(160% at 22px 30px);opacity:1}100%{clip-path:circle(160% at 22px 30px);opacity:0}}
+
+/* la pantalla de inicio del móvil del cliente */
+.inicio{position:absolute;left:50%;top:600px;width:620px;margin-left:-310px;height:860px;border-radius:70px;background:linear-gradient(160deg,#2B3442,#141A23);border:10px solid #1B222C;box-shadow:0 60px 120px -20px rgba(0,0,0,.9);padding:120px 54px 0;
+  animation:desdeAbajo3d .8s var(--curva) 8.85s both, desaparece .3s ease 11.05s forwards}
+.rejilla-apps{display:grid;grid-template-columns:repeat(4,1fr);gap:46px 34px}
+.app{display:flex;flex-direction:column;align-items:center;gap:12px;font-size:21px;color:#E8EDF3}
+.app i{width:104px;height:104px;border-radius:26px;background:rgba(255,255,255,.12)}
+.app.suya i{background:#7C3AED;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:38px;color:#fff;box-shadow:0 14px 30px -8px rgba(124,58,237,.7);animation:creceApp .55s var(--muelle) 9.6s both}
+.app.suya span{animation:aparece .3s ease 9.85s both}
+@keyframes creceApp{0%{transform:scale(0)}100%{transform:scale(1)}}
+.nota{position:absolute;left:80px;right:80px;top:1500px;text-align:center;font-size:40px;color:var(--gris);animation:sube .5s var(--curva) 10.0s both, desaparece .3s ease 11.05s forwards}
+.nota b{color:#fff;font-weight:600}
+
+/* final */
+.barrido{position:absolute;left:0;right:0;height:1920px;top:0;background:var(--voltio);transform:scaleX(0);z-index:40;animation:barre .7s cubic-bezier(.7,0,.3,1) var(--d) both}
+.fondo-final{opacity:0;animation:muestra .01s linear 11.45s forwards;z-index:30;background:var(--fondo)}
+.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:260px;text-align:center;opacity:0;animation:muestra .01s linear 11.45s forwards}
+.final .titular{font-size:116px;text-align:center}
+.final .titular .linea>span{animation:subeLinea .6s var(--curva) var(--d) both}
+.logo-medio{margin-top:70px;font-size:120px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .55s var(--curva) 12.0s both}
+.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
+.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
+.final .pildora{margin-top:56px;animation:crece .5s var(--muelle) 12.35s both}
+</style></head>
+<body><div id="escena">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+
+  <div class="titulo t1"><h1 class="titular">
+    <span class="linea"><span style="--d:.05s">Tus clientes no</span></span>
+    <span class="linea"><span style="--d:.15s">ven nuestra marca.</span></span></h1></div>
+  <div class="titulo t2"><h1 class="titular">
+    <span class="linea"><span style="--d:2.75s" class="v">Ven la tuya.</span></span></h1></div>
+  <div class="titulo t3"><h1 class="titular">
+    <span class="linea"><span style="--d:8.85s">Y la instalan</span></span>
+    <span class="linea"><span style="--d:8.95s" class="v">sin tienda.</span></span></h1></div>
+
+  <div class="muestras" id="muestras"><i style="--c:#7C3AED"></i><i style="--c:#E11D48"></i><i style="--c:#16225E"></i><i style="--c:#F59E0B"></i><i style="--c:#0EA5E9"></i></div>
+
+  <div class="tel-sitio"><div class="zoom"><div class="tel cli m1" id="tel"><div class="pantalla-tel">
+    <div class="ola" style="--c:#E11D48;--d:3.6s"></div>
+    <div class="ola" style="--c:#16225E;--d:4.85s"></div>
+    <div class="ola" style="--c:#F59E0B;--d:6.1s"></div>
+    <div class="ola" style="--c:#0EA5E9;--d:7.35s"></div>
+    <div class="cli-top"><span class="cli-ini" id="ini">LV</span><span id="nombre">Laura Vidal Coaching</span></div>
+    <p class="cli-hola">Hola, Marta</p>
+    <p class="cli-sub">Semana 12 de tu plan</p>
+    <div class="cli-hero"><span class="cli-label">Entreno de hoy</span><b>Torso · Empuje</b>
+      <div class="cli-cifras"><span>6<small>ejercicios</small></span><span>19<small>series</small></span><span>~35<small>min</small></span></div>
+      <div class="cli-boton">Empezar entreno</div></div>
+    <div class="cli-hoja"><span class="cli-label">Hábitos · esta semana</span>
+      <div class="cli-dias"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+      <p class="cli-fila">Pasos · 10.000</p>
+      <div class="cli-celdas"><i>✓</i><i>✓</i><i class="no">✕</i><i>✓</i><i class="hoy">8,4k</i><i class="fut"></i><i class="fut"></i></div>
+      <p class="cli-fila">Agua · 2 litros</p>
+      <div class="cli-celdas"><i>✓</i><i>✓</i><i>✓</i><i>✓</i><i class="hoy"></i><i class="fut"></i><i class="fut"></i></div>
+      <p class="cli-fila">Dormir 7 horas</p>
+      <div class="cli-celdas"><i>✓</i><i class="no">✕</i><i>✓</i><i>✓</i><i class="hoy"></i><i class="fut"></i><i class="fut"></i></div></div>
+    <div class="cli-nav"><span class="act">Hoy</span><span>Entreno</span><span>Comida</span><span>Progreso</span><span>Chat</span></div>
+  </div></div></div></div>
+
+  <div class="inicio"><div class="rejilla-apps">
+    <span class="app"><i></i><span>Fotos</span></span><span class="app"><i></i><span>Cámara</span></span><span class="app"><i></i><span>Mapas</span></span><span class="app"><i></i><span>Reloj</span></span>
+    <span class="app"><i></i><span>Notas</span></span><span class="app suya"><i>LV</i><span>Laura Vidal</span></span><span class="app"><i></i><span>Música</span></span><span class="app"><i></i><span>Ajustes</span></span>
+    <span class="app"><i></i><span>Correo</span></span><span class="app"><i></i><span>Tiempo</span></span><span class="app"><i></i><span>Salud</span></span><span class="app"><i></i><span>Calendario</span></span>
+  </div></div>
+  <p class="nota">Desde el navegador, en <b>Android y en iPhone.</b> Para tus clientes, gratis.</p>
+
+  <div class="barrido" style="--d:11.1s"></div>
+  <div class="fondo fondo-final"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
+  <div class="final">
+    <h2 class="titular"><span class="linea"><span style="--d:11.55s">Tu marca,</span></span><span class="linea"><span style="--d:11.65s" class="v">en su móvil.</span></span></h2>
+    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
+    <span class="pildora">Gratis hasta 5 clientes</span>
+  </div>
+</div>
+<script src="../motor/reel.js"></script>
+<script>
+const CAMBIOS = [ // [segundo, clase, iniciales, nombre]
+  [0, "m1", "LV", "Laura Vidal Coaching"], [3.96, "m2", "RM", "Rubén Mora Training"], [5.21, "m3", "EN", "Equipo Norte"],
+  [6.46, "m4", "CF", "Clara Fit Lab"], [7.71, "m5", "HS", "Hugo Sanz Coach"],
+];
+window.REEL = {
+  duracion: 13,
+  musica: { estilo: "ambiente", caida: 2.7, vol: .6 },
+  sonidos: [
+    { t: .35, tipo: "barrido", vol: .6 },
+    { t: 2.7, tipo: "golpe", vol: .45 },
+    ...[3.6, 4.85, 6.1, 7.35].map(t => ({ t, tipo: "pop", vol: .8 })),
+    { t: 8.65, tipo: "barrido", vol: .7 },
+    { t: 9.6, tipo: "ok" },
+    { t: 11.1, tipo: "barrido", vol: .7 },
+    { t: 12.0, tipo: "marca", vol: .8 },
+  ],
+};
+window.alTiempoReel = (t) => {
+  let i = 0; CAMBIOS.forEach((c, k) => { if (t >= c[0]) i = k; });
+  const [, clase, ini, nombre] = CAMBIOS[i];
+  const tel = document.getElementById("tel");
+  tel.className = "tel cli " + clase;
+  document.getElementById("ini").textContent = ini;
+  document.getElementById("nombre").textContent = nombre;
+  [...document.getElementById("muestras").children].forEach((m, k) => m.classList.toggle("act", k === i));
+};
+</script>
+</body></html>

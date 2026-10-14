@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>C4 · La media de 7 días</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<style>
+/* C4 · Educativo: el peso de un día baila; lo que cuenta es la media de 7 días (como hace la app
+   en el Progreso del cliente y en cada revisión). Los pesos son un ejemplo inventado, y la gráfica
+   va en tinta y voltio, sin verde ni rojo: la app tampoco juzga si bajar es bueno. */
+.pregunta{margin:40px 0 0;font-family:var(--titular);font-size:80px;letter-spacing:-.03em;color:var(--gris-3)}
+.bascula-g{position:absolute;left:80px;right:80px;bottom:220px;display:flex;align-items:baseline;gap:20px;padding:46px 50px;border-radius:30px;background:#05070A;border:2px solid rgba(214,255,63,.25);box-shadow:0 40px 90px -30px rgba(0,0,0,.9)}
+.bascula-g .num{font-size:170px;font-weight:500;line-height:.9;letter-spacing:-.05em;color:var(--voltio)}
+.bascula-g small{font-family:var(--font-num);font-size:50px;color:var(--gris)}
+.bascula-g .dif{margin-left:auto;align-self:center;white-space:nowrap;font-family:var(--font-num);font-size:34px;color:#fff;background:rgba(255,255,255,.08);border-radius:12px;padding:10px 18px}
+.caja-g{margin-top:46px}
+.graf{display:block;width:920px;height:560px;overflow:visible}
+.graf .eje{stroke:rgba(255,255,255,.08);stroke-width:2}
+.graf .sep{stroke:rgba(255,255,255,.18);stroke-width:2;stroke-dasharray:6 8}
+.graf .et{font-family:'IBM Plex Mono',monospace;font-size:24px;fill:var(--gris-2)}
+.graf .sem{font-family:'IBM Plex Sans',sans-serif;font-size:26px;font-weight:600;fill:var(--gris);text-anchor:middle;letter-spacing:.08em;text-transform:uppercase}
+.graf .linea{fill:none;stroke:rgba(255,255,255,.55);stroke-width:4;stroke-linejoin:round}
+.graf .punto{fill:#fff}
+.graf .tenue{opacity:.35}
+.graf .punto.sube{fill:var(--voltio);filter:drop-shadow(0 0 14px rgba(214,255,63,.7))}
+.graf .nota-sube rect{fill:var(--voltio)}
+.graf .nota-sube text{font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:600;fill:var(--negro);text-anchor:middle}
+.graf .media{stroke:var(--voltio);stroke-width:12;stroke-linecap:round;filter:drop-shadow(0 0 16px rgba(214,255,63,.55))}
+.graf .et-media{paint-order:stroke;stroke:#06080B;stroke-width:14px;stroke-linejoin:round;font-family:'IBM Plex Mono',monospace;font-size:44px;font-weight:500;fill:var(--voltio);text-anchor:middle}
+.pie-g{margin:22px 0 0;font-size:28px;color:var(--gris-2);display:flex;align-items:center;gap:12px}
+.ley-media{display:inline-block;width:40px;height:10px;border-radius:5px;background:var(--voltio)}
+.ley-dia{display:inline-block;width:16px;height:16px;border-radius:50%;background:#fff;opacity:.5;margin-left:16px}
+.pasos-l{list-style:none;margin:60px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+.pasos-l li{display:grid;grid-template-columns:110px 1fr;gap:30px;align-items:start;padding:40px 0;border-top:2px solid var(--linea)}
+.pasos-l li:last-child{border-bottom:2px solid var(--linea)}
+.pasos-l .num{width:96px;height:96px;border-radius:50%;border:4px solid var(--voltio);display:grid;place-items:center;font-size:46px;font-weight:500;color:var(--voltio)}
+.pasos-l b{display:block;font-family:var(--titular);font-weight:400;font-size:52px;letter-spacing:-.02em;color:#fff;margin-top:6px}
+.pasos-l p{margin:10px 0 0;font-size:38px;line-height:1.32;color:var(--gris)}
+.peso-m{margin-top:56px;border-radius:26px;background:var(--negro);padding:34px 40px;color:#fff}
+.pm-t{margin:0 0 10px;font-size:26px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--voltio)}
+.pm-f{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.pm-c{font-family:var(--font-num);font-size:130px;font-weight:500;letter-spacing:-.05em;line-height:1}
+.pm-c small{font-size:44px;color:var(--gris);letter-spacing:0}
+.pm-d{font-family:var(--font-num);font-size:40px;text-align:right} .pm-d em{font-family:var(--font-text);font-style:normal;font-size:26px;color:var(--gris)}
+</style></head>
+<body>
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">1/5</span></div>
+  <p class="rotulo" style="margin-top:40px">Revisión semanal</p>
+  <h1 class="titular" style="font-size:118px">Tu cliente sube <span class="v">800 g</span> de un día para otro.</h1>
+  <p class="pregunta">¿Va mal?</p>
+  <div class="bascula-g"><span class="num">73,0</span><small>kg</small><span class="dif">▲ 0,8 kg</span></div>
+  <span class="desliza">Desliza →</span>
+  <div class="hilo empieza"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">2/5</span></div>
+  <h2 class="titular" style="margin-top:60px;font-size:104px">El peso de un día <span class="v">baila.</span></h2>
+  <p class="texto" style="font-size:40px;margin-top:28px">El agua, la sal, los hidratos o la hora del baño lo mueven <b>casi un kilo de un día a otro</b>, aunque la grasa no cambie.</p>
+  <div class="caja-g"><svg class="graf" viewBox="0 0 920 560" role="img" aria-label="Peso de 14 días"><line x1="70" x2="900" y1="444.7" y2="444.7" class="eje"/><text x="0" y="453.7" class="et">72,0</text><line x1="70" x2="900" y1="318.2" y2="318.2" class="eje"/><text x="0" y="327.2" class="et">72,5</text><line x1="70" x2="900" y1="191.8" y2="191.8" class="eje"/><text x="0" y="200.8" class="et">73,0</text><line x1="70" x2="900" y1="65.3" y2="65.3" class="eje"/><text x="0" y="74.3" class="et">73,5</text><line x1="485.0" x2="485.0" y1="30" y2="480" class="sep"/><text x="261.5" y="546" class="sem">Semana 1</text><text x="708.5" y="546" class="sem">Semana 2</text><polyline points="70.0,166.5 133.8,292.9 197.7,90.6 261.5,242.4 325.4,318.2 389.2,115.9 453.1,267.6 516.9,292.9 580.8,368.8 644.6,267.6 708.5,394.1 772.3,191.8 836.2,343.5 900.0,419.4" class="linea"/><circle cx="70.0" cy="166.5" r="9" class="punto"/><circle cx="133.8" cy="292.9" r="9" class="punto"/><circle cx="197.7" cy="90.6" r="9" class="punto"/><circle cx="261.5" cy="242.4" r="9" class="punto"/><circle cx="325.4" cy="318.2" r="9" class="punto"/><circle cx="389.2" cy="115.9" r="9" class="punto"/><circle cx="453.1" cy="267.6" r="9" class="punto"/><circle cx="516.9" cy="292.9" r="9" class="punto"/><circle cx="580.8" cy="368.8" r="9" class="punto"/><circle cx="644.6" cy="267.6" r="9" class="punto"/><circle cx="708.5" cy="394.1" r="9" class="punto"/><circle cx="772.3" cy="191.8" r="13" class="punto sube"/><circle cx="836.2" cy="343.5" r="9" class="punto"/><circle cx="900.0" cy="419.4" r="9" class="punto"/><g class="nota-sube"><rect x="690.3" y="99.8" width="164" height="60" rx="14"/><text x="772.3" y="141.8">+0,8 kg</text></g></svg></div>
+  <p class="pie-g">Ejemplo: el peso de 14 mañanas seguidas</p>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">3/5</span></div>
+  <h2 class="titular" style="margin-top:60px;font-size:104px">Mira la media <span class="v">de 7 días.</span></h2>
+  <p class="texto" style="font-size:40px;margin-top:28px">La semana del «+0,8», su media <b>bajó 0,4 kg.</b> El día alto no decía nada.</p>
+  <div class="caja-g"><svg class="graf" viewBox="0 0 920 560" role="img" aria-label="Peso de 14 días"><line x1="70" x2="900" y1="444.7" y2="444.7" class="eje"/><text x="0" y="453.7" class="et">72,0</text><line x1="70" x2="900" y1="318.2" y2="318.2" class="eje"/><text x="0" y="327.2" class="et">72,5</text><line x1="70" x2="900" y1="191.8" y2="191.8" class="eje"/><text x="0" y="200.8" class="et">73,0</text><line x1="70" x2="900" y1="65.3" y2="65.3" class="eje"/><text x="0" y="74.3" class="et">73,5</text><line x1="485.0" x2="485.0" y1="30" y2="480" class="sep"/><text x="261.5" y="546" class="sem">Semana 1</text><text x="708.5" y="546" class="sem">Semana 2</text><polyline points="70.0,166.5 133.8,292.9 197.7,90.6 261.5,242.4 325.4,318.2 389.2,115.9 453.1,267.6 516.9,292.9 580.8,368.8 644.6,267.6 708.5,394.1 772.3,191.8 836.2,343.5 900.0,419.4" class="linea tenue"/><circle cx="70.0" cy="166.5" r="9" class="punto tenue"/><circle cx="133.8" cy="292.9" r="9" class="punto tenue"/><circle cx="197.7" cy="90.6" r="9" class="punto tenue"/><circle cx="261.5" cy="242.4" r="9" class="punto tenue"/><circle cx="325.4" cy="318.2" r="9" class="punto tenue"/><circle cx="389.2" cy="115.9" r="9" class="punto tenue"/><circle cx="453.1" cy="267.6" r="9" class="punto tenue"/><circle cx="516.9" cy="292.9" r="9" class="punto tenue"/><circle cx="580.8" cy="368.8" r="9" class="punto tenue"/><circle cx="644.6" cy="267.6" r="9" class="punto tenue"/><circle cx="708.5" cy="394.1" r="9" class="punto tenue"/><circle cx="772.3" cy="191.8" r="9" class="punto tenue"/><circle cx="836.2" cy="343.5" r="9" class="punto tenue"/><circle cx="900.0" cy="419.4" r="9" class="punto tenue"/><line x1="56.0" x2="467.1" y1="213.4" y2="213.4" class="media"/><text x="261.5" y="175.4" class="et-media">72,9</text><line x1="502.9" x2="914.0" y1="325.5" y2="325.5" class="media"/><text x="708.5" y="287.5" class="et-media">72,5</text></svg></div>
+  <p class="pie-g"><span class="ley-media"></span> media de la semana <span class="ley-dia"></span> cada mañana</p>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">4/5</span></div>
+  <h2 class="titular" style="margin-top:60px;font-size:104px">Cómo pedirle <span class="v">el peso.</span></h2>
+  <ol class="pasos-l">
+    <li><span class="num">1</span><div><b>Cada mañana, igual.</b><p>En ayunas, después de ir al baño y antes de beber nada.</p></div></li>
+    <li><span class="num">2</span><div><b>Todos los días.</b><p>También los que sabe que van a salir altos. Sin esos, la media miente.</p></div></li>
+    <li><span class="num">3</span><div><b>Semana contra semana.</b><p>Compara su media con la de la semana anterior. Nunca un día con otro.</p></div></li>
+  </ol>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia voltio">
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">5/5</span></div>
+  <h2 class="titular" style="margin-top:70px;font-size:116px">En Coachera, la media se hace sola.</h2>
+  <p class="texto" style="margin-top:30px;font-size:40px;max-width:900px">Tu cliente apunta su peso en su app cada mañana. <b>Los dos veis la media de cada semana</b>, y cada revisión te llega con la de 7 días.</p>
+  <div class="peso-m">
+    <p class="pm-t">Peso medio · esta semana</p>
+    <div class="pm-f"><span class="pm-c">72,5<small> kg</small></span><span class="pm-d">▼ 0,4 kg<br><em>respecto a la semana pasada</em></span></div>
+  </div>
+  <div style="position:absolute;left:80px;bottom:128px;display:flex;align-items:center;gap:28px"><span class="pildora">Gratis hasta 5 clientes</span><span class="texto" style="margin:0;font-size:34px">Sin tarjeta ·<br><b>enlace en la bio</b></span></div>
+  <div class="hilo acaba"></div>
+</section>
+</body></html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Portadas de los reels</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<style>
+/* Las portadas de los cinco reels (1080×1920). La cuadrícula del perfil enseña el centro en 3:4
+   (de y=240 a y=1680): el titular va de 300 a 700 y debajo, un fotograma del propio reel, bajado
+   para que su titular quede tapado por el velo. Se regeneran con
+   python3 motor/carrusel.py portadas/portadas.html instagram/lote-02/portada 1920 */
+.dia{height:1920px;padding:0}
+.foto{position:absolute;left:0;width:1080px;height:1920px;z-index:0}
+.velo{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--fondo) 0,var(--fondo) var(--solido,730px),rgba(6,8,11,0) calc(var(--solido,730px) + 70px),rgba(6,8,11,0) 1560px,rgba(6,8,11,.85) 1800px)}
+.arriba{position:absolute;z-index:2;left:80px;right:80px;top:300px}
+.arriba .logo-p{font-size:44px;margin-bottom:38px}
+.arriba .rotulo{display:flex;margin:0 0 22px}
+.arriba .titular{font-size:138px;line-height:.94}
+</style></head>
+<body>
+<section class="dia">
+  <img class="foto" src="fotogramas/r1-una-app.png" style="top:230px" alt="">
+  <div class="velo" style="--solido:850px"></div>
+  <div class="arriba"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span>
+    <p class="rotulo">Para entrenadores online</p><h1 class="titular">¿Cuántas apps<br><span class="v">usas?</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r2-pega-tu-rutina.png" style="top:330px" alt="">
+  <div class="velo" style="--solido:850px"></div>
+  <div class="arriba"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span>
+    <p class="rotulo">Cámbiate sin reescribir</p><h1 class="titular">Pega tu rutina<br><span class="v">desde Excel.</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r3-serie-a-serie.png" style="top:230px" alt="">
+  <div class="velo"></div>
+  <div class="arriba"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span>
+    <p class="rotulo">Lo que anota tu cliente</p><h1 class="titular">Serie<br><span class="v">a serie.</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r4-con-tu-marca.png" style="top:220px" alt="">
+  <div class="velo"></div>
+  <div class="arriba"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span>
+    <p class="rotulo">Marca blanca</p><h1 class="titular">Con tu<br><span class="v">marca.</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r5-una-tarde.png" style="top:100px" alt="">
+  <div class="velo"></div>
+  <div class="arriba"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span>
+    <p class="rotulo">Gratis hasta 5 clientes</p><h1 class="titular">Cámbiate en<br><span class="v">una tarde.</span></h1></div>
+</section>
+</body></html>
