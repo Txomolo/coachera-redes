@@ -1,0 +1,14 @@
+/* Las fuentes de la marca, copiadas en motor/fuentes (IBM Plex, licencia OFL: se pueden redistribuir).
+   Con @font-face explícito no depende de cómo las encuentre el sistema. */
+@font-face{font-family:'IBM Plex Sans';font-weight:400;font-style:normal;src:url('fuentes/IBMPlexSans-Regular.woff') format('woff');}
+@font-face{font-family:'IBM Plex Sans';font-weight:500;font-style:normal;src:url('fuentes/IBMPlexSans-Medium.woff') format('woff');}
+@font-face{font-family:'IBM Plex Sans';font-weight:600;font-style:normal;src:url('fuentes/IBMPlexSans-SemiBold.woff') format('woff');}
+@font-face{font-family:'IBM Plex Mono';font-weight:400;font-style:normal;src:url('fuentes/IBMPlexMono-Regular.woff') format('woff');}
+@font-face{font-family:'IBM Plex Mono';font-weight:500;font-style:normal;src:url('fuentes/IBMPlexMono-Medium.woff') format('woff');}
+@font-face{font-family:'IBM Plex Mono';font-weight:600;font-style:normal;src:url('fuentes/IBMPlexMono-SemiBold.woff') format('woff');}
+@font-face{font-family:'Archivo Black';font-weight:400;font-style:normal;src:url('fuentes/ArchivoBlack-Regular.woff2') format('woff2');}
+/* ✕ ▲ ▼ ◷: IBM Plex Sans no los trae (el ✓ sí, y es el que sale en la app: se deja) y
+   Archivo Black ninguno, así que cada sistema los dibujaba a su manera. Van en una familia
+   aparte, 'Simbolos' (esos glifos de DejaVu Sans Bold, licencia libre), que se pone en cada
+   pila de letras justo detrás de la principal: el navegador la usa solo para lo que le falta. */
+@font-face{font-family:'Simbolos';font-weight:100 900;src:url('fuentes/DejaVuSans-Bold-Simbolos.woff2') format('woff2');unicode-range:U+2715,U+25B2,U+25BC,U+25F7;}

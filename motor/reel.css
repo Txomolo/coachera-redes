@@ -1,0 +1,90 @@
+/* ============================================================================
+   Lo común de los Reels y carruseles de Coachera (identidad de octubre de 2026)
+   ============================================================================
+   «La C que avanza», en voltio y negro. Titulares en Archivo Black, texto en IBM Plex
+   Sans y cifras en IBM Plex Mono. Las pantallas del producto son las de la portada
+   (portada.css), con el voltio como color de Coachera en el panel del entrenador; la app
+   del cliente lleva el color de su entrenador (marca blanca), no el nuestro.
+
+   Zonas seguras de un Reel (1080×1920): Instagram tapa arriba ~220 px y abajo ~380 px
+   (texto, nombre, botones) y a la derecha, de 1100 hacia abajo, ~140 px (los botones).
+   Lo que tiene que leerse va entre y=250 y y=1540.
+
+   El movimiento: animaciones CSS con su animation-delay contado desde el segundo 0 del
+   Reel. motor/render.mjs las pausa y las pone en cada instante. Para entrar y salir, dos
+   animaciones en la misma propiedad: primero la de entrada (both), después la de salida
+   (forwards), que solo actúa a partir de su retraso. --d = cuándo entra, --f = cuándo sale. */
+
+:root{
+  --voltio:#D6FF3F; --voltio-2:#E6FF80; --negro:#0B0F14; --fondo:#06080B; --blanco:#FFFFFF;
+  --gris:#9AA6B8; --gris-2:#7E8A9C; --gris-3:#5F6B7D;
+  --titular:'Archivo Black', 'Simbolos', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-text:'IBM Plex Sans', 'Simbolos', system-ui, sans-serif; --font-num:'IBM Plex Mono', 'Simbolos', ui-monospace, monospace;
+  /* el panel del entrenador, con el voltio como color de Coachera */
+  --brand:#D6FF3F; --brand-hover:#E6FF80; --on-brand:#0B0F14; --brand-text:#D6FF3F;
+  --curva:cubic-bezier(.2,.7,.2,1); --muelle:cubic-bezier(.3,1.35,.4,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--fondo)}
+body{width:1080px;height:1920px;overflow:hidden;font-family:var(--font-text);color:var(--blanco);-webkit-font-smoothing:antialiased}
+#escena{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--fondo);isolation:isolate}
+#escena.carrusel{height:1350px}
+
+/* Las piezas de la portada, con el voltio donde la portada tenía turquesa a mano */
+.chip-rev{background:rgba(214,255,63,.13); color:var(--voltio)}
+.s-filtros span.act{background:rgba(214,255,63,.12); border-color:rgba(214,255,63,.4); color:var(--voltio)}
+.s-barras7 i{background:linear-gradient(180deg,var(--voltio),rgba(214,255,63,.25))}
+.s-barras7 i.hoy{background:repeating-linear-gradient(135deg, rgba(214,255,63,.65) 0 3px, transparent 3px 6px)}
+.panel{box-shadow:0 50px 120px -20px rgba(0,0,0,.85), 0 0 0 1px rgba(214,255,63,.06), 0 0 90px -24px rgba(214,255,63,.22)}
+.ventana{box-shadow:0 40px 100px -30px rgba(0,0,0,.9), 0 0 120px -40px rgba(214,255,63,.22)}
+.punto{stroke:var(--voltio)} .trazo{stroke:var(--voltio)}
+
+/* ---- Fondo ---- */
+.fondo{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.rejilla{position:absolute;inset:-200px;background-image:linear-gradient(rgba(255,255,255,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.045) 2px,transparent 2px);background-size:108px 108px;-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 45%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 60% 50% at 50% 45%,#000 20%,transparent 75%)}
+.luz{position:absolute;width:1400px;height:1100px;left:50%;top:50%;margin:-550px 0 0 -700px;background:radial-gradient(closest-side, rgba(214,255,63,.16), rgba(214,255,63,.04) 55%, transparent);filter:blur(10px)}
+.grano{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ---- Texto ---- */
+.titular{font-family:var(--titular);font-weight:400;font-size:112px;line-height:.96;letter-spacing:-.035em;color:var(--blanco);margin:0;text-wrap:balance}
+.titular .v{color:var(--voltio)} .titular .g{color:var(--gris-3)}
+.rotulo{display:inline-flex;align-items:center;gap:16px;font-size:30px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--voltio)}
+.rotulo::before{content:"";width:40px;height:4px;border-radius:2px;background:currentColor}
+.texto{font-size:46px;line-height:1.32;font-weight:500;color:var(--gris);margin:0;text-wrap:pretty}
+.texto b{color:var(--blanco);font-weight:600}
+.num{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+.linea{display:block;overflow:hidden;padding:0 .04em .1em;margin-bottom:-.1em}
+.linea>span{display:inline-block}
+
+/* ---- La marca ---- */
+.c-marca{display:block;overflow:visible}
+.c-marca path{fill:none;stroke:currentColor;stroke-width:19;stroke-linecap:round}
+.logo{display:inline-flex;align-items:center;gap:0}
+.logo svg{display:block}
+.pildora{display:inline-flex;align-items:center;gap:14px;height:96px;padding:0 44px;border-radius:999px;background:var(--voltio);color:var(--negro);font-family:var(--titular);font-size:40px;letter-spacing:-.01em}
+.pildora.fantasma{background:transparent;color:var(--blanco);box-shadow:inset 0 0 0 3px rgba(255,255,255,.25);font-family:var(--font-text);font-weight:600}
+
+/* zoom también multiplica top y left: lo que se escala va dentro de un .sitio sin zoom */
+.sitio{position:absolute}
+
+/* ---- El dedo: el toque que se ve en pantalla ---- */
+.toque{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:rgba(255,255,255,.35);box-shadow:0 0 0 6px rgba(255,255,255,.55);opacity:0;pointer-events:none;z-index:50}
+
+/* ---- Movimientos (con --d de retraso; --dur para cambiar la duración) ---- */
+@keyframes aparece{from{opacity:0}}
+@keyframes muestra{from{opacity:0}to{opacity:1}}   /* para lo que está oculto (opacity:0) hasta su momento */
+@keyframes desaparece{to{opacity:0}}
+@keyframes sube{from{opacity:0;transform:translateY(70px)}}
+@keyframes subeLinea{from{transform:translateY(108%)}}
+@keyframes baja{to{opacity:0;transform:translateY(-60px)}}
+@keyframes crece{from{opacity:0;transform:scale(.6)}}
+@keyframes encoge{to{opacity:0;transform:scale(.85)}}
+@keyframes desdeAbajo3d{from{opacity:0;transform:perspective(2000px) translateY(500px) rotateX(28deg)}}
+@keyframes desdeDerecha{from{opacity:0;transform:translateX(420px)}}
+@keyframes desdeIzquierda{from{opacity:0;transform:translateX(-420px)}}
+@keyframes dibuja{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pulsa{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes toque{0%{opacity:0;transform:scale(.4)}15%{opacity:1;transform:scale(.8)}45%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+@keyframes barre{0%{transform:scaleX(0);transform-origin:left}49.9%{transform:scaleX(1);transform-origin:left}50%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+@keyframes tiembla{0%,100%{transform:translate(0,0) rotate(var(--r,0deg))}25%{transform:translate(4px,-3px) rotate(calc(var(--r,0deg) + .6deg))}50%{transform:translate(-3px,4px) rotate(var(--r,0deg))}75%{transform:translate(3px,2px) rotate(calc(var(--r,0deg) - .6deg))}}
+@keyframes flota{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-16px) rotate(var(--r,0deg))}}
