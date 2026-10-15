@@ -10,6 +10,8 @@ aprobada para publicar.
 - `instagram/lote-02/`: las 9 del 16 al 30 de octubre de 2026, con la marca nueva: 5 reels (`rN-*.mp4`,
   con su portada `portada-N.jpg`) y 4 carruseles (`cN-M.jpg`). Fechas, horas y textos, en
   `publicaciones.json`. Sus fuentes están en `reels/`, `carruseles/` y `portadas/`.
+- `instagram/virales/`: la serie «Cosas de entrenador», un reel de humor a la semana (los martes) con
+  Coachera al final. Fuentes en `reels/vN-*.html`.
 - `herramientas/`: los scripts que generan cada lote y cómo usarlos.
 - `recursos/`: capturas de la app (con datos de ejemplo inventados) y el icono, que usan los scripts.
 - `marca/`: el logotipo de octubre de 2026, «la C que avanza», en voltio (`#D6FF3F`) y negro. Los SVG y

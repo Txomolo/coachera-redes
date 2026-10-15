@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>V1 · Lo que dice tu cliente</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/reel.css">
+<style>
+/* V1 · Serie para compartir («Cosas de entrenador»): humor que reconoce cualquier entrenador
+   online, para que se lo mande a otro. Cinco frases de cliente y su «traducción», a ritmo de meme,
+   y al final Coachera. 18 s. El gancho se ve desde el primer fotograma. */
+.gancho{position:absolute;left:80px;right:80px;top:560px;animation:baja .35s ease-in 1.3s forwards}
+.gancho .titular{font-size:136px}
+.gancho .vs{display:block;font-size:.5em;color:var(--gris-3);margin:.1em 0 .05em}
+.cabecera{position:absolute;left:80px;right:80px;top:250px;display:flex;justify-content:space-between;align-items:center;animation:sube .4s var(--curva) 1.55s both}
+.cabecera .rotulo{margin:0;font-size:32px}
+.cuenta-p{margin:0;font-family:var(--font-num);font-size:40px;color:var(--gris)}
+.cuenta-p b{color:var(--voltio);font-weight:500}
+
+.par{position:absolute;left:80px;right:80px;top:720px;opacity:0;animation:muestra .01s linear var(--t) forwards, fuera .28s ease-in calc(var(--t) + 2.32s) forwards}
+@keyframes fuera{to{opacity:0;transform:translateY(-50px)}}
+.burbuja{position:relative;max-width:920px;display:inline-block;padding:30px 38px 22px;border-radius:8px 34px 34px 34px;background:#202C33;box-shadow:0 30px 70px -20px rgba(0,0,0,.9);transform-origin:0 0;animation:crece .42s var(--muelle) var(--t) both}
+.burbuja::before{content:"";position:absolute;left:-18px;top:0;border:0 solid transparent;border-top:22px solid #202C33;border-left:20px solid transparent}
+.burbuja .quien{display:block;font-size:34px;font-weight:600;color:#7FE3A8;margin-bottom:6px}
+.burbuja .msg{font-size:64px;line-height:1.25;color:#E9EDEF;position:relative}
+.burbuja .hora{display:block;text-align:right;font-family:var(--font-num);font-size:30px;color:#8696A0;margin-top:6px}
+.msg .tx{background:linear-gradient(var(--voltio),var(--voltio)) no-repeat 0 58%/0% 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;animation:tachar .4s cubic-bezier(.6,0,.2,1) calc(var(--t) + .8s) forwards}
+@keyframes tachar{to{background-size:100% 8px}}
+.trad{margin-top:70px}
+.trad .rotulo{animation:sube .35s var(--curva) calc(var(--t) + .85s) both}
+.trad .titular{margin-top:22px;font-size:96px}
+.trad .titular .linea>span{animation:subeLinea .5s var(--curva) calc(var(--t) + .95s) both}
+
+.ico-p{position:absolute;right:10px;top:-400px;width:270px;height:270px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(closest-side,rgba(214,255,63,.16),transparent);animation:salta .5s var(--muelle) calc(var(--t) + 1.0s) both}
+.ico-p svg{width:190px;height:190px;fill:none;stroke:var(--voltio);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 22px rgba(214,255,63,.45))}
+@keyframes salta{0%{opacity:0;transform:scale(.3) rotate(-25deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+
+/* final */
+.barrido{position:absolute;left:0;right:0;height:1920px;top:0;background:var(--voltio);transform:scaleX(0);z-index:40;animation:barre .7s cubic-bezier(.7,0,.3,1) var(--d) both}
+.fondo-final{opacity:0;animation:muestra .01s linear 15.05s forwards;z-index:30;background:var(--fondo)}
+.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 80px 260px;text-align:center;opacity:0;animation:muestra .01s linear 15.05s forwards}
+.final .titular{font-size:116px;text-align:center}
+.final .titular .linea>span{animation:subeLinea .55s var(--curva) var(--d) both}
+.final .texto{margin-top:30px;animation:sube .45s var(--curva) 15.6s both}
+.logo-medio{margin-top:60px;font-size:116px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .5s var(--curva) 15.85s both}
+.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
+.logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 15.9s both}
+.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
+.final .pildora{margin-top:52px;animation:crece .45s var(--muelle) 16.3s both}
+</style></head>
+<body><div id="escena">
+  <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:40%"></div><div class="grano"></div></div>
+
+  <div class="gancho"><h1 class="titular">Lo que dice tu cliente <span class="vs">vs.</span><span class="v">lo que significa</span></h1></div>
+  <div class="cabecera"><p class="rotulo">Diccionario del entrenador</p><p class="cuenta-p"><b id="n">1</b>/5</p></div>
+
+  <div class="par" style="--t:1.7s">
+    <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">Esta semana me he portado bien</span></span><span class="hora">21:47</span></div>
+    <div class="ico-p"><svg viewBox="0 0 24 24"><path d="M3.5 5.5Q12 2 20.5 5.5L12 21.5Z"/><path d="M5 8.5Q12 6 19 8.5"/><circle cx="10" cy="11" r="1.4"/><circle cx="14" cy="11.5" r="1.2"/><circle cx="12" cy="15.5" r="1.2"/></svg></div>
+    <div class="trad"><p class="rotulo">Traducción</p><h2 class="titular"><span class="linea"><span>Hubo pizza.</span></span><span class="linea"><span class="v">Dos veces.</span></span></h2></div>
+  </div>
+  <div class="par" style="--t:4.35s">
+    <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">Mañana te mando las fotos</span></span><span class="hora">23:12</span></div>
+    <div class="ico-p"><svg viewBox="0 0 24 24"><path d="M3.5 8.5h3.5l2-2.5h6l2 2.5h3.5v11h-17z"/><circle cx="12" cy="13.5" r="3.5"/><path d="M3 3l18 18"/></svg></div>
+    <div class="trad"><p class="rotulo">Traducción</p><h2 class="titular"><span class="linea"><span>No vas a ver</span></span><span class="linea"><span class="v">esas fotos.</span></span></h2></div>
+  </div>
+  <div class="par" style="--t:7.0s">
+    <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">Hoy he hecho cardio</span></span><span class="hora">19:30</span></div>
+    <div class="ico-p"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.5l2.4 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20.5 8H5.8"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg></div>
+    <div class="trad"><p class="rotulo">Traducción</p><h2 class="titular"><span class="linea"><span>Ha ido andando</span></span><span class="linea"><span class="v">al súper.</span></span></h2></div>
+  </div>
+  <div class="par" style="--t:9.65s">
+    <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">He subido de peso y no sé por qué</span></span><span class="hora">08:05</span></div>
+    <div class="ico-p"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><rect x="8" y="6.5" width="8" height="4" rx="1"/><path d="M12 10.5V8.3"/></svg></div>
+    <div class="trad"><p class="rotulo">Traducción</p><h2 class="titular"><span class="linea"><span>Lo sabe</span></span><span class="linea"><span class="v">perfectamente.</span></span></h2></div>
+  </div>
+  <div class="par" style="--t:12.3s">
+    <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">No he tenido tiempo de entrenar</span></span><span class="hora">22:58</span></div>
+    <div class="ico-p"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="12.5" rx="2"/><path d="M8 21h8"/><path d="M10.5 9.2v5.6l4.5-2.8z"/></svg></div>
+    <div class="trad"><p class="rotulo">Traducción</p><h2 class="titular"><span class="linea"><span>Ha visto una</span></span><span class="linea"><span>temporada</span></span><span class="linea"><span class="v">entera.</span></span></h2></div>
+  </div>
+
+  <div class="barrido" style="--d:14.7s"></div>
+  <div class="fondo fondo-final"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
+  <div class="final">
+    <h2 class="titular"><span class="linea"><span style="--d:15.15s">Con Coachera,</span></span><span class="linea"><span style="--d:15.25s">no hace falta</span></span><span class="linea"><span style="--d:15.35s" class="v">traducir.</span></span></h2>
+    <p class="texto">Ves lo que entrena, lo que come y lo que pesa, <b>en su app.</b></p>
+    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
+    <span class="pildora">Gratis hasta 5 clientes</span>
+  </div>
+</div>
+<script src="../motor/reel.js"></script>
+<script>
+const PARES = [1.7, 4.35, 7.0, 9.65, 12.3];
+window.REEL = {
+  duracion: 18,
+  musica: { estilo: "ambiente", caida: 1.7, vol: .6 },
+  sonidos: [
+    ...PARES.flatMap((t) => [{ t, tipo: "pop", vol: .8 }, { t: t + .8, tipo: "barrido", vol: .35 }, { t: t + .95, tipo: "golpe", vol: .55 }]),
+    { t: 14.7, tipo: "barrido", vol: .7 },
+    { t: 15.9, tipo: "marca", vol: .9 }, { t: 16.3, tipo: "toque", vol: .7 },
+  ],
+};
+window.alTiempoReel = (t) => {
+  let i = 0; PARES.forEach((p, k) => { if (t >= p) i = k; });
+  document.getElementById("n").textContent = i + 1;
+};
+</script>
+</body></html>
