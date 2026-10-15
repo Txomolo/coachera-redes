@@ -5,20 +5,18 @@
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* V1 · Coachera TV: «Rueda de prensa del cliente, con traducción simultánea». Cinco declaraciones
+/* V1 · «Rueda de prensa del cliente, con traducción simultánea». Cinco declaraciones
    de cliente (sus mensajes) y lo que significan, a ritmo de meme, y al final Coachera. 18 s.
    El gancho se ve desde el primer fotograma (la portada sale del fotograma de los 200 ms). */
 .gancho{position:absolute;left:60px;right:60px;top:470px;animation:desaparece .01s linear 1.6s forwards}
 .gancho .tv-narra{position:static;margin:0;font-size:150px;line-height:1.0}
 .gancho .vs{display:block;font-size:.46em;color:var(--gris-3);margin:.12em 0 .1em}
-.gancho p{margin:40px 0 0;display:inline-flex;font-family:var(--tv);font-size:50px;letter-spacing:.04em}
-.gancho p b{font-weight:400;background:var(--voltio);color:var(--negro);padding:10px 22px}
-.gancho p span{background:#fff;color:var(--negro);padding:10px 22px}
+.gancho p{margin:40px 0 0;font-family:var(--tv);font-size:54px;letter-spacing:.1em;color:var(--gris)}
 
 /* la cabecera del programa: «Rueda de prensa del cliente · 1/5» */
-.cab-tv{position:absolute;left:60px;right:60px;top:346px;height:84px;display:flex;align-items:stretch;background:#0E131A;border:3px solid rgba(255,255,255,.14);font-family:var(--tv);z-index:20;animation:tvEntra .4s cubic-bezier(.2,.9,.2,1) 1.6s both}
-.cab-tv>span{flex:1;display:flex;align-items:center;padding:0 26px;font-size:42px;letter-spacing:.05em;color:#fff}
-.cab-tv b{display:flex;align-items:center;padding:0 26px;font-weight:400;font-size:52px;background:var(--voltio);color:var(--negro)}
+.cab-tv{position:absolute;left:60px;right:60px;top:300px;display:flex;justify-content:space-between;align-items:baseline;font-family:var(--tv);z-index:20;animation:sube .4s var(--curva) 1.6s both}
+.cab-tv>span{font-size:40px;letter-spacing:.1em;color:var(--gris)}
+.cab-tv b{font-weight:400;font-size:56px;color:var(--voltio)}
 
 .par{position:absolute;inset:0;opacity:0;animation:muestra .01s linear var(--t) forwards, fuera .28s ease-in calc(var(--t) + 2.32s) forwards}
 @keyframes fuera{to{opacity:0;transform:translateY(-50px)}}
@@ -30,9 +28,7 @@
 .msg .tx{background:linear-gradient(var(--voltio),var(--voltio)) no-repeat 0 58%/0% 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;animation:tachar .4s cubic-bezier(.6,0,.2,1) calc(var(--t) + .8s) forwards}
 @keyframes tachar{to{background-size:100% 8px}}
 
-.trad-et{position:absolute;left:0;top:930px;margin:0;display:flex;font-family:var(--tv);font-size:44px;letter-spacing:.03em;clip-path:inset(0 100% 0 0);animation:rotulo .4s cubic-bezier(.2,.9,.2,1) calc(var(--t) + .85s) forwards}
-.trad-et b{font-weight:400;background:var(--voltio);color:var(--negro);padding:14px 26px 14px 60px}
-.trad-et span{background:#fff;color:var(--negro);padding:14px 26px}
+.trad-et{position:absolute;left:60px;top:950px;margin:0;font-family:var(--tv);font-size:40px;letter-spacing:.12em;color:var(--voltio);animation:sube .35s var(--curva) calc(var(--t) + .85s) both}
 .trad{position:absolute;left:60px;right:60px;top:1040px}
 .trad .tv-narra{position:static;margin:0;font-size:120px}
 .trad .tv-narra .linea>span{--d:calc(var(--t) + .95s)}
@@ -56,45 +52,42 @@
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:40%"></div><div class="grano"></div></div>
 
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="21:47">21:47</span></div>
-
-  <div class="gancho"><h1 class="tv-narra">Lo que dice<br>tu cliente<span class="vs">vs.</span><span class="v">lo que<br>significa</span></h1><p><b>TRADUCCIÓN</b><span>SIMULTÁNEA</span></p></div>
+  <div class="gancho"><h1 class="tv-narra">Lo que dice<br>tu cliente<span class="vs">vs.</span><span class="v">lo que<br>significa</span></h1><p>CON TRADUCCIÓN SIMULTÁNEA</p></div>
   <div class="tv-cortinilla" style="--t:1.25s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">RUEDA DE PRENSA</p></div>
   <div class="cab-tv"><span>RUEDA DE PRENSA DEL CLIENTE</span><b><span id="n">1</span>/5</b></div>
 
   <div class="par" style="--t:1.7s">
     <p class="decl">DECLARACIONES</p>
     <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">Esta semana me he portado bien</span></span><span class="hora">21:47</span></div>
-    <p class="trad-et"><b>TRADUCCIÓN</b><span>SIMULTÁNEA</span></p>
+    <p class="trad-et">TRADUCCIÓN SIMULTÁNEA</p>
     <div class="trad"><h2 class="tv-narra"><span class="linea"><span>Hubo pizza.</span></span><span class="linea"><span class="v">Dos veces.</span></span></h2></div>
     <div class="ico-p"><svg viewBox="0 0 24 24"><path d="M3.5 5.5Q12 2 20.5 5.5L12 21.5Z"/><path d="M5 8.5Q12 6 19 8.5"/><circle cx="10" cy="11" r="1.4"/><circle cx="14" cy="11.5" r="1.2"/><circle cx="12" cy="15.5" r="1.2"/></svg></div>
   </div>
   <div class="par" style="--t:4.35s">
     <p class="decl">DECLARACIONES</p>
     <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">Mañana te mando las fotos</span></span><span class="hora">23:12</span></div>
-    <p class="trad-et"><b>TRADUCCIÓN</b><span>SIMULTÁNEA</span></p>
+    <p class="trad-et">TRADUCCIÓN SIMULTÁNEA</p>
     <div class="trad"><h2 class="tv-narra"><span class="linea"><span>No vas a ver</span></span><span class="linea"><span class="v">esas fotos.</span></span></h2></div>
     <div class="ico-p"><svg viewBox="0 0 24 24"><path d="M3.5 8.5h3.5l2-2.5h6l2 2.5h3.5v11h-17z"/><circle cx="12" cy="13.5" r="3.5"/><path d="M3 3l18 18"/></svg></div>
   </div>
   <div class="par" style="--t:7.0s">
     <p class="decl">DECLARACIONES</p>
     <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">Hoy he hecho cardio</span></span><span class="hora">19:30</span></div>
-    <p class="trad-et"><b>TRADUCCIÓN</b><span>SIMULTÁNEA</span></p>
+    <p class="trad-et">TRADUCCIÓN SIMULTÁNEA</p>
     <div class="trad"><h2 class="tv-narra"><span class="linea"><span>Ha ido andando</span></span><span class="linea"><span class="v">al súper.</span></span></h2></div>
     <div class="ico-p"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.5l2.4 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20.5 8H5.8"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg></div>
   </div>
   <div class="par" style="--t:9.65s">
     <p class="decl">DECLARACIONES</p>
     <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">He subido de peso y no sé por qué</span></span><span class="hora">08:05</span></div>
-    <p class="trad-et"><b>TRADUCCIÓN</b><span>SIMULTÁNEA</span></p>
+    <p class="trad-et">TRADUCCIÓN SIMULTÁNEA</p>
     <div class="trad"><h2 class="tv-narra"><span class="linea"><span>Lo sabe</span></span><span class="linea"><span class="v">perfectamente.</span></span></h2></div>
     <div class="ico-p"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><rect x="8" y="6.5" width="8" height="4" rx="1"/><path d="M12 10.5V8.3"/></svg></div>
   </div>
   <div class="par" style="--t:12.3s">
     <p class="decl">DECLARACIONES</p>
     <div class="burbuja"><span class="quien">Tu cliente</span><span class="msg"><span class="tx">No he tenido tiempo de entrenar</span></span><span class="hora">22:58</span></div>
-    <p class="trad-et"><b>TRADUCCIÓN</b><span>SIMULTÁNEA</span></p>
+    <p class="trad-et">TRADUCCIÓN SIMULTÁNEA</p>
     <div class="trad"><h2 class="tv-narra"><span class="linea"><span>Ha visto una</span></span><span class="linea"><span>temporada</span></span><span class="linea"><span class="v">entera.</span></span></h2></div>
     <div class="ico-p"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="12.5" rx="2"/><path d="M8 21h8"/><path d="M10.5 9.2v5.6l4.5-2.8z"/></svg></div>
   </div>

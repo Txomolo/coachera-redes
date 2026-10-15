@@ -2,7 +2,7 @@
   "lote": 3,
   "zona": "Europe/Madrid",
   "hashtags": "#entrenadorpersonal #entrenadoronline #asesoriaonline",
-  "nota": "Una publicación al día a las 18:00. Los reels van con la personalidad «Coachera TV» (elegida el 15/10): phonk en los de humor, house en los de la app.",
+  "nota": "Una publicación al día a las 18:00. Reels con narración en Anton y sonidos de estadio, phonk en los de humor y house en los de la app; sin la mosca «Coachera TV», sin el reloj y sin las barras de rótulo (las quitó el usuario el 15/10).",
   "publicaciones": [
     {
       "n": 1,
@@ -28,9 +28,9 @@
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "¿Quién te ha pagado este mes?",
-      "video": "r6-quien-te-debe.mp4",
-      "portada": "portada-1.jpg",
-      "texto": "Coachera TV: el parte de cobros. ¿Quién te ha pagado este mes? Si tienes que abrir el banco para saberlo, algo falla.\n\nEn Coachera ves lo cobrado, lo que falta y lo vencido, cliente a cliente. Y «Recordar» abre su chat con el mensaje ya escrito: lo lees y lo envías tú.\n\nGratis hasta 5 clientes. Enlace en la bio."
+      "video": "r6-quien-te-debe-final.mp4",
+      "portada": "portada-r6.jpg",
+      "texto": "¿Quién te ha pagado este mes? Si tienes que abrir el banco para saberlo, algo falla.\n\nEn Coachera ves lo cobrado, lo que falta y lo vencido, cliente a cliente. Y «Recordar» abre su chat con el mensaje ya escrito: lo lees y lo envías tú.\n\nGratis hasta 5 clientes. Enlace en la bio."
     },
     {
       "n": 3,
@@ -38,10 +38,10 @@
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "El VAR de las excusas",
-      "video": "../virales/v2-excusas.mp4",
+      "video": "../virales/v2-excusas-final.mp4",
       "portada_ms": 200,
       "hashtags_extra": "#humorgym",
-      "texto": "Coachera TV presenta: el VAR de las excusas. Cinco excusas de cliente, de menos a más creíble, revisadas en directo.\n\nMándaselo a ese entrenador que se las ha oído todas.\n\nLas excusas no se anotan; los entrenos, sí. En Coachera ves cada entreno que anota tu cliente. Gratis hasta 5 clientes. Enlace en la bio."
+      "texto": "El VAR de las excusas: cinco excusas de cliente, de menos a más creíble, revisadas en directo.\n\nMándaselo a ese entrenador que se las ha oído todas.\n\nLas excusas no se anotan; los entrenos, sí. En Coachera ves cada entreno que anota tu cliente. Gratis hasta 5 clientes. Enlace en la bio."
     },
     {
       "n": 4,
@@ -66,8 +66,8 @@
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "Funciona sin cobertura",
-      "video": "r7-sin-cobertura.mp4",
-      "portada": "portada-2.jpg",
+      "video": "r7-sin-cobertura-final.mp4",
+      "portada": "portada-r7.jpg",
       "texto": "En el sótano del gimnasio, sin señal. Y es justo donde tu cliente anota sus series.\n\nEn Coachera sigue anotando sin red: cada serie se queda guardada en su móvil y se envía sola cuando vuelve la conexión. Con los hábitos y la comida, igual.\n\nGratis hasta 5 clientes. Enlace en la bio."
     },
     {
@@ -91,11 +91,11 @@
       "fecha": "2026-10-31",
       "hora": "18:00",
       "tipo": "reel",
-      "titulo": "Coachera TV, especial Halloween",
-      "video": "../virales/v3-halloween.mp4",
+      "titulo": "Especial Halloween",
+      "video": "../virales/v3-halloween-final.mp4",
       "portada_ms": 200,
       "hashtags_extra": "#halloween #humorgym",
-      "texto": "Última hora en Coachera TV: lo que da miedo de verdad a un entrenador online. Feliz Halloween.\n\nMándaselo a quien tenga el lunes lleno de revisiones.\n\nQue lo único que dé miedo sea el día de pierna. Coachera: gratis hasta 5 clientes. Enlace en la bio."
+      "texto": "Última hora: lo que da miedo de verdad a un entrenador online. Feliz Halloween.\n\nMándaselo a quien tenga el lunes lleno de revisiones.\n\nQue lo único que dé miedo sea el día de pierna. Coachera: gratis hasta 5 clientes. Enlace en la bio."
     }
   ]
 }

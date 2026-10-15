@@ -6,16 +6,16 @@
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* Coachera TV: «Señal perdida». La tele se queda sin señal (el sótano del gimnasio), pero la app
+/* «Señal perdida». La pantalla se queda sin señal (el sótano del gimnasio), pero la app
    sigue anotando; vuelve la señal y se envía todo.
    R7 · En el sótano del gimnasio no hay red: el cliente sigue anotando, cada serie queda
    con ◷ y el aviso «◷ Sin conexión · 3 series por guardar»; vuelve la red y se envían solas
    («✓ Guardado»). Es lo que hace la app (el entreno sin red). 14 s. Datos inventados. */
-.titulo{position:absolute;left:60px;right:60px;top:380px;z-index:21}
-.titulo .tv-narra{position:static;font-size:104px}
+.titulo{position:absolute;left:60px;right:60px;top:340px;z-index:21}
+.titulo .tv-narra{position:static;margin:0;font-size:104px}
 .t1{animation:baja .35s ease-in 3.75s forwards}
 .t2{animation:baja .35s ease-in 7.45s forwards}
-.t3{display:none}
+.t3{animation:baja .35s ease-in 10.85s forwards}
 .tv-estatica .cartel{font-size:96px}
 
 .senal{position:absolute;left:80px;top:540px;display:flex;align-items:center;gap:18px;height:76px;padding:0 28px 0 22px;border-radius:999px;background:rgba(255,138,128,.12);color:#FF8A80;font-size:32px;font-weight:600;animation:sube .4s var(--curva) .5s both, desaparece .3s ease 11.0s forwards}
@@ -69,9 +69,6 @@
     <span class="linea"><span style="--d:7.8s">cuando vuelve</span></span>
     <span class="linea"><span style="--d:7.9s" class="v">la red.</span></span></h1></div>
 
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i><span id="vivo-ok">EN DIRECTO · <span data-reloj="19:04">19:04</span></span><span id="vivo-ko" style="display:none;color:#FF8A80">SIN SEÑAL · SÓTANO -2</span></div>
-
   <div class="tel-sitio"><div class="zoom"><div class="tel cli"><div class="pantalla-tel">
     <div class="cli-top"><span class="cli-ini">LV</span>Laura Vidal Coaching</div>
     <div class="sinred" id="aviso" data-clase="ok@7.75"><span id="aviso-t">◷ Sin conexión · 2 series por guardar</span><u>Reintentar</u></div>
@@ -90,7 +87,6 @@
   </div></div></div></div>
   <div class="toque t-guardar"></div>
   <div class="tv-estatica" style="--t:1.9s;--fin:2.45s"><svg><filter id="ruido-1"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-1)"/></svg><div class="barras"></div><div class="cartel">SIN SEÑAL</div></div>
-  <div class="tv-rotulo" style="top:380px;--t:7.6s;--fin:10.9s"><b>SEÑAL RECUPERADA</b><span>✓ 3 SERIES GUARDADAS</span></div>
 
   <div class="tv-cortinilla" style="--t:11.15s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">CONEXIÓN</p></div>
   <div class="fondo fondo-final"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
@@ -119,9 +115,6 @@ window.REEL = {
   ],
 };
 window.alTiempoReel = (t) => {
-  const sin = t >= 1.9 && t < 7.6;
-  document.getElementById("vivo-ok").style.display = sin ? "none" : "";
-  document.getElementById("vivo-ko").style.display = sin ? "" : "none";
   document.getElementById("aviso-t").textContent =
     t >= 7.75 ? "✓ Guardado" : "◷ Sin conexión · " + (t >= 2.75 ? 3 : 2) + " series por guardar";
   [["m1", 7.85], ["m2", 8.0], ["m3", 8.15]].forEach(([id, s]) => {

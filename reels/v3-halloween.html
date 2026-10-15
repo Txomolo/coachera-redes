@@ -1,17 +1,16 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
-<title>V3 · Coachera TV, especial Halloween</title>
+<title>V3 · Especial Halloween</title>
 <link rel="stylesheet" href="../motor/fuentes.css">
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* V3 · Coachera TV Noticias, especial Halloween (sábado 31 de octubre): cinco «últimas horas»
-   que dan miedo de verdad a un entrenador online, con su prueba en pantalla, la cinta de noticias
-   corriendo abajo y estática entre noticia y noticia. Al final: «Que lo único que dé miedo sea el
+/* V3 · Noticias, especial Halloween (sábado 31 de octubre): cinco «últimas horas» que dan miedo
+   de verdad a un entrenador online, con su prueba en pantalla y estática entre noticia y noticia. Al final: «Que lo único que dé miedo sea el
    día de pierna.» 17 s. La calabaza «hierve» (doodle boil). */
 .gancho{position:absolute;left:60px;right:60px;top:560px;animation:desaparece .01s linear 1.85s forwards}
 .gancho .tv-narra{position:static;font-size:150px;line-height:1.02}
-.calabaza{position:absolute;right:60px;top:380px;width:250px;height:250px;z-index:21;animation:desaparece .01s linear 14.6s forwards}
+.calabaza{position:absolute;right:60px;top:255px;width:230px;height:230px;z-index:21;animation:desaparece .01s linear 14.6s forwards}
 .calabaza svg{width:100%;height:100%;fill:none;stroke:var(--voltio);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;filter:url(#hervor) drop-shadow(0 0 24px rgba(214,255,63,.5))}
 
 .noticia{position:absolute;inset:0;opacity:0;animation:muestra .01s linear var(--t) forwards, desaparece .12s linear calc(var(--t) + 2.25s) forwards}
@@ -35,6 +34,7 @@
 .aviso-r b{font-weight:600} .aviso-r span{margin-left:auto;font-family:var(--font-num);color:var(--gris);font-size:28px}
 .aviso-r i{width:60px;height:60px;border-radius:14px;background:var(--voltio);display:grid;place-items:center;font-style:normal;font-family:var(--tv);color:var(--negro);font-size:32px}
 .mas{align-self:center;font-family:var(--tv);font-size:54px;line-height:1;color:var(--voltio)}
+.pie-n{position:absolute;left:60px;right:60px;top:1352px;margin:0;font-family:var(--tv);font-size:50px;letter-spacing:.06em;color:var(--gris);animation:sube .35s var(--curva) calc(var(--t) + .9s) both}
 .pegatina{position:absolute;right:90px;top:-60px;padding:14px 26px;background:var(--voltio);color:var(--negro);font-family:var(--tv);font-size:48px;transform:rotate(8deg)}
 
 /* final */
@@ -51,9 +51,6 @@
 <body><div id="escena">
   <svg width="0" height="0" style="position:absolute"><filter id="hervor" class="hervor"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="9"/></filter></svg>
   <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:45%"></div><div class="grano"></div></div>
-
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i>ESPECIAL HALLOWEEN</div>
   <div class="calabaza"><svg viewBox="0 0 24 24"><path d="M12 7c-4.6 0-8.5 3-8.5 7s3.9 7 8.5 7 8.5-3 8.5-7-3.9-7-8.5-7z"/><path d="M12 7V4.6c0-.9.7-1.6 1.6-1.6"/><path d="M8 12.6l1.6-1.8 1.2 1.8z"/><path d="M13.2 12.6l1.6-1.8 1.2 1.8z"/><path d="M8.6 16.2l1.1.9 1.1-.9 1.2.9 1.1-.9 1.1.9 1.1-.9"/></svg></div>
 
   <div class="gancho"><h1 class="tv-narra">Lo que da miedo de verdad <span class="v">a un entrenador online</span></h1></div>
@@ -62,34 +59,32 @@
   <div class="noticia" style="--t:2.0s">
     <div class="titular-n"><h2>Un entrenador encuentra <span class="v">47 chats sin leer</span></h2></div>
     <div class="prueba"><div class="globo">47</div></div>
-    <div class="tv-rotulo rojo" style="top:1352px;--t:2.15s;--fin:4.15s"><b>ÚLTIMA HORA</b><span>LUNES, 08:02 · ANTES DEL CAFÉ</span></div>
+    <p class="pie-n">LUNES, 08:02 · ANTES DEL CAFÉ</p>
   </div>
   <div class="noticia" style="--t:4.4s">
     <div class="titular-n"><h2>Un cliente escribe «tenemos que hablar» <span class="v">y nada más</span></h2></div>
     <div class="prueba"><div class="burbuja"><small>Andrés · cliente</small>Tenemos que hablar<i>23:58 · en línea</i></div></div>
-    <div class="tv-rotulo rojo" style="top:1352px;--t:4.55s;--fin:6.55s"><b>ÚLTIMA HORA</b><span>Y SIGUE «ESCRIBIENDO…»</span></div>
+    <p class="pie-n">Y SIGUE «ESCRIBIENDO…»</p>
   </div>
   <div class="noticia" style="--t:6.8s">
     <div class="titular-n"><h2>Se cierra el Excel de las rutinas <span class="v">sin guardar</span></h2></div>
     <div class="prueba"><div class="dialogo"><div class="barra">Rutinas_clientes_v7.xlsx</div><p>¿Quieres guardar los cambios? Si no los guardas, se perderán.</p><div class="bot"><span class="no">No guardar</span><span>Guardar</span></div></div></div>
-    <div class="tv-rotulo rojo" style="top:1352px;--t:6.95s;--fin:8.95s"><b>ÚLTIMA HORA</b><span>DOCE CLIENTES AFECTADOS</span></div>
+    <p class="pie-n">DOCE CLIENTES AFECTADOS</p>
   </div>
   <div class="noticia" style="--t:9.2s">
     <div class="titular-n"><h2>Domingo, 22:00: <span class="v">15 revisiones pendientes</span></h2></div>
     <div class="prueba"><div class="pila"><div class="aviso-r"><i>R</i><b>Revisión de Marta</b><span>21:40</span></div><div class="aviso-r"><i>R</i><b>Revisión de Iván</b><span>21:52</span></div><div class="aviso-r"><i>R</i><b>Revisión de Elena</b><span>21:58</span></div><span class="mas">+ 12 MÁS</span></div></div>
-    <div class="tv-rotulo rojo" style="top:1352px;--t:9.35s;--fin:11.35s"><b>ÚLTIMA HORA</b><span>Y MAÑANA ES LUNES</span></div>
+    <p class="pie-n">Y MAÑANA ES LUNES</p>
   </div>
   <div class="noticia" style="--t:11.6s">
     <div class="titular-n"><h2>«¿Me pasas la rutina <span class="v">otra vez?»</span></h2></div>
     <div class="prueba"><div class="burbuja" style="position:relative"><small>Andrés · cliente</small>Oye, ¿me pasas la rutina otra vez? No la encuentro<i>18:05</i><span class="pegatina">4.ª VEZ ESTE MES</span></div></div>
-    <div class="tv-rotulo rojo" style="top:1352px;--t:11.75s;--fin:13.75s"><b>ÚLTIMA HORA</b><span>EL PDF SIGUE EN EL CHAT</span></div>
+    <p class="pie-n">EL PDF SIGUE EN EL CHAT</p>
   </div>
   <div class="tv-estatica" style="--t:4.3s;--fin:4.45s"><svg><filter id="ruido-1"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-1)"/></svg></div>
   <div class="tv-estatica" style="--t:6.7s;--fin:6.85s"><svg><filter id="ruido-2"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-2)"/></svg></div>
   <div class="tv-estatica" style="--t:9.1s;--fin:9.25s"><svg><filter id="ruido-3"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-3)"/></svg></div>
   <div class="tv-estatica" style="--t:11.5s;--fin:11.65s"><svg><filter id="ruido-4"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-4)"/></svg></div>
-
-  <div class="tv-cinta" style="--t:2.0s"><b>ÚLTIMA HORA</b><div class="corre">UN ENTRENADOR ENCUENTRA 47 CHATS SIN LEER · SE CIERRA UN EXCEL SIN GUARDAR · 15 REVISIONES PENDIENTES UN DOMINGO · «¿ME PASAS LA RUTINA OTRA VEZ?» · UN ENTRENADOR ENCUENTRA 47 CHATS SIN LEER · SE CIERRA UN EXCEL SIN GUARDAR · 15 REVISIONES PENDIENTES UN DOMINGO · «¿ME PASAS LA RUTINA OTRA VEZ?» · </div></div>
 
   <div class="tv-cortinilla" style="--t:14.6s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">FIN DE LA EMISIÓN</p></div>
   <div class="final-fondo"></div>

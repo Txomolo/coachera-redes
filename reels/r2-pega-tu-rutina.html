@@ -5,11 +5,11 @@
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* Coachera TV: «Mercado de fichajes». La rutina deja la hoja de cálculo y ficha por la app.
+/* «Mercado de fichajes». La rutina deja la hoja de cálculo y ficha por la app.
    R2 · «¿Tus rutinas siguen en Excel?» → se seleccionan y se copian → se pegan en Coachera →
    la vista previa reconoce días y ejercicios → «Ponerlo en el plan» → plan listo. 16 s.
    La ventana es la de la app de verdad (Plantillas → Pegar desde Excel), con datos inventados. */
-.titulo{position:absolute;left:60px;right:60px;top:380px;z-index:21}
+.titulo{position:absolute;left:60px;right:60px;top:340px;z-index:21}
 .titulo .tv-narra{position:static;margin:0;font-size:112px}
 .t2 .tv-narra{font-size:100px}
 .t1{animation:baja .4s ease-in 3.35s forwards}
@@ -95,9 +95,6 @@ table.celdas{border-collapse:collapse;width:100%;font-size:29px;table-layout:fix
 </style></head>
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
-
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="19:42">19:42</span></div>
   <div class="titulo t1"><h1 class="tv-narra">
     <span class="linea"><span style="--d:0s">¿Tus rutinas</span></span>
     <span class="linea"><span style="--d:.08s">siguen en <span class="v">Excel?</span></span></span></h1></div>
@@ -106,7 +103,6 @@ table.celdas{border-collapse:collapse;width:100%;font-size:29px;table-layout:fix
   <div class="titulo t3"><h1 class="tv-narra">
     <span class="linea"><span style="--d:10.05s">Plan listo,</span></span>
     <span class="linea"><span style="--d:10.15s" class="v">sin reescribir.</span></span></h1></div>
-  <div class="tv-rotulo" style="top:1440px;--t:.9s;--fin:2.8s"><b>FICHAJES</b><span>TU RUTINA SALE DE EXCEL</span></div>
 
   <div class="hoja">
     <div class="hoja-barra"><i></i><i></i><i></i><b>Rutina_Marta_v7</b></div>
@@ -149,7 +145,6 @@ Remo con barra     4        8-10    2:00</span></div>
     <div class="vc-pie"><span class="check"><i class="si">✓</i>Añadir el nuevo a tu biblioteca</span><span class="boton-v" data-clase="pulsado@9.2">Ponerlo en el plan</span></div>
   </div>
   <div class="toque t-boton"></div>
-  <div class="tv-rotulo" style="top:1400px;--t:10.9s;--fin:12.5s"><b>FICHAJE CERRADO</b><span>2 DÍAS · 7 EJERCICIOS</span></div>
 
   <div class="listo">
     <div class="tv-sello" style="--t:11.0s;--fin:12.45s">¡FICHADO!</div>
@@ -176,7 +171,6 @@ window.REEL = {
   musica: { estilo: "house", caida: 4.75, vol: .6 },
   sonidos: [
     { t: .35, tipo: "barrido", vol: .6 },
-    { t: .9, tipo: "noticia", vol: .7 },
     { t: 1.6, tipo: "tecla", vol: .7 },
     { t: 2.95, tipo: "tecla" }, { t: 3.1, tipo: "tecla" },
     { t: 3.9, tipo: "barrido", vol: .7 },

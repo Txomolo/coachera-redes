@@ -7,7 +7,8 @@
    Va después de reel.css (y de efectos.css si se usa). El reloj y la estática los mueve tv.js. */
 :root{--tv-rojo:#FF3B30;--tv-amarilla:#FFD60A;--tv:'Anton','Archivo Black',sans-serif}
 
-/* la mosca y el directo */
+/* la mosca y el directo: ya no se usan (el usuario los quitó el 15-oct-2026, con los rótulos en barra).
+   Se dejan por si se recuperan; los reels no los llevan. */
 .tv-bug{position:absolute;left:60px;top:250px;display:flex;align-items:stretch;height:66px;font-family:var(--tv);font-size:44px;letter-spacing:.04em;z-index:20;animation:tvEntra .45s cubic-bezier(.2,.9,.2,1) var(--t,0s) both}
 .tv-bug b{display:flex;align-items:center;gap:12px;background:var(--voltio);color:var(--negro);padding:0 18px;font-weight:400}
 .tv-bug b svg{height:30px;width:auto;overflow:visible}

@@ -6,11 +6,12 @@
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* Coachera TV: «Récord personal», retransmitido desde el gimnasio, y el análisis después.
+/* «Récord personal», como en una retransmisión desde el gimnasio, y el análisis después.
    R3 · El cliente anota una serie (60 kg × 8) → «▲ Marca nueva» en la propia serie → el
    descanso cuenta → el entrenador ve qué sube, qué se ha atascado y qué baja. 14 s.
    Textos como en la app: «Guardar serie 3», «▲ Marca nueva · 60 kg × 8 · Antes, 57,5 kg × 8». */
-.titulo{position:absolute;left:60px;right:60px;top:380px;z-index:21}
+.titulo{position:absolute;left:60px;right:60px;top:340px;z-index:21}
+.t-rec{animation:baja .35s ease-in 4.95s forwards}
 .titulo .tv-narra{position:static;margin:0;font-size:104px}
 .t1{animation:baja .35s ease-in 3.45s forwards}
 .t2{animation:baja .4s ease-in 7.3s forwards}
@@ -73,13 +74,11 @@
 </style></head>
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
-
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="18:47">18:47</span></div>
   <div class="titulo t1"><h1 class="tv-narra">
     <span class="linea"><span style="--d:0s">Tu cliente,</span></span>
     <span class="linea"><span style="--d:.08s" class="v">serie a serie.</span></span></h1></div>
-  <div class="tv-rotulo" style="top:395px;--t:3.7s;--fin:4.95s"><b>▲ RÉCORD</b><span>PRESS BANCA · 60 KG × 8</span></div>
+  <div class="titulo t-rec"><h1 class="tv-narra">
+    <span class="linea"><span style="--d:3.72s" class="v">¡Récord personal!</span></span></h1></div>
   <div class="titulo t2"><h1 class="tv-narra">
     <span class="linea"><span style="--d:5.15s">Kilos y repes,</span></span>
     <span class="linea"><span style="--d:5.25s" class="v">en un toque.</span></span></h1></div>
@@ -119,7 +118,6 @@
     <div class="prog" style="--d:9.35s"><div><b>Remo con barra</b><small>60 kg × 7</small></div>
       <svg viewBox="0 0 170 60"><path class="baja-l" pathLength="1" d="M4 22 L34 18 L64 20 L94 28 L124 34 L166 42"/></svg><span class="chip-p baja">▼ Baja</span></div>
   </div>
-  <div class="tv-rotulo" style="top:1380px;--t:8.2s;--fin:9.8s"><b>EL ANÁLISIS</b><span>2 SUBEN · 1 ESTANCADO · 1 BAJA</span></div>
   <div class="aviso-hoy"><span class="chip-p para">Estancado</span><div><b>Marta Soler</b><span>Peso muerto · 3 sesiones sin subir</span></div><span class="ver">Revisar</span></div>
 
   <div class="tv-cortinilla" style="--t:7.2s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">EL ANÁLISIS</p></div>
@@ -145,7 +143,6 @@ window.REEL = {
     { t: 3.75, tipo: "marca", vol: .9 }, { t: 3.8, tipo: "publico", vol: .6 },
     { t: 4.5, tipo: "pop", vol: .5 },
     { t: 7.2, tipo: "barrido", vol: .8 },
-    { t: 8.2, tipo: "noticia", vol: .6 },
     ...[8.0, 8.45, 8.9, 9.35].map(t => ({ t, tipo: "toque", vol: .5 })),
     { t: 10.0, tipo: "pop", vol: .6 },
     { t: 11.15, tipo: "barrido", vol: .8 },

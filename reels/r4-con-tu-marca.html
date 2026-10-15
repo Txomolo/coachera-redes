@@ -6,15 +6,15 @@
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* Coachera TV: «Presentación de la equipación». Cada entrenador saca la suya: su nombre y su
-   color, con los flashes de los fotógrafos y el rótulo con el nombre del equipo.
+/* «Presentación de la equipación». Cada entrenador saca la suya: su nombre y su
+   color, con los flashes de los fotógrafos.
    R4 · «Tus clientes no ven nuestra marca. Ven la tuya.» El móvil del cliente cambia de
    entrenador cinco veces (nombre, iniciales y color) → se instala desde el navegador, con el
    icono del entrenador en la pantalla de inicio → final. 13 s. Entrenadores inventados. */
-.titulo{position:absolute;left:60px;right:60px;top:380px;z-index:21}
+.titulo{position:absolute;left:60px;right:60px;top:340px;z-index:21}
 .titulo .tv-narra{position:static;margin:0;font-size:104px}
 .t1{animation:baja .35s ease-in 2.45s forwards}
-.t2{animation:baja .35s ease-in 3.85s forwards}
+.t2{animation:baja .35s ease-in 8.5s forwards}
 .t2 .tv-narra{font-size:124px}
 .flash{position:absolute;inset:0;z-index:50;background:#fff;opacity:0;pointer-events:none;animation:flash .4s ease-out var(--t) both}
 @keyframes flash{0%{opacity:0}12%{opacity:.42}100%{opacity:0}}
@@ -43,7 +43,7 @@
 .app.suya i{background:#7C3AED;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:38px;color:#fff;box-shadow:0 14px 30px -8px rgba(124,58,237,.7);animation:creceApp .55s var(--muelle) 9.6s both}
 .app.suya span{animation:aparece .3s ease 9.85s both}
 @keyframes creceApp{0%{transform:scale(0)}100%{transform:scale(1)}}
-.nota{position:absolute;left:80px;right:80px;top:1482px;text-align:center;font-size:38px;color:var(--gris);animation:sube .5s var(--curva) 10.2s both, desaparece .3s ease 11.05s forwards}
+.nota{position:absolute;left:80px;right:80px;top:1400px;text-align:center;font-size:38px;color:var(--gris);animation:sube .5s var(--curva) 10.2s both, desaparece .3s ease 11.05s forwards}
 .nota b{color:#fff;font-weight:600}
 
 /* final */
@@ -60,15 +60,11 @@
 </style></head>
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
-
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="20:15">20:15</span></div>
   <div class="titulo t1"><h1 class="tv-narra">
     <span class="linea"><span style="--d:0s">Tus clientes no</span></span>
     <span class="linea"><span style="--d:.08s">ven nuestra marca.</span></span></h1></div>
   <div class="titulo t2"><h1 class="tv-narra">
     <span class="linea"><span style="--d:2.7s" class="v">Ven la tuya.</span></span></h1></div>
-  <div class="tv-rotulo" style="top:395px;--t:3.95s;--fin:8.5s"><b>TU MARCA</b><span id="equipo">RUBÉN MORA TRAINING</span></div>
   <div class="titulo t3"><h1 class="tv-narra">
     <span class="linea"><span style="--d:8.85s">Y la instalan</span></span>
     <span class="linea"><span style="--d:8.95s" class="v">sin tienda.</span></span></h1></div>
@@ -102,8 +98,7 @@
     <span class="app"><i></i><span>Notas</span></span><span class="app suya"><i>LV</i><span>Laura Vidal</span></span><span class="app"><i></i><span>Música</span></span><span class="app"><i></i><span>Ajustes</span></span>
     <span class="app"><i></i><span>Correo</span></span><span class="app"><i></i><span>Tiempo</span></span><span class="app"><i></i><span>Salud</span></span><span class="app"><i></i><span>Calendario</span></span>
   </div></div>
-  <div class="tv-rotulo" style="top:1380px;--t:9.9s;--fin:11.0s"><b>SIN TIENDA</b><span>ANDROID E IPHONE</span></div>
-  <p class="nota">Desde el navegador. Y para tus clientes, <b>gratis.</b></p>
+  <p class="nota">Desde el navegador, en <b>Android y en iPhone.</b> Para tus clientes, gratis.</p>
   <div class="flash" style="--t:3.6s"></div><div class="flash" style="--t:4.85s"></div><div class="flash" style="--t:6.1s"></div><div class="flash" style="--t:7.35s"></div>
 
   <div class="tv-cortinilla" style="--t:11.05s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">PRESENTACIÓN</p></div>
@@ -131,7 +126,6 @@ window.REEL = {
     ...[3.6, 4.85, 6.1, 7.35].map(t => ({ t, tipo: "pop", vol: .8 })),
     ...[3.6, 4.85, 6.1, 7.35].map(t => ({ t: t + .02, tipo: "golpe", vol: .35 })),
     { t: 3.62, tipo: "publico", vol: .45 },
-    { t: 3.95, tipo: "noticia", vol: .5 },
     { t: 8.65, tipo: "barrido", vol: .7 },
     { t: 9.6, tipo: "ok" },
     { t: 11.05, tipo: "barrido", vol: .8 },
@@ -145,7 +139,6 @@ window.alTiempoReel = (t) => {
   tel.className = "tel cli " + clase;
   document.getElementById("ini").textContent = ini;
   document.getElementById("nombre").textContent = nombre;
-  document.getElementById("equipo").textContent = (i === 0 ? CAMBIOS[1][3] : nombre).toUpperCase();
   [...document.getElementById("muestras").children].forEach((m, k) => m.classList.toggle("act", k === i));
 };
 </script>

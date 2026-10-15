@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../motor/reel.css">
 <link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* V2 · Coachera TV: «El VAR de las excusas». Cinco excusas de cliente, de menos a más creíble,
+/* V2 · «El VAR de las excusas». Cinco excusas de cliente, de menos a más creíble,
    pasan por el VAR con su probabilidad de ser verdad; cuatro, anuladas. Al final el marcador lo
    ponen los entrenos. 18,5 s. El gancho (marcador y título) se ve desde el primer fotograma. */
 .gancho{position:absolute;left:60px;right:60px;top:600px;animation:desaparece .01s linear 1.85s forwards}
@@ -35,13 +35,11 @@
 .logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 16.65s both}
 .logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
 .final .pildora{margin-top:44px;animation:crece .45s var(--muelle) 17.0s both}
+#marcador{top:300px}
 .final-fondo{position:absolute;inset:0;z-index:30;background:var(--fondo);opacity:0;animation:muestra .01s linear 15.45s forwards}
 </style></head>
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:40%"></div><div class="grano"></div></div>
-
-  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
-  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="47:12">47:12</span></div>
   <div class="tv-marcador" id="marcador"><span class="eq">EXCUSAS</span><span class="n" id="n-exc">0</span><span class="g">-</span><span class="n b" id="n-ent">0</span><span class="eq">ENTRENOS</span></div>
 
   <div class="gancho"><h1 class="tv-narra">El VAR de<br><span class="v">las excusas</span></h1><p>DE MENOS A MÁS CREÍBLE</p></div>
@@ -53,7 +51,6 @@
       <div class="prob"><div class="fila">PROBABILIDAD DE QUE SEA VERDAD<b data-cuenta="2" data-t="2.45" data-dur=".8" data-despues=" %">0 %</b></div><div class="barra"><i></i></div></div></div>
     <p class="nota">COMENTARISTA: <span>no tiene perro.</span></p>
     <div class="tv-sello" style="--t:3.4s">EXCUSA<br>ANULADA</div>
-    <div class="tv-rotulo" style="top:1330px;--t:2.1s;--fin:4.25s"><b>MIN. 12</b><span>LUNES · NO HA ENTRENADO</span></div>
   </div>
   <div class="item" style="--t:4.6s;--p:9%">
     <div class="tv-monitor"><span class="var">VAR</span><span class="rev">● REVISANDO</span>
@@ -61,7 +58,6 @@
       <div class="prob"><div class="fila">PROBABILIDAD DE QUE SEA VERDAD<b data-cuenta="9" data-t="5.05" data-dur=".8" data-despues=" %">0 %</b></div><div class="barra"><i></i></div></div></div>
     <p class="nota">COMENTARISTA: <span>sí había. Salía en sus fotos.</span></p>
     <div class="tv-sello" style="--t:6.0s">EXCUSA<br>ANULADA</div>
-    <div class="tv-rotulo" style="top:1330px;--t:4.7s;--fin:6.85s"><b>MIN. 23</b><span>MIÉRCOLES · DE VIAJE</span></div>
   </div>
   <div class="item" style="--t:7.2s;--p:21%">
     <div class="tv-monitor"><span class="var">VAR</span><span class="rev">● REVISANDO</span>
@@ -69,7 +65,6 @@
       <div class="prob"><div class="fila">PROBABILIDAD DE QUE SEA VERDAD<b data-cuenta="21" data-t="7.65" data-dur=".8" data-despues=" %">0 %</b></div><div class="barra"><i></i></div></div></div>
     <p class="nota">COMENTARISTA: <span>estamos a 17 °C.</span></p>
     <div class="tv-sello" style="--t:8.6s">EXCUSA<br>ANULADA</div>
-    <div class="tv-rotulo" style="top:1330px;--t:7.3s;--fin:9.45s"><b>MIN. 31</b><span>JUEVES · «HACE FRÍO»</span></div>
   </div>
   <div class="item" style="--t:9.8s;--p:48%">
     <div class="tv-monitor"><span class="var">VAR</span><span class="rev">● REVISANDO</span>
@@ -77,7 +72,6 @@
       <div class="prob"><div class="fila">PROBABILIDAD DE QUE SEA VERDAD<b data-cuenta="48" data-t="10.25" data-dur=".8" data-despues=" %">0 %</b></div><div class="barra"><i></i></div></div></div>
     <p class="nota">COMENTARISTA: <span>duró de viernes a domingo.</span></p>
     <div class="tv-sello" style="--t:11.2s">EXCUSA<br>ANULADA</div>
-    <div class="tv-rotulo" style="top:1330px;--t:9.9s;--fin:12.05s"><b>MIN. 40</b><span>FIN DE SEMANA · CUMPLE</span></div>
   </div>
   <div class="item" style="--t:12.4s;--p:87%">
     <div class="tv-monitor"><span class="var">VAR</span><span class="rev">● REVISANDO</span>
@@ -85,7 +79,6 @@
       <div class="prob"><div class="fila">PROBABILIDAD DE QUE SEA VERDAD<b data-cuenta="87" data-t="12.85" data-dur=".8" data-despues=" %">0 %</b></div><div class="barra"><i></i></div></div></div>
     <p class="nota">COMENTARISTA: <span>esta, a veces, es verdad.</span></p>
     <div class="tv-sello blanco" style="--t:13.8s">VÁLIDA<br>(ESTA VEZ)</div>
-    <div class="tv-rotulo" style="top:1330px;--t:12.5s;--fin:14.65s"><b>MIN. 47</b><span>LA MÁS CREÍBLE</span></div>
   </div>
 
   <div class="tv-cortinilla" style="--t:15.1s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">FINAL</p></div>
