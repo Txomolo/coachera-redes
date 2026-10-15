@@ -1,0 +1,101 @@
+{
+  "lote": 3,
+  "zona": "Europe/Madrid",
+  "hashtags": "#entrenadorpersonal #entrenadoronline #asesoriaonline",
+  "nota": "Una publicación al día a las 18:00. Los reels van con la personalidad «Coachera TV» (elegida el 15/10): phonk en los de humor, house en los de la app.",
+  "publicaciones": [
+    {
+      "n": 1,
+      "fecha": "2026-10-25",
+      "hora": "18:00",
+      "tipo": "carrusel",
+      "titulo": "5 mitos que se creen tus clientes",
+      "imagenes": [
+        "c5-1.jpg",
+        "c5-2.jpg",
+        "c5-3.jpg",
+        "c5-4.jpg",
+        "c5-5.jpg",
+        "c5-6.jpg",
+        "c5-7.jpg"
+      ],
+      "hashtags_extra": "#mitosfitness",
+      "texto": "Cinco mitos que se creen tus clientes, y lo que hay de verdad detrás.\n\nGuárdalo para cuando te pregunten y mándaselo al cliente que necesite leerlo.\n\nLo que sí funciona es hacerlo cada día y apuntarlo. En Coachera tu cliente anota sus entrenos, sus hábitos y su peso en su app. Gratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 2,
+      "fecha": "2026-10-26",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "¿Quién te ha pagado este mes?",
+      "video": "r6-quien-te-debe.mp4",
+      "portada": "portada-1.jpg",
+      "texto": "Coachera TV: el parte de cobros. ¿Quién te ha pagado este mes? Si tienes que abrir el banco para saberlo, algo falla.\n\nEn Coachera ves lo cobrado, lo que falta y lo vencido, cliente a cliente. Y «Recordar» abre su chat con el mensaje ya escrito: lo lees y lo envías tú.\n\nGratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 3,
+      "fecha": "2026-10-27",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "El VAR de las excusas",
+      "video": "../virales/v2-excusas.mp4",
+      "portada_ms": 200,
+      "hashtags_extra": "#humorgym",
+      "texto": "Coachera TV presenta: el VAR de las excusas. Cinco excusas de cliente, de menos a más creíble, revisadas en directo.\n\nMándaselo a ese entrenador que se las ha oído todas.\n\nLas excusas no se anotan; los entrenos, sí. En Coachera ves cada entreno que anota tu cliente. Gratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 4,
+      "fecha": "2026-10-28",
+      "hora": "18:00",
+      "tipo": "carrusel",
+      "titulo": "Cómo contestar una revisión en 3 minutos",
+      "imagenes": [
+        "c6-1.jpg",
+        "c6-2.jpg",
+        "c6-3.jpg",
+        "c6-4.jpg",
+        "c6-5.jpg",
+        "c6-6.jpg"
+      ],
+      "hashtags_extra": "#coachingonline",
+      "texto": "Contestar una revisión no tiene por qué llevarte media hora.\n\nTres pasos: lo que ha ido bien, con un dato; una sola cosa que cambiar; y el foco de la semana en una frase. Y mejor en audio.\n\nGuárdalo para el domingo.\n\nEn Coachera cada revisión te llega comparada con la anterior, la contestas grabando un audio y pasas a la siguiente. Gratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 5,
+      "fecha": "2026-10-29",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "Funciona sin cobertura",
+      "video": "r7-sin-cobertura.mp4",
+      "portada": "portada-2.jpg",
+      "texto": "En el sótano del gimnasio, sin señal. Y es justo donde tu cliente anota sus series.\n\nEn Coachera sigue anotando sin red: cada serie se queda guardada en su móvil y se envía sola cuando vuelve la conexión. Con los hábitos y la comida, igual.\n\nGratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 6,
+      "fecha": "2026-10-30",
+      "hora": "18:00",
+      "tipo": "carrusel",
+      "titulo": "3 mensajes para recuperar a un cliente",
+      "imagenes": [
+        "c7-1.jpg",
+        "c7-2.jpg",
+        "c7-3.jpg",
+        "c7-4.jpg",
+        "c7-5.jpg"
+      ],
+      "hashtags_extra": "#coachingonline",
+      "texto": "El cliente que deja de entrenar casi nunca avisa: simplemente deja de escribir.\n\nTres mensajes para recuperarlo, el día 3, el día 7 y el día 14. Cópialos y hazlos tuyos.\n\nCoachera te avisa el día 3: cada mañana ves quién lleva 3 días sin registrar, y «Escribirle» abre su chat con el primer mensaje ya escrito. Gratis hasta 5 clientes. Enlace en la bio."
+    },
+    {
+      "n": 7,
+      "fecha": "2026-10-31",
+      "hora": "18:00",
+      "tipo": "reel",
+      "titulo": "Coachera TV, especial Halloween",
+      "video": "../virales/v3-halloween.mp4",
+      "portada_ms": 200,
+      "hashtags_extra": "#halloween #humorgym",
+      "texto": "Última hora en Coachera TV: lo que da miedo de verdad a un entrenador online. Feliz Halloween.\n\nMándaselo a quien tenga el lunes lleno de revisiones.\n\nQue lo único que dé miedo sea el día de pierna. Coachera: gratis hasta 5 clientes. Enlace en la bio."
+    }
+  ]
+}

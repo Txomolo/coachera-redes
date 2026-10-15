@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>C7 · 3 mensajes para recuperar a un cliente</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<style>
+/* C7 · Para copiar: tres mensajes (día 3, día 7, día 14) para un cliente que ha dejado de entrenar; el del día 3 es el borrador de la app (BORRADORES.callado). Al final, «Hoy · sin registrar» y «Escribirle». */
+.chat-c{position:absolute;left:80px;right:80px;bottom:200px;display:flex;flex-direction:column;gap:22px}
+.leido{align-self:flex-start;max-width:760px;padding:24px 30px;border-radius:8px 30px 30px 30px;background:#202C33;font-size:38px;color:#E9EDEF}
+.leido small{display:block;margin-top:8px;font-family:var(--font-num);font-size:24px;color:#8696A0;text-align:right}
+.silencio{align-self:center;padding:14px 26px;border-radius:14px;background:rgba(255,255,255,.06);font-size:30px;color:var(--gris)}
+.dia-n{display:flex;align-items:center;gap:26px;margin:40px 0 36px}
+.dia-n .n{min-width:150px;height:110px;padding:0 26px;border-radius:24px;border:5px solid var(--voltio);display:grid;place-items:center;font-family:var(--font-num);font-size:44px;font-weight:500;color:var(--voltio)}
+.mio{margin-top:50px;margin-left:auto;max-width:880px;padding:30px 36px 22px;border-radius:34px 8px 34px 34px;background:#1E3A2B;border:2px solid rgba(79,208,138,.3);font-size:44px;line-height:1.35;color:#E8EDF3}
+.mio small{display:block;margin-top:10px;font-family:var(--font-num);font-size:26px;color:#8FB8A0;text-align:right}
+.porque{position:absolute;left:80px;right:80px;bottom:190px;padding-top:36px;border-top:2px solid var(--linea)}
+.porque .rotulo{margin:0 0 12px}
+.porque .texto{margin:0;font-size:40px}
+.hoy-c{margin-top:50px;border-radius:26px;background:var(--negro);padding:28px 36px 12px;color:#fff}
+.hoy-c .t{margin:0 0 6px;font-size:26px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--voltio)}
+.hoy-c .f{display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;height:90px;border-top:2px solid rgba(255,255,255,.09);font-size:32px}
+.hoy-c .f span{font-family:var(--font-num);color:var(--gris)}
+.hoy-c .f u{text-decoration:none;font-size:26px;font-weight:600;color:var(--negro);background:var(--voltio);border-radius:12px;padding:10px 18px}
+</style></head>
+<body>
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">1/5</span></div>
+  <p class="rotulo" style="margin-top:40px">Cópialos</p>
+  <h1 class="titular" style="font-size:108px"><span class="v">3 mensajes</span> para recuperar a un cliente que ha dejado de entrenar.</h1>
+  <div class="chat-c">
+    <div class="leido">Esta semana voy a tope, ¡el lunes empiezo fuerte!<small>lun 21:14</small></div>
+    <span class="silencio">Desde entonces, nada</span>
+  </div>
+  <span class="desliza">Desliza →</span>
+  <div class="hilo empieza"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">2/5</span></div>
+  <div class="dia-n"><span class="n">Día 3</span><p class="rotulo" style="margin:0">Mensaje 1 de 3</p></div>
+  <h2 class="titular" style="font-size:100px">Una pregunta, sin reproche.</h2>
+  <div class="mio">Hola Andrés, ¿qué tal va todo? Hace unos días que no veo registros tuyos. ¿Te ayudo con algo?<small>Tú</small></div>
+  <div class="porque"><p class="rotulo">Por qué funciona</p><p class="texto">Corto y sin reproche: <b>que contestar le cueste poco.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">3/5</span></div>
+  <div class="dia-n"><span class="n">Día 7</span><p class="rotulo" style="margin:0">Mensaje 2 de 3</p></div>
+  <h2 class="titular" style="font-size:100px">Pregúntale qué le cuesta.</h2>
+  <div class="mio">Andrés, llevamos una semana sin saber de ti. Sin agobios: ¿qué es lo que más te está costando ahora? Lo ajustamos a tu semana.<small>Tú</small></div>
+  <div class="porque"><p class="rotulo">Por qué funciona</p><p class="texto">Una pregunta abierta, <b>y la puerta abierta a cambiar el plan.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">4/5</span></div>
+  <div class="dia-n"><span class="n">Día 14</span><p class="rotulo" style="margin:0">Mensaje 3 de 3</p></div>
+  <h2 class="titular" style="font-size:100px">Dale una salida fácil.</h2>
+  <div class="mio">Si ahora no es buen momento, lo entiendo. ¿Lo pausamos dos semanas y volvemos con algo más corto?<small>Tú</small></div>
+  <div class="porque"><p class="rotulo">Por qué funciona</p><p class="texto">Una pausa con fecha <b>es mejor que un silencio sin fecha.</b></p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia voltio">
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">5/5</span></div>
+  <h2 class="titular" style="margin-top:80px;font-size:116px">Coachera te avisa el día 3.</h2>
+  <p class="texto" style="margin-top:30px;font-size:40px;max-width:900px">Cada mañana, en Hoy, <b>quién lleva 3 días sin registrar.</b> «Escribirle» abre su chat con el primer mensaje ya escrito.</p>
+  <div class="hoy-c"><p class="t">Hoy · sin registrar</p><div class="f"><b>Andrés Pardo</b><span>3 días</span><u>Escribirle</u></div></div>
+  <div style="position:absolute;left:80px;bottom:128px;display:flex;align-items:center;gap:28px"><span class="pildora">Gratis hasta 5 clientes</span><span class="texto" style="margin:0;font-size:34px">Sin tarjeta ·<br><b>enlace en la bio</b></span></div>
+  <div class="hilo acaba"></div>
+</section>
+</body></html>

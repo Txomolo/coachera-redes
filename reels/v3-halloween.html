@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>V3 · Coachera TV, especial Halloween</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/reel.css">
+<link rel="stylesheet" href="../motor/tv.css">
+<style>
+/* V3 · Coachera TV Noticias, especial Halloween (sábado 31 de octubre): cinco «últimas horas»
+   que dan miedo de verdad a un entrenador online, con su prueba en pantalla, la cinta de noticias
+   corriendo abajo y estática entre noticia y noticia. Al final: «Que lo único que dé miedo sea el
+   día de pierna.» 17 s. La calabaza «hierve» (doodle boil). */
+.gancho{position:absolute;left:60px;right:60px;top:560px;animation:desaparece .01s linear 1.85s forwards}
+.gancho .tv-narra{position:static;font-size:150px;line-height:1.02}
+.calabaza{position:absolute;right:60px;top:380px;width:250px;height:250px;z-index:21;animation:desaparece .01s linear 14.6s forwards}
+.calabaza svg{width:100%;height:100%;fill:none;stroke:var(--voltio);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;filter:url(#hervor) drop-shadow(0 0 24px rgba(214,255,63,.5))}
+
+.noticia{position:absolute;inset:0;opacity:0;animation:muestra .01s linear var(--t) forwards, desaparece .12s linear calc(var(--t) + 2.25s) forwards}
+.titular-n{position:absolute;left:60px;right:60px;top:560px;animation:parpadea .5s steps(1) var(--t) both}
+@keyframes parpadea{0%{opacity:0}12%{opacity:1}24%{opacity:.15}34%{opacity:1}48%{opacity:.4}56%{opacity:1}100%{opacity:1}}
+.titular-n h2{margin:0;font-family:var(--tv);font-weight:400;font-size:98px;line-height:1.04;text-transform:uppercase;color:#fff}
+.titular-n h2 .v{color:var(--voltio)}
+.prueba{position:absolute;left:60px;right:60px;top:930px;display:flex;justify-content:center;animation:crece .45s var(--muelle) calc(var(--t) + .55s) both}
+.globo{width:300px;height:300px;border-radius:50%;background:#FF3B30;display:grid;place-items:center;font-family:var(--tv);font-size:170px;color:#fff;box-shadow:0 0 120px rgba(255,59,48,.55)}
+.burbuja{max-width:860px;padding:34px 40px;border-radius:8px 40px 40px 40px;background:#202C33;font-size:64px;line-height:1.22;color:#E9EDEF;box-shadow:0 40px 80px -20px rgba(0,0,0,.9)}
+.burbuja small{display:block;font-size:30px;font-weight:600;color:#7FE3A8;margin-bottom:10px}
+.burbuja i{display:block;margin-top:10px;font-style:normal;text-align:right;font-family:var(--font-num);font-size:28px;color:#8696A0}
+.dialogo{width:820px;border-radius:18px;background:#F3F3F3;color:#1F2933;box-shadow:0 40px 90px -20px rgba(0,0,0,.95);overflow:hidden}
+.dialogo .barra{height:60px;background:#1F7A45;color:#fff;display:flex;align-items:center;padding:0 24px;font-size:28px;font-weight:600}
+.dialogo p{margin:0;padding:34px 34px 20px;font-size:40px;line-height:1.3}
+.dialogo .bot{display:flex;justify-content:flex-end;gap:18px;padding:0 34px 30px}
+.dialogo .bot span{padding:14px 26px;border-radius:10px;border:2px solid #C9CED6;font-size:32px}
+.dialogo .bot span.no{background:#1F7A45;color:#fff;border-color:#1F7A45}
+.pila{display:flex;flex-direction:column;gap:12px;width:860px}
+.aviso-r{display:flex;align-items:center;gap:22px;padding:16px 26px;border-radius:24px;background:rgba(30,38,50,.95);border:2px solid rgba(255,255,255,.12);font-size:36px}
+.aviso-r b{font-weight:600} .aviso-r span{margin-left:auto;font-family:var(--font-num);color:var(--gris);font-size:28px}
+.aviso-r i{width:60px;height:60px;border-radius:14px;background:var(--voltio);display:grid;place-items:center;font-style:normal;font-family:var(--tv);color:var(--negro);font-size:32px}
+.mas{align-self:center;font-family:var(--tv);font-size:54px;line-height:1;color:var(--voltio)}
+.pegatina{position:absolute;right:90px;top:-60px;padding:14px 26px;background:var(--voltio);color:var(--negro);font-family:var(--tv);font-size:48px;transform:rotate(8deg)}
+
+/* final */
+.final-fondo{position:absolute;inset:0;z-index:30;background:var(--fondo);opacity:0;animation:muestra .01s linear 14.95s forwards}
+.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 60px 240px;text-align:center;opacity:0;animation:muestra .01s linear 14.95s forwards}
+.final .rotulo-f{font-family:var(--tv);font-size:52px;letter-spacing:.14em;color:var(--voltio);margin:0 0 30px;animation:sube .35s var(--curva) 15.0s both}
+.final .tv-narra{position:static;font-size:104px;text-align:center}
+.logo-medio{margin-top:60px;font-size:108px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .5s var(--curva) 15.75s both}
+.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
+.logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 15.8s both}
+.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
+.final .pildora{margin-top:44px;animation:crece .45s var(--muelle) 16.1s both}
+</style></head>
+<body><div id="escena">
+  <svg width="0" height="0" style="position:absolute"><filter id="hervor" class="hervor"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="9"/></filter></svg>
+  <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:45%"></div><div class="grano"></div></div>
+
+  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
+  <div class="tv-vivo"><i></i>ESPECIAL HALLOWEEN</div>
+  <div class="calabaza"><svg viewBox="0 0 24 24"><path d="M12 7c-4.6 0-8.5 3-8.5 7s3.9 7 8.5 7 8.5-3 8.5-7-3.9-7-8.5-7z"/><path d="M12 7V4.6c0-.9.7-1.6 1.6-1.6"/><path d="M8 12.6l1.6-1.8 1.2 1.8z"/><path d="M13.2 12.6l1.6-1.8 1.2 1.8z"/><path d="M8.6 16.2l1.1.9 1.1-.9 1.2.9 1.1-.9 1.1.9 1.1-.9"/></svg></div>
+
+  <div class="gancho"><h1 class="tv-narra">Lo que da miedo de verdad <span class="v">a un entrenador online</span></h1></div>
+  <div class="tv-cortinilla" style="--t:1.5s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">ÚLTIMA HORA</p></div>
+
+  <div class="noticia" style="--t:2.0s">
+    <div class="titular-n"><h2>Un entrenador encuentra <span class="v">47 chats sin leer</span></h2></div>
+    <div class="prueba"><div class="globo">47</div></div>
+    <div class="tv-rotulo rojo" style="top:1352px;--t:2.15s;--fin:4.15s"><b>ÚLTIMA HORA</b><span>LUNES, 08:02 · ANTES DEL CAFÉ</span></div>
+  </div>
+  <div class="noticia" style="--t:4.4s">
+    <div class="titular-n"><h2>Un cliente escribe «tenemos que hablar» <span class="v">y nada más</span></h2></div>
+    <div class="prueba"><div class="burbuja"><small>Andrés · cliente</small>Tenemos que hablar<i>23:58 · en línea</i></div></div>
+    <div class="tv-rotulo rojo" style="top:1352px;--t:4.55s;--fin:6.55s"><b>ÚLTIMA HORA</b><span>Y SIGUE «ESCRIBIENDO…»</span></div>
+  </div>
+  <div class="noticia" style="--t:6.8s">
+    <div class="titular-n"><h2>Se cierra el Excel de las rutinas <span class="v">sin guardar</span></h2></div>
+    <div class="prueba"><div class="dialogo"><div class="barra">Rutinas_clientes_v7.xlsx</div><p>¿Quieres guardar los cambios? Si no los guardas, se perderán.</p><div class="bot"><span class="no">No guardar</span><span>Guardar</span></div></div></div>
+    <div class="tv-rotulo rojo" style="top:1352px;--t:6.95s;--fin:8.95s"><b>ÚLTIMA HORA</b><span>DOCE CLIENTES AFECTADOS</span></div>
+  </div>
+  <div class="noticia" style="--t:9.2s">
+    <div class="titular-n"><h2>Domingo, 22:00: <span class="v">15 revisiones pendientes</span></h2></div>
+    <div class="prueba"><div class="pila"><div class="aviso-r"><i>R</i><b>Revisión de Marta</b><span>21:40</span></div><div class="aviso-r"><i>R</i><b>Revisión de Iván</b><span>21:52</span></div><div class="aviso-r"><i>R</i><b>Revisión de Elena</b><span>21:58</span></div><span class="mas">+ 12 MÁS</span></div></div>
+    <div class="tv-rotulo rojo" style="top:1352px;--t:9.35s;--fin:11.35s"><b>ÚLTIMA HORA</b><span>Y MAÑANA ES LUNES</span></div>
+  </div>
+  <div class="noticia" style="--t:11.6s">
+    <div class="titular-n"><h2>«¿Me pasas la rutina <span class="v">otra vez?»</span></h2></div>
+    <div class="prueba"><div class="burbuja" style="position:relative"><small>Andrés · cliente</small>Oye, ¿me pasas la rutina otra vez? No la encuentro<i>18:05</i><span class="pegatina">4.ª VEZ ESTE MES</span></div></div>
+    <div class="tv-rotulo rojo" style="top:1352px;--t:11.75s;--fin:13.75s"><b>ÚLTIMA HORA</b><span>EL PDF SIGUE EN EL CHAT</span></div>
+  </div>
+  <div class="tv-estatica" style="--t:4.3s;--fin:4.45s"><svg><filter id="ruido-1"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-1)"/></svg></div>
+  <div class="tv-estatica" style="--t:6.7s;--fin:6.85s"><svg><filter id="ruido-2"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-2)"/></svg></div>
+  <div class="tv-estatica" style="--t:9.1s;--fin:9.25s"><svg><filter id="ruido-3"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-3)"/></svg></div>
+  <div class="tv-estatica" style="--t:11.5s;--fin:11.65s"><svg><filter id="ruido-4"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="1" seed="1"/></filter><rect width="100%" height="100%" filter="url(#ruido-4)"/></svg></div>
+
+  <div class="tv-cinta" style="--t:2.0s"><b>ÚLTIMA HORA</b><div class="corre">UN ENTRENADOR ENCUENTRA 47 CHATS SIN LEER · SE CIERRA UN EXCEL SIN GUARDAR · 15 REVISIONES PENDIENTES UN DOMINGO · «¿ME PASAS LA RUTINA OTRA VEZ?» · UN ENTRENADOR ENCUENTRA 47 CHATS SIN LEER · SE CIERRA UN EXCEL SIN GUARDAR · 15 REVISIONES PENDIENTES UN DOMINGO · «¿ME PASAS LA RUTINA OTRA VEZ?» · </div></div>
+
+  <div class="tv-cortinilla" style="--t:14.6s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">FIN DE LA EMISIÓN</p></div>
+  <div class="final-fondo"></div>
+  <div class="final">
+    <p class="rotulo-f">FELIZ HALLOWEEN</p>
+    <h2 class="tv-narra"><span class="linea"><span style="--d:15.05s">Que lo único que</span></span><span class="linea"><span style="--d:15.15s">dé miedo sea</span></span><span class="linea"><span style="--d:15.25s" class="v">el día de pierna.</span></span></h2>
+    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
+    <span class="pildora">Gratis hasta 5 clientes</span>
+  </div>
+</div>
+<script src="../motor/reel.js"></script>
+<script src="../motor/tv.js"></script>
+<script>
+const NOTICIAS = [2.0, 4.4, 6.8, 9.2, 11.6];
+window.REEL = {
+  duracion: 17,
+  musica: { estilo: "phonk", caida: 1.86, vol: .55 },
+  sonidos: [
+    { t: .05, tipo: "noticia", vol: .9 },
+    { t: 1.5, tipo: "barrido", vol: .8 },
+    ...NOTICIAS.flatMap((t) => [{ t, tipo: "noticia", vol: .5 }, { t: t + .55, tipo: "pop", vol: .6 }]),
+    ...[4.3, 6.7, 9.1, 11.5].map((t) => ({ t, tipo: "estatica", vol: .8 })),
+    { t: 14.6, tipo: "barrido", vol: .8 },
+    { t: 15.8, tipo: "marca", vol: .9 },
+  ],
+};
+</script>
+</body></html>

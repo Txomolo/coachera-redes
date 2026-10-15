@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>C6 · Cómo contestar una revisión en 3 minutos</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<style>
+/* C6 · Educativo: tres pasos para contestar una revisión (lo que va bien con un dato, una sola cosa que cambiar, el foco de la semana) y el audio. Al final, la bandeja de revisiones de Coachera («Grabar respuesta», «Enviar y siguiente»). */
+.reloj{position:absolute;left:80px;right:80px;bottom:200px;display:flex;align-items:center;gap:40px;padding:40px 46px}
+.reloj .num{font-size:170px;font-weight:500;line-height:.9;letter-spacing:-.05em;color:var(--voltio)}
+.reloj p{margin:0;font-size:36px;line-height:1.35;color:var(--gris)} .reloj b{color:#fff;font-weight:600}
+.paso-n{display:flex;align-items:center;gap:26px;margin:40px 0 40px}
+.paso-n .n{width:110px;height:110px;border-radius:50%;border:5px solid var(--voltio);display:grid;place-items:center;font-family:var(--font-num);font-size:56px;font-weight:500;color:var(--voltio)}
+.ejemplo{position:absolute;left:80px;right:80px;bottom:190px;padding:36px 42px;border-radius:26px;background:#1E2A22;border:2px solid rgba(79,208,138,.3)}
+.ejemplo .rotulo{margin:0 0 14px;color:#7FE3A8} .ejemplo .rotulo::before{background:#7FE3A8}
+.ejemplo p.t{margin:0;font-size:42px;line-height:1.35;color:#E8EDF3}
+.audio{position:absolute;left:80px;right:80px;bottom:190px;display:flex;align-items:center;gap:30px;padding:36px 40px}
+.audio .play{flex:none;width:100px;height:100px;border-radius:50%;background:var(--voltio);display:grid;place-items:center}
+.audio .play svg{width:44px;height:44px;fill:var(--negro)}
+.onda{flex:1;display:flex;align-items:center;gap:7px;height:100px}
+.onda i{flex:1;border-radius:4px;background:rgba(214,255,63,.75)}
+.audio .dur{font-family:var(--font-num);font-size:38px;color:var(--gris)}
+.mini-r{margin-top:56px;border-radius:26px;background:var(--negro);padding:32px 36px;color:#fff}
+.mini-r .t{margin:0 0 18px;font-size:26px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--voltio)}
+.mini-r .botones{display:flex;gap:18px;flex-wrap:wrap}
+.mini-r span{display:inline-flex;align-items:center;gap:12px;height:80px;padding:0 30px;border-radius:16px;font-size:32px;font-weight:600}
+.mini-r .grabar{background:var(--voltio);color:var(--negro)} .mini-r .sig{border:2px solid rgba(255,255,255,.2)}
+</style></head>
+<body>
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">1/6</span></div>
+  <p class="rotulo" style="margin-top:40px">Revisión semanal</p>
+  <h1 class="titular" style="font-size:124px">Cómo contestar una revisión <span class="v">en 3 minutos.</span></h1>
+  <div class="reloj tarjeta"><span class="num">3:00</span><p>Tres pasos y un audio.<br><b>Y tu cliente sabe qué hacer.</b></p></div>
+  <span class="desliza">Desliza →</span>
+  <div class="hilo empieza"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">2/6</span></div>
+  <div class="paso-n"><span class="n">1</span><p class="rotulo" style="margin:0">Paso 1 de 3</p></div>
+  <h2 class="titular" style="font-size:104px">Empieza por lo que ha ido bien.</h2>
+  <p class="texto" style="font-size:42px">Con un dato, no con un «¡muy bien!».</p>
+  <div class="ejemplo"><p class="rotulo">Por ejemplo</p><p class="t">«Has entrenado 4 de 4 y tu media ha bajado 0,4 kg. Así, sí.»</p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">3/6</span></div>
+  <div class="paso-n"><span class="n">2</span><p class="rotulo" style="margin:0">Paso 2 de 3</p></div>
+  <h2 class="titular" style="font-size:104px">Una sola cosa que cambiar.</h2>
+  <p class="texto" style="font-size:42px">Si le das cinco, no hará ninguna. Elige la que más mueve la aguja esta semana.</p>
+  <div class="ejemplo"><p class="rotulo">Por ejemplo</p><p class="t">«Lo que más nos va a ayudar ahora es la cena: vamos a adelantarla una hora.»</p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">4/6</span></div>
+  <div class="paso-n"><span class="n">3</span><p class="rotulo" style="margin:0">Paso 3 de 3</p></div>
+  <h2 class="titular" style="font-size:104px">Cierra con el foco de la semana.</h2>
+  <p class="texto" style="font-size:42px">Una frase que pueda recordar sin volver a leerte.</p>
+  <div class="ejemplo"><p class="rotulo">Por ejemplo</p><p class="t">«Esta semana, 9.000 pasos al día. Lo demás, igual.»</p></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia">
+  <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">5/6</span></div>
+  <p class="rotulo" style="margin-top:40px">Un truco</p>
+  <h2 class="titular" style="font-size:112px">Mejor <span class="v">en audio.</span></h2>
+  <p class="texto" style="font-size:44px">Dos minutos de audio dicen más que veinte líneas. Y <b>se nota que eres tú</b>, no una plantilla.</p>
+  <div class="audio tarjeta"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><div class="onda"><i style="height:59%"></i><i style="height:37%"></i><i style="height:68%"></i><i style="height:24%"></i><i style="height:27%"></i><i style="height:86%"></i><i style="height:30%"></i><i style="height:64%"></i><i style="height:92%"></i><i style="height:25%"></i><i style="height:82%"></i><i style="height:45%"></i><i style="height:22%"></i><i style="height:29%"></i><i style="height:73%"></i><i style="height:71%"></i><i style="height:26%"></i><i style="height:48%"></i><i style="height:29%"></i><i style="height:88%"></i><i style="height:72%"></i><i style="height:25%"></i><i style="height:90%"></i><i style="height:33%"></i><i style="height:46%"></i><i style="height:98%"></i><i style="height:98%"></i><i style="height:92%"></i><i style="height:25%"></i><i style="height:91%"></i><i style="height:92%"></i><i style="height:68%"></i><i style="height:24%"></i><i style="height:46%"></i></div><span class="dur">1:48</span></div>
+  <div class="hilo"></div>
+</section>
+
+<section class="dia voltio">
+  <div class="cab"><span class="logo-p"><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span>oachera</span></span><span class="cuenta">6/6</span></div>
+  <h2 class="titular" style="margin-top:80px;font-size:104px">En Coachera, cada revisión llega comparada.</h2>
+  <p class="texto" style="margin-top:30px;font-size:40px;max-width:900px">Con la anterior al lado. <b>Grabas tu respuesta,</b> le llega en su app y pasas a la siguiente.</p>
+  <div class="mini-r"><p class="t">Revisión de Marta · 3 de 7</p><div class="botones"><span class="grabar">● Grabar respuesta</span><span class="sig">Enviar y siguiente</span></div></div>
+  <div style="position:absolute;left:80px;bottom:128px;display:flex;align-items:center;gap:28px"><span class="pildora">Gratis hasta 5 clientes</span><span class="texto" style="margin:0;font-size:34px">Sin tarjeta ·<br><b>enlace en la bio</b></span></div>
+  <div class="hilo acaba"></div>
+</section>
+</body></html>
