@@ -5,8 +5,8 @@
   "publicaciones": [
     {
       "n": 1,
-      "fecha": "2026-10-16",
-      "hora": "10:00",
+      "fecha": "2026-10-15",
+      "hora": "18:00",
       "tipo": "reel",
       "titulo": "¿Cuántas apps usas?",
       "video": "r1-una-app.mp4",
@@ -16,7 +16,7 @@
     {
       "n": 2,
       "fecha": "2026-10-16",
-      "hora": "14:00",
+      "hora": "18:00",
       "tipo": "carrusel",
       "titulo": "¿Así llevas tu asesoría?",
       "imagenes": [
@@ -31,7 +31,7 @@
     },
     {
       "n": 3,
-      "fecha": "2026-10-16",
+      "fecha": "2026-10-17",
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "Pega tu rutina desde Excel",
@@ -42,7 +42,7 @@
     },
     {
       "n": 4,
-      "fecha": "2026-10-19",
+      "fecha": "2026-10-18",
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "Serie a serie",
@@ -52,7 +52,7 @@
     },
     {
       "n": 5,
-      "fecha": "2026-10-21",
+      "fecha": "2026-10-19",
       "hora": "18:00",
       "tipo": "carrusel",
       "titulo": "6 preguntas que no salen en la báscula",
@@ -71,7 +71,7 @@
     },
     {
       "n": 6,
-      "fecha": "2026-10-23",
+      "fecha": "2026-10-21",
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "Con tu marca",
@@ -81,7 +81,7 @@
     },
     {
       "n": 7,
-      "fecha": "2026-10-26",
+      "fecha": "2026-10-22",
       "hora": "18:00",
       "tipo": "carrusel",
       "titulo": "5 señales de que tu asesoría necesita un sistema",
@@ -99,7 +99,7 @@
     },
     {
       "n": 8,
-      "fecha": "2026-10-28",
+      "fecha": "2026-10-23",
       "hora": "18:00",
       "tipo": "carrusel",
       "titulo": "La media de 7 días",
@@ -115,7 +115,7 @@
     },
     {
       "n": 9,
-      "fecha": "2026-10-30",
+      "fecha": "2026-10-24",
       "hora": "18:00",
       "tipo": "reel",
       "titulo": "Cámbiate en una tarde",
@@ -123,5 +123,6 @@
       "portada": "portada-5.jpg",
       "texto": "Cambiarte a Coachera te lleva una tarde.\n\nPegas tu rutina desde Excel, pegas tu dieta con sus opciones y sus menús de entreno y descanso, e invitas a tus clientes por WhatsApp. Ellos entran desde el enlace, en su móvil.\n\nTus 5 primeros clientes, gratis y sin tarjeta. Para ellos, la app también es gratis. Enlace en la bio."
     }
-  ]
+  ],
+  "nota": "Desde el 15/10/2026, una publicación al día a las 18:00 (lo pidió el usuario). El martes 20 va el primer reel de instagram/virales/."
 }
