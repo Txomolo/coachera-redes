@@ -1,0 +1,54 @@
+/* ============================================================================
+   Efectos para los Reels (15-oct-2026), sin grabaciones: todo son pantallas y texto.
+   ============================================================================
+   Los nombres son los de los efectos que se usan en los reels de edición:
+     pull-back reveal  .alejar      empieza muy cerca de un detalle y se aleja hasta verlo todo
+     zoom-through cut  .atravesar   la cámara entra en un elemento y sale en la escena siguiente
+                       .emerger     la escena siguiente llega desde dentro
+     digital zoom      .golpe-zoom  un acercamiento seco y vuelta, a ritmo
+     chart grow        .barras-g    barras que crecen una detrás de otra
+     headline wall     .muro        filas de titulares que pasan en sentidos contrarios
+     glass type        .cristal     letras sobre un cristal esmerilado que deja ver lo de detrás
+     doodle boil       .hervir      trazos a mano que «hierven» (cambia el ruido cada 3 fotogramas)
+     frame break       .rompe       algo que se sale del marco del móvil
+   Cada uno lleva sus tiempos en variables (--t inicio, --d duración, --z zoom, --ox/--oy origen). */
+
+.alejar{transform-origin:var(--ox) var(--oy);animation:alejar var(--d,1.3s) cubic-bezier(.6,0,.15,1) var(--t,0s) both}
+@keyframes alejar{from{transform:translate(var(--dx,0px),var(--dy,0px)) scale(var(--z,3))}to{transform:none}}
+
+.atravesar{transform-origin:var(--ox) var(--oy);animation:atravesar var(--d,.38s) cubic-bezier(.7,0,.9,.4) var(--t) forwards}
+@keyframes atravesar{to{transform:scale(var(--z,7));opacity:0;filter:blur(14px)}}
+.emerger{animation:emerger var(--d,.5s) cubic-bezier(.1,.6,.2,1) var(--t) both}
+@keyframes emerger{from{transform:scale(.35);opacity:0;filter:blur(16px)}}
+
+.golpe-zoom{transform-origin:var(--ox) var(--oy);animation:golpeZoom var(--d,.9s) cubic-bezier(.3,0,.2,1) var(--t) both}
+@keyframes golpeZoom{0%{transform:none}22%{transform:scale(var(--z,1.3))}78%{transform:scale(var(--z,1.3))}100%{transform:none}}
+
+.barras-g{display:flex;align-items:flex-end;gap:var(--hueco,6px);height:var(--alto,70px)}
+.barras-g i{flex:1;height:var(--h);border-radius:4px 4px 1px 1px;background:var(--color,var(--voltio));transform:scaleY(0);transform-origin:bottom;
+  animation:crecer .45s cubic-bezier(.2,.8,.2,1) calc(var(--t) + var(--k) * .06s) forwards}
+.barras-g i.actual{background:repeating-linear-gradient(135deg,var(--color,var(--voltio)) 0 4px,rgba(214,255,63,.35) 4px 8px)}
+@keyframes crecer{to{transform:scaleY(1)}}
+
+.muro{position:absolute;inset:-40px -200px;display:flex;flex-direction:column;justify-content:center;gap:26px;pointer-events:none;transform:rotate(-8deg)}
+.muro p{margin:0;white-space:nowrap;font-family:var(--titular);font-size:92px;letter-spacing:-.03em;color:rgba(255,255,255,.1)}
+.muro p:nth-child(odd){animation:muroIzq 9s linear infinite}
+.muro p:nth-child(even){animation:muroDer 9s linear infinite}
+.muro p b{font-weight:400;color:rgba(214,255,63,.35)}
+@keyframes muroIzq{from{transform:translateX(0)}to{transform:translateX(-900px)}}
+@keyframes muroDer{from{transform:translateX(-900px)}to{transform:translateX(0)}}
+
+.cristal{position:relative;padding:56px 60px 60px;border-radius:44px;background:linear-gradient(140deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+  -webkit-backdrop-filter:blur(26px) saturate(1.3);backdrop-filter:blur(26px) saturate(1.3);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.22), inset 0 2px 0 rgba(255,255,255,.35), 0 50px 120px -30px rgba(0,0,0,.9)}
+.cristal .titular{background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.62));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cristal .titular .v{background:linear-gradient(180deg,var(--voltio) 30%,rgba(214,255,63,.7));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cristal::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.18) 42%,transparent 54%);background-size:250% 100%;animation:reflejo 2.4s ease-in-out .2s both}
+@keyframes reflejo{from{background-position:120% 0}to{background-position:-60% 0}}
+
+.hervir{filter:url(#hervor)}
+
+.rompe{position:absolute;transform-origin:50% 50%;animation:rompe .55s cubic-bezier(.2,1.4,.4,1) var(--t) both, rompeVuelve .35s cubic-bezier(.6,0,.8,.4) var(--fin) forwards}
+@keyframes rompe{from{transform:scale(var(--desde,.48));opacity:0}to{transform:none;opacity:1}}
+@keyframes rompeVuelve{to{transform:scale(var(--desde,.48));opacity:0}}

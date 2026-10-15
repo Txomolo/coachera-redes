@@ -12,3 +12,6 @@
    aparte, 'Simbolos' (esos glifos de DejaVu Sans Bold, licencia libre), que se pone en cada
    pila de letras justo detrás de la principal: el navegador la usa solo para lo que le falta. */
 @font-face{font-family:'Simbolos';font-weight:100 900;src:url('fuentes/DejaVuSans-Bold-Simbolos.woff2') format('woff2');unicode-range:U+2715,U+25B2,U+25BC,U+25F7;}
+/* Coachera TV (desde el 15-oct-2026): Anton para el marcador y los rótulos (OFL, Google Fonts) */
+@font-face{font-family:'Anton';font-weight:400;src:url('fuentes/Anton-Regular.ttf') format('truetype');}
+@font-face{font-family:'Marker';font-weight:400;src:url('fuentes/PermanentMarker-Regular.ttf') format('truetype');}

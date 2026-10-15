@@ -100,6 +100,37 @@ def fx(tipo):
         sub = np.sin(2 * np.pi * np.cumsum(38 + 60 * np.exp(-t * 18)) / SR) * np.exp(-t * 4.5)
         ruido = filtro(rng.standard_normal(n), "lowpass", 1800) * np.exp(-t * 9) * 0.5
         return np.tanh((sub + ruido) * 1.2) * 0.9
+    # ---- Coachera TV (15-oct-2026) ----
+    if tipo == "silbato":      # el del árbitro: un tono agudo con el «trino» de la bolita
+        n = int(0.55 * SR); t = np.arange(n) / SR
+        trino = 1 + 0.5 * np.sign(np.sin(2 * np.pi * 26 * t)) * 0.5
+        f = 2950 + 90 * np.sin(2 * np.pi * 26 * t)
+        x = np.sin(2 * np.pi * np.cumsum(f) / SR) * trino + filtro(rng.standard_normal(n), "bandpass", (2500, 3600)) * 0.25
+        env = np.minimum(1, t / 0.01) * np.clip((0.55 - t) / 0.06, 0, 1)
+        return x * env * 0.32
+    if tipo == "publico":      # el estadio que se viene arriba
+        n = int(2.2 * SR); t = np.arange(n) / SR
+        x = filtro(rng.standard_normal(n), "bandpass", (350, 3200)) + filtro(rng.standard_normal(n), "bandpass", (900, 1800)) * 0.6
+        env = np.minimum(1, t / 0.35) * np.exp(-np.maximum(0, t - 0.6) * 1.6)
+        return x * env * 0.28
+    if tipo == "estatica":     # la tele sin señal
+        n = int(0.7 * SR); t = np.arange(n) / SR
+        x = filtro(rng.standard_normal(n), "highpass", 900) * (0.7 + 0.3 * (rng.random(n) > 0.995))
+        return x * np.minimum(1, t / 0.01) * np.clip((0.7 - t) / 0.05, 0, 1) * 0.3
+    if tipo == "var":          # el aviso del VAR: dos pitidos
+        n = int(0.5 * SR); t = np.arange(n) / SR; x = np.zeros(n)
+        for f, d in [(988, 0.0), (740, 0.18)]:
+            k = int(d * SR); m = int(0.15 * SR); tt = t[:m]
+            x[k:k + m] += np.sign(np.sin(2 * np.pi * f * tt)) * 0.5 * np.minimum(1, tt / 0.003) * np.clip((0.15 - tt) / 0.01, 0, 1)
+        return filtro(x, "lowpass", 5000) * 0.22
+    if tipo == "noticia":      # la sintonía de última hora: tres golpes de orquesta
+        n = int(1.0 * SR); t = np.arange(n) / SR; x = np.zeros(n)
+        for i, acorde in enumerate([["A3", "E4", "A4"], ["A3", "E4", "A4"], ["F3", "C4", "F4"]]):
+            k = int(i * 0.14 * SR); m = n - k; tt = t[:m]
+            for nt in acorde:
+                ff = nota(nt)
+                x[k:] += (sierra(ff, m, -6) + sierra(ff, m, 6)) * np.exp(-tt * (9 if i < 2 else 3.5)) * 0.12
+        return filtro(x, "lowpass", 4200)
     raise ValueError("tipo de sonido desconocido: " + tipo)
 
 def subida(dur):
@@ -256,6 +287,12 @@ def mezclar(reel):
     if estilo != "efectos":
         if estilo == "base":      # la primera versión (descartada el 13-oct: sonaba a sintetizador barato)
             bl, br = base(dur, m.get("bpm", 112), m.get("caida", 0))
+        elif estilo in ("phonk", "house", "pop"):   # con energía (motor/musica.py, desde el 15-oct)
+            import os as _os; sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+            import musica
+            bl, br = musica.estilo(estilo, dur, m.get("caida", 0), m.get("bpm"))
+            pico = max(np.abs(bl).max(), np.abs(br).max()) + 1e-9
+            bl, br = bl / pico * 0.5, br / pico * 0.5
         else:
             bl, br = ambiente(dur, m.get("bpm", 112) if estilo == "pulso" else 84, m.get("caida", 0), estilo == "pulso")
         vol = m.get("vol", 0.55)

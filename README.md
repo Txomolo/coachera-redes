@@ -22,4 +22,11 @@ aprobada para publicar.
     fotograma, a MP4 de 1080×1920 a 30 fps, con su sonido (`sonido.py`, sintetizado y a -14 LUFS).
   - `python3 motor/carrusel.py <carrusel.html> <prefijo> [alto]`: las diapositivas de 1080×1350 (o
     del alto que se diga: las portadas de los reels son de 1920) a JPG, y una hoja para revisarlas.
-  - Las letras (IBM Plex y Archivo Black, licencia OFL) van en `motor/fuentes/`.
+  - Las letras (IBM Plex, Archivo Black y Anton, licencia OFL; Permanent Marker, Apache 2.0) van en
+    `motor/fuentes/`.
+  - **Coachera TV** (`motor/tv.css`, `motor/tv.js`): la personalidad de los reels desde el 15-oct-2026,
+    como una retransmisión (mosca, «en directo», marcador, rótulos, VAR, cinta de noticias, cortinilla
+    con la C, «sin señal»). `motor/efectos.css`: alejar, atravesar, zoom a golpe, barras que crecen,
+    muro de titulares, cristal, trazos que hierven y «romper el marco».
+  - La música (`motor/musica.py`): phonk para los de humor, house para los de la app (y pop), todo
+    sintetizado y mezclado para que se oiga en el altavoz de un móvil.
