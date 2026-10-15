@@ -3,18 +3,20 @@
 <title>R5 · Una tarde</title>
 <link rel="stylesheet" href="../motor/fuentes.css">
 <link rel="stylesheet" href="../motor/reel.css">
+<link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* R5 · La llamada a la acción del lote: «Cambiarte a Coachera te lleva una tarde» en tres pasos
+/* Coachera TV: «La jugada». Tres pases (rutina, dieta, invitación) y gol.
+   R5 · La llamada a la acción del lote: «Cambiarte a Coachera te lleva una tarde» en tres pasos
    que se marcan (pega tu rutina, pega tu dieta, invita por WhatsApp), unidos por la línea de la C,
    y «Tus 5 primeros clientes, gratis». 13 s. Todo lo que se enseña lo hace la app (Mudanza A y B). */
-.titulo{position:absolute;left:80px;right:80px;top:250px;animation:baja .4s ease-in 8.5s forwards}
-.titulo .titular{font-size:98px}
-.titulo .linea>span{animation:subeLinea .65s var(--curva) var(--d) both}
+.titulo{position:absolute;left:60px;right:60px;top:380px;z-index:21;animation:baja .35s ease-in 7.05s forwards}
+.titulo .tv-narra{position:static;margin:0;font-size:104px}
+.pasos .tv-sello{left:250px;top:250px;font-size:230px;padding:24px 60px}
 
 .pasos{position:absolute;left:60px;right:60px;top:660px}
-.linea-v{position:absolute;left:52px;top:60px;width:10px;height:660px;border-radius:5px;background:var(--voltio);transform-origin:top;transform:scaleY(0);box-shadow:0 0 30px rgba(214,255,63,.5);animation:baja1 .8s cubic-bezier(.5,0,.2,1) 2.6s forwards, baja2 .8s cubic-bezier(.5,0,.2,1) 4.8s forwards}
+.linea-v{position:absolute;left:52px;top:60px;width:10px;height:600px;border-radius:5px;background:var(--voltio);transform-origin:top;transform:scaleY(0);box-shadow:0 0 30px rgba(214,255,63,.5);animation:baja1 .8s cubic-bezier(.5,0,.2,1) 2.6s forwards, baja2 .8s cubic-bezier(.5,0,.2,1) 4.8s forwards}
 @keyframes baja1{to{transform:scaleY(.5)}} @keyframes baja2{from{transform:scaleY(.5)}to{transform:scaleY(1)}}
-.paso{position:relative;display:grid;grid-template-columns:114px minmax(0,1fr);gap:30px;align-items:start;height:330px;animation:sube .55s var(--curva) var(--d) both, desaparece .3s ease 8.55s forwards}
+.paso{position:relative;display:grid;grid-template-columns:114px minmax(0,1fr);gap:30px;align-items:start;height:300px;animation:sube .55s var(--curva) var(--d) both, desaparece .3s ease 8.55s forwards}
 .circulo{position:relative;z-index:2;width:114px;height:114px;border-radius:50%;background:var(--fondo);border:5px solid var(--voltio);display:grid;place-items:center;font-family:var(--font-num);font-size:50px;font-weight:500;color:var(--voltio)}
 .circulo.hecho{background:var(--voltio);color:var(--negro)}
 .circulo svg{position:absolute;width:62px;height:62px;opacity:0}
@@ -34,9 +36,9 @@
 /* final */
 .barrido{position:absolute;left:0;right:0;height:1920px;top:0;background:var(--voltio);transform:scaleX(0);z-index:40;animation:barre .7s cubic-bezier(.7,0,.3,1) var(--d) both}
 .fondo-final{opacity:0;animation:muestra .01s linear 9.0s forwards;z-index:30;background:var(--fondo)}
-.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:260px;text-align:center;opacity:0;animation:muestra .01s linear 9.0s forwards}
-.final .titular{font-size:112px;text-align:center}
-.final .titular .linea>span{animation:subeLinea .6s var(--curva) var(--d) both}
+.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 90px 260px;text-align:center;opacity:0;animation:muestra .01s linear 9.0s forwards}
+.final .tv-narra{position:static;margin:0;font-size:116px;text-align:center}
+.final .rotulo-f{font-family:var(--tv);font-size:52px;letter-spacing:.14em;color:var(--voltio);margin:0 0 30px;animation:sube .35s var(--curva) 9.05s both}
 .final .texto{margin-top:30px;animation:sube .5s var(--curva) 9.7s both}
 .logo-medio{margin-top:64px;font-size:120px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .55s var(--curva) 10.0s both}
 .logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
@@ -47,9 +49,12 @@
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
 
-  <div class="titulo"><h1 class="titular">
-    <span class="linea"><span style="--d:.05s">Cambiarte a Coachera</span></span>
-    <span class="linea"><span style="--d:.15s">te lleva <span class="v">una tarde.</span></span></span></h1></div>
+  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
+  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="16:00">16:00</span></div>
+  <div class="titulo"><h1 class="tv-narra">
+    <span class="linea"><span style="--d:0s">Cambiarte a Coachera</span></span>
+    <span class="linea"><span style="--d:.08s">te lleva <span class="v">una tarde.</span></span></span></h1></div>
+  <div class="tv-rotulo" style="top:395px;--t:7.25s;--fin:8.45s"><b>LA JUGADA</b><span>3 PASES · UNA TARDE</span></div>
 
   <div class="pasos">
     <div class="linea-v"></div>
@@ -64,27 +69,32 @@ Opción 2: tostadas</span><span class="flecha">→</span><span class="a"><span c
     <div class="paso" style="--d:5.3s"><span class="circulo" data-clase="hecho@6.9" style="--h:6.9s"><span class="n">3</span><svg viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.5l4.5 4.5 10.5-11"/></svg></span>
       <div><h3>Invita por WhatsApp</h3><p>Le llega tu enlace y entra desde su móvil.</p>
         <div class="burbuja" style="--h:6.2s">Hola, Marta: te invito a mi app de entrenamiento. Entra aquí: <u>coachera.fit/…</u></div></div></div>
+    <div class="tv-sello" style="--t:7.15s;--fin:8.45s">¡GOL!</div>
   </div>
 
-  <div class="barrido" style="--d:8.6s"></div>
+  <div class="tv-cortinilla" style="--t:8.55s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">FINAL</p></div>
   <div class="fondo fondo-final"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
   <div class="final">
-    <h2 class="titular"><span class="linea"><span style="--d:9.1s">Tus 5 primeros</span></span><span class="linea"><span style="--d:9.2s">clientes, <span class="v">gratis.</span></span></span></h2>
+    <p class="rotulo-f">FINAL DEL PARTIDO</p>
+    <h2 class="tv-narra"><span class="linea"><span style="--d:9.1s">Tus 5 primeros</span></span><span class="linea"><span style="--d:9.2s">clientes, <span class="v">gratis.</span></span></span></h2>
     <p class="texto">Sin tarjeta. Y para ellos, la app también es gratis.</p>
     <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
     <span class="pildora">Enlace en la bio</span>
   </div>
 </div>
 <script src="../motor/reel.js"></script>
+<script src="../motor/tv.js"></script>
 <script>
 window.REEL = {
   duracion: 13,
-  musica: { estilo: "ambiente", caida: 2.35, vol: .6 },
+  musica: { estilo: "house", caida: 2.35, vol: .6 },
   sonidos: [
+    { t: .1, tipo: "silbato", vol: .7 },
     { t: .9, tipo: "pop", vol: .6 }, { t: 1.9, tipo: "toque", vol: .6 }, { t: 2.35, tipo: "ok" },
     { t: 3.1, tipo: "pop", vol: .6 }, { t: 4.1, tipo: "toque", vol: .6 }, { t: 4.55, tipo: "ok" },
     { t: 5.3, tipo: "pop", vol: .6 }, { t: 6.2, tipo: "pop", vol: .7 }, { t: 6.9, tipo: "ok" },
-    { t: 8.6, tipo: "barrido", vol: .7 },
+    { t: 7.15, tipo: "golpe", vol: .8 }, { t: 7.17, tipo: "publico", vol: .9 }, { t: 7.3, tipo: "silbato", vol: .5 },
+    { t: 8.55, tipo: "barrido", vol: .8 }, { t: 8.7, tipo: "silbato", vol: .7 },
     { t: 10.05, tipo: "marca", vol: .9 }, { t: 10.5, tipo: "toque", vol: .7 },
   ],
 };

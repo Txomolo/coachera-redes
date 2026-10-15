@@ -82,7 +82,9 @@
 .tv-narra{position:absolute;left:60px;right:60px;font-family:var(--tv);font-size:76px;line-height:1.08;letter-spacing:.01em;text-transform:uppercase;color:#fff;z-index:20}
 .tv-narra .v{color:var(--voltio)}
 .tv-narra .linea{padding-bottom:.04em;margin-bottom:0}
-.tv-narra .linea>span{animation:subeLinea .45s var(--curva) var(--d) both}
+.tv-narra .linea>span{animation:subeLineaTv .45s var(--curva) var(--d) both}
+/* invisible hasta que entra: si no, la tilde de una mayúscula (Ú, É) asoma por encima de su línea */
+@keyframes subeLineaTv{from{transform:translateY(108%);opacity:0}1%{opacity:1}}
 
 /* el final: «FINAL DEL PARTIDO» */
 .tv-final .tv-marcador{position:relative;left:auto;right:auto;top:auto;width:960px}

@@ -4,20 +4,21 @@
 <link rel="stylesheet" href="../motor/fuentes.css">
 <link rel="stylesheet" href="../motor/portada.css">
 <link rel="stylesheet" href="../motor/reel.css">
+<link rel="stylesheet" href="../motor/tv.css">
 <style>
-/* R3 · El cliente anota una serie (60 kg × 8) → «▲ Marca nueva» en la propia serie → el
+/* Coachera TV: «Récord personal», retransmitido desde el gimnasio, y el análisis después.
+   R3 · El cliente anota una serie (60 kg × 8) → «▲ Marca nueva» en la propia serie → el
    descanso cuenta → el entrenador ve qué sube, qué se ha atascado y qué baja. 14 s.
    Textos como en la app: «Guardar serie 3», «▲ Marca nueva · 60 kg × 8 · Antes, 57,5 kg × 8». */
-.titulo{position:absolute;left:80px;right:80px;top:250px}
-.titulo .titular{font-size:100px}
-.titulo .linea>span{animation:subeLinea .65s var(--curva) var(--d) both}
-.t1{animation:baja .4s ease-in 4.85s forwards}
+.titulo{position:absolute;left:60px;right:60px;top:380px;z-index:21}
+.titulo .tv-narra{position:static;margin:0;font-size:104px}
+.t1{animation:baja .35s ease-in 3.45s forwards}
 .t2{animation:baja .4s ease-in 7.3s forwards}
 .t3{animation:baja .4s ease-in 11.1s forwards}
 
-.tel-sitio{position:absolute;left:50%;top:505px;margin-left:-254px;animation:desdeAbajo3d .9s var(--curva) .3s both, salTel .5s cubic-bezier(.6,0,.8,.4) 7.4s forwards}
+.tel-sitio{position:absolute;left:50%;top:640px;margin-left:-236px;animation:desdeAbajo3d .9s var(--curva) .3s both, salTel .5s cubic-bezier(.6,0,.8,.4) 7.4s forwards}
 @keyframes salTel{to{opacity:0;transform:translateX(-500px) rotate(-6deg)}}
-.tel-sitio .zoom{zoom:2.15}
+.tel-sitio .zoom{zoom:2.0}
 .tel-sitio .tel{height:665px;box-shadow:0 60px 120px -10px rgba(0,0,0,.95), inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 1px rgba(0,0,0,.6), 0 0 160px -30px rgba(124,58,237,.45)}
 .cli-ctrl b.cambia{display:inline-block}
 .cli-ctrl b.salta{animation:pulsa .35s ease}
@@ -31,13 +32,13 @@
 .cli-series p.nueva span:first-of-type{font-weight:600;color:#5B21B6}
 .descanso{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:8px 10px;border-radius:9px;background:#0F1722;color:#F5F7FA;font-size:10px;animation:sube .35s var(--curva) 4.5s both}
 .descanso b{font-family:var(--font-num);font-size:15px;font-weight:500}
-.toque.t-mas{left:686px;top:944px;animation:toque .5s ease-out 2.35s both}
-.toque.t-guardar{left:540px;top:1236px;animation:toque .55s ease-out 3.45s both}
+.toque.t-mas{left:676px;top:1048px;animation:toque .5s ease-out 2.35s both}
+.toque.t-guardar{left:540px;top:1320px;animation:toque .55s ease-out 3.45s both}
 .cli-boton.pulsa{animation:pulsa .3s ease 3.45s}
 
 /* el entrenador */
-.ficha{position:absolute;left:50px;right:50px;top:560px;border-radius:28px;background:#0E131A;border:2px solid rgba(255,255,255,.1);box-shadow:0 60px 140px -30px rgba(0,0,0,.95), 0 0 120px -40px rgba(214,255,63,.22);padding:34px 36px 20px;
-  animation:desdeDerecha .75s var(--curva) 7.55s both, desaparece .3s ease 11.15s forwards}
+.ficha{position:absolute;left:50px;right:50px;top:650px;border-radius:28px;background:#0E131A;border:2px solid rgba(255,255,255,.1);box-shadow:0 60px 140px -30px rgba(0,0,0,.95), 0 0 120px -40px rgba(214,255,63,.22);padding:34px 36px 20px;
+  animation:desdeDerecha .75s var(--curva) 7.5s both, desaparece .3s ease 11.15s forwards}
 .f-cab{display:flex;align-items:center;gap:22px;margin-bottom:26px}
 .f-av{width:92px;height:92px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#4C1D95);display:grid;place-items:center;font-weight:600;font-size:32px;color:#fff}
 .f-cab b{display:block;font-size:40px;font-weight:600}
@@ -53,7 +54,7 @@
 .para{background:rgba(242,184,75,.14);color:#F2B84B} .para-l{stroke:#F2B84B}
 .baja{background:rgba(255,138,128,.14);color:#FF8A80} .baja-l{stroke:#FF8A80}
 
-.aviso-hoy{position:absolute;left:50px;right:50px;top:1330px;display:flex;align-items:center;gap:22px;padding:26px 30px;border-radius:24px;background:#121922;border:2px solid rgba(242,184,75,.3);
+.aviso-hoy{position:absolute;left:50px;right:50px;top:1370px;display:flex;align-items:center;gap:22px;padding:26px 30px;border-radius:24px;background:#121922;border:2px solid rgba(242,184,75,.3);
   animation:sube .5s var(--curva) 10.0s both, desaparece .3s ease 11.15s forwards}
 .aviso-hoy .chip-p{font-size:25px;font-weight:600;padding:8px 14px;border-radius:10px}
 .aviso-hoy b{display:block;font-size:31px;font-weight:600} .aviso-hoy span{font-size:26px;color:var(--gris)}
@@ -62,23 +63,27 @@
 .barrido{position:absolute;left:0;right:0;height:1920px;top:0;background:var(--voltio);transform:scaleX(0);z-index:40;animation:barre .7s cubic-bezier(.7,0,.3,1) var(--d) both}
 .fondo-final{opacity:0;animation:muestra .01s linear 11.55s forwards;z-index:30;background:var(--fondo)}
 .final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:260px;text-align:center;opacity:0;animation:muestra .01s linear 11.55s forwards}
-.final .titular{font-size:110px;text-align:center}
-.final .titular .linea>span{animation:subeLinea .6s var(--curva) var(--d) both}
+.final .tv-narra{position:static;margin:0;font-size:124px;text-align:center}
+.final .rotulo-f{font-family:var(--tv);font-size:52px;letter-spacing:.14em;color:var(--voltio);margin:0 0 30px;animation:sube .35s var(--curva) 11.6s both}
 .logo-medio{margin-top:70px;font-size:120px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .55s var(--curva) 12.2s both}
 .logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
+.logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 12.25s both}
 .logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
 .final .pildora{margin-top:56px;animation:crece .5s var(--muelle) 12.6s both}
 </style></head>
 <body><div id="escena">
   <div class="fondo"><div class="rejilla"></div><div class="luz"></div><div class="grano"></div></div>
 
-  <div class="titulo t1"><h1 class="titular">
-    <span class="linea"><span style="--d:.05s">Tu cliente,</span></span>
-    <span class="linea"><span style="--d:.15s" class="v">serie a serie.</span></span></h1></div>
-  <div class="titulo t2"><h1 class="titular">
-    <span class="linea"><span style="--d:5.1s">Kilos y repes,</span></span>
-    <span class="linea"><span style="--d:5.2s" class="v">en un toque.</span></span></h1></div>
-  <div class="titulo t3"><h1 class="titular">
+  <div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div>
+  <div class="tv-vivo"><i></i>EN DIRECTO · <span data-reloj="18:47">18:47</span></div>
+  <div class="titulo t1"><h1 class="tv-narra">
+    <span class="linea"><span style="--d:0s">Tu cliente,</span></span>
+    <span class="linea"><span style="--d:.08s" class="v">serie a serie.</span></span></h1></div>
+  <div class="tv-rotulo" style="top:395px;--t:3.7s;--fin:4.95s"><b>▲ RÉCORD</b><span>PRESS BANCA · 60 KG × 8</span></div>
+  <div class="titulo t2"><h1 class="tv-narra">
+    <span class="linea"><span style="--d:5.15s">Kilos y repes,</span></span>
+    <span class="linea"><span style="--d:5.25s" class="v">en un toque.</span></span></h1></div>
+  <div class="titulo t3"><h1 class="tv-narra">
     <span class="linea"><span style="--d:7.6s">Y tú ves</span></span>
     <span class="linea"><span style="--d:7.7s">qué <span class="v">sube.</span></span></span></h1></div>
 
@@ -114,32 +119,37 @@
     <div class="prog" style="--d:9.35s"><div><b>Remo con barra</b><small>60 kg × 7</small></div>
       <svg viewBox="0 0 170 60"><path class="baja-l" pathLength="1" d="M4 22 L34 18 L64 20 L94 28 L124 34 L166 42"/></svg><span class="chip-p baja">▼ Baja</span></div>
   </div>
+  <div class="tv-rotulo" style="top:1380px;--t:8.2s;--fin:9.8s"><b>EL ANÁLISIS</b><span>2 SUBEN · 1 ESTANCADO · 1 BAJA</span></div>
   <div class="aviso-hoy"><span class="chip-p para">Estancado</span><div><b>Marta Soler</b><span>Peso muerto · 3 sesiones sin subir</span></div><span class="ver">Revisar</span></div>
 
-  <div class="barrido" style="--d:11.2s"></div>
+  <div class="tv-cortinilla" style="--t:7.2s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">EL ANÁLISIS</p></div>
+  <div class="tv-cortinilla" style="--t:11.15s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">RESUMEN</p></div>
   <div class="fondo fondo-final"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
   <div class="final">
-    <h2 class="titular"><span class="linea"><span style="--d:11.65s">Cada serie,</span></span><span class="linea"><span style="--d:11.75s" class="v">a la vista.</span></span></h2>
-    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
+    <p class="rotulo-f">RESUMEN DE LA SESIÓN</p>
+    <h2 class="tv-narra"><span class="linea"><span style="--d:11.65s">Cada serie,</span></span><span class="linea"><span style="--d:11.75s" class="v">a la vista.</span></span></h2>
+    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
     <span class="pildora">Gratis hasta 5 clientes</span>
   </div>
 </div>
 <script src="../motor/reel.js"></script>
+<script src="../motor/tv.js"></script>
 <script>
 window.REEL = {
   duracion: 14,
-  musica: { estilo: "ambiente", caida: 3.75, vol: .6 },
+  musica: { estilo: "house", caida: 3.75, vol: .6 },
   sonidos: [
     { t: .3, tipo: "barrido", vol: .6 },
     { t: 2.35, tipo: "toque" },
     { t: 3.45, tipo: "toque" },
-    { t: 3.75, tipo: "marca", vol: .9 },
+    { t: 3.75, tipo: "marca", vol: .9 }, { t: 3.8, tipo: "publico", vol: .6 },
     { t: 4.5, tipo: "pop", vol: .5 },
-    { t: 7.4, tipo: "barrido", vol: .7 },
+    { t: 7.2, tipo: "barrido", vol: .8 },
+    { t: 8.2, tipo: "noticia", vol: .6 },
     ...[8.0, 8.45, 8.9, 9.35].map(t => ({ t, tipo: "toque", vol: .5 })),
     { t: 10.0, tipo: "pop", vol: .6 },
-    { t: 11.2, tipo: "barrido", vol: .7 },
-    { t: 12.2, tipo: "ok", vol: .8 },
+    { t: 11.15, tipo: "barrido", vol: .8 },
+    { t: 12.25, tipo: "marca", vol: .9 }, { t: 12.6, tipo: "toque", vol: .7 },
   ],
 };
 window.alTiempoReel = (t) => {

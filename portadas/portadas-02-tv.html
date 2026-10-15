@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Portadas de los reels del lote 2 en Coachera TV</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/carrusel.css">
+<link rel="stylesheet" href="../motor/tv.css">
+<style>
+/* Las portadas de R2-R5 en formato Coachera TV (1080×1920), como las del lote 3. La cuadrícula del
+   perfil enseña el centro en 3:4 (de y=240 a y=1680): la mosca y el titular van de 300 a 720 y
+   debajo, un fotograma del propio reel, bajado para que su titular quede tapado por el velo.
+   Se regeneran con python3 motor/carrusel.py portadas/portadas-02-tv.html instagram/lote-02/portada-tv 1920 */
+.dia{height:1920px;padding:0}
+.foto{position:absolute;left:0;width:1080px;height:1920px;z-index:0}
+.velo{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--fondo) 0,var(--fondo) var(--solido,740px),rgba(6,8,11,0) calc(var(--solido,740px) + 70px),rgba(6,8,11,0) 1560px,rgba(6,8,11,.85) 1800px)}
+.arriba{position:absolute;z-index:2;left:80px;right:80px;top:300px}
+.arriba .tv-bug{position:relative;left:auto;top:auto;width:max-content;margin-bottom:40px;animation:none}
+.arriba .tv-narra{position:static;margin:0;font-size:150px;line-height:1.02}
+</style></head>
+<body>
+<section class="dia">
+  <img class="foto" src="fotogramas/r2-tv.png" style="top:240px" alt="">
+  <div class="velo"></div>
+  <div class="arriba"><div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div><h1 class="tv-narra">Pega tu rutina<br><span class="v">desde Excel.</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r3-tv.png" style="top:130px" alt="">
+  <div class="velo" style="--solido:750px"></div>
+  <div class="arriba"><div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div><h1 class="tv-narra">Serie<br><span class="v">a serie.</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r4-tv.png" style="top:260px" alt="">
+  <div class="velo" style="--solido:748px"></div>
+  <div class="arriba"><div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div><h1 class="tv-narra">Con tu<br><span class="v">marca.</span></h1></div>
+</section>
+
+<section class="dia">
+  <img class="foto" src="fotogramas/r5-tv.png" style="top:140px" alt="">
+  <div class="velo"></div>
+  <div class="arriba"><div class="tv-bug"><b><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg>COACHERA</b><span>TV</span></div><h1 class="tv-narra">Cámbiate en<br><span class="v">una tarde.</span></h1></div>
+</section>
+</body></html>
