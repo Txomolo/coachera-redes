@@ -7,11 +7,15 @@ este repositorio es público y acaba publicado en Instagram: no subas nada que n
 aprobada para publicar.
 
 - `instagram/lote-01/`: las 9 primeras publicaciones (`NN-M.jpg` = publicación NN, imagen M del carrusel).
-- `instagram/lote-02/`: las 9 del 16 al 30 de octubre de 2026, con la marca nueva: 5 reels (`rN-*.mp4`,
-  con su portada `portada-N.jpg`) y 4 carruseles (`cN-M.jpg`). Fechas, horas y textos, en
-  `publicaciones.json`. Sus fuentes están en `reels/`, `carruseles/` y `portadas/`.
+- `instagram/lote-02/`: las 9 del 15 al 24 de octubre de 2026, con la marca nueva: 5 reels y 4 carruseles
+  (`cN-M.jpg`). R1 salió con el primer estilo (`r1-una-app.mp4`, `portada-1.jpg`); R2-R5 van en Coachera
+  TV (`rN-*-tv.mp4`, con su portada `portada-tv-N.jpg`, de `portadas/portadas-02-tv.html`). Fechas,
+  horas y textos, en `publicaciones.json`. Sus fuentes están en `reels/`, `carruseles/` y `portadas/`.
+- `instagram/lote-03/`: las 7 del 25 al 31 de octubre: R6, R7 y los carruseles C5-C7 (portadas de
+  `portadas/portadas-03.html`).
 - `instagram/virales/`: la serie «Cosas de entrenador», un reel de humor a la semana (los martes) con
-  Coachera al final. Fuentes en `reels/vN-*.html`.
+  Coachera al final: V1 «rueda de prensa del cliente», V2 «el VAR de las excusas» y V3, el especial de
+  Halloween. Fuentes en `reels/vN-*.html`.
 - `herramientas/`: los scripts que generan cada lote y cómo usarlos.
 - `recursos/`: capturas de la app (con datos de ejemplo inventados) y el icono, que usan los scripts.
 - `marca/`: el logotipo de octubre de 2026, «la C que avanza», en voltio (`#D6FF3F`) y negro. Los SVG y
