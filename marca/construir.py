@@ -8,7 +8,8 @@ sys.path.insert(0, AQUI)
 import trazos
 from fontTools.ttLib import TTFont
 
-VOLTIO, NEGRO, BLANCO = "#D6FF3F", "#0B0F14", "#FFFFFF"
+# Desde el 17-oct-2026, en el turquesa de la app (lo pidió el usuario); el voltio se dejó.
+TURQUESA, NEGRO, BLANCO = "#14B8A6", "#0B0F14", "#FFFFFF"
 G, CX, CY, R, INI, LARGO = 19, 41, 57, 33, 32, 93
 RM = R - G/2
 x0, y0 = CX + RM*math.cos(math.radians(INI)), CY + RM*math.sin(math.radians(INI))
@@ -53,14 +54,15 @@ L = os.path.join(AQUI, "logo")
 os.makedirs(L, exist_ok=True)
 archivos = {
   "coachera-simbolo.svg": svg_simbolo(),
-  "coachera-simbolo-voltio.svg": svg_simbolo(VOLTIO),
+  "coachera-simbolo-turquesa.svg": svg_simbolo(TURQUESA),
   "coachera-simbolo-negro.svg": svg_simbolo(NEGRO),
   "coachera-logo.svg": svg_logo(),
   "coachera-logo-negro.svg": svg_logo(NEGRO, NEGRO),
   "coachera-logo-blanco.svg": svg_logo(BLANCO, BLANCO),
-  "coachera-logo-voltio-blanco.svg": svg_logo(VOLTIO, BLANCO),
-  "coachera-icono.svg": svg_cuadrado(VOLTIO, NEGRO, 0.60),
-  "coachera-avatar.svg": svg_cuadrado(VOLTIO, NEGRO, 0.56, redondo=False),
+  "coachera-logo-turquesa-blanco.svg": svg_logo(TURQUESA, BLANCO),
+  "coachera-logo-turquesa-negro.svg": svg_logo(TURQUESA, NEGRO),
+  "coachera-icono.svg": svg_cuadrado(TURQUESA, NEGRO, 0.60),
+  "coachera-avatar.svg": svg_cuadrado(TURQUESA, NEGRO, 0.56, redondo=False),
 }
 for n, c in archivos.items():
     open(os.path.join(L, n), "w").write(c)
