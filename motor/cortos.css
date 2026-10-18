@@ -1,0 +1,64 @@
+/* ============================================================================
+   Los cortos (~20 s, uno por principio), desde el 18-oct-2026
+   ============================================================================
+   Sobre principios.css (la identidad turquesa de la app). Tres escenas, al ritmo de la voz:
+   el gancho (la cifra, en el primer segundo), la prueba (✕ / ✓ con su cifra, la cita y la
+   regla) y el cierre (lo que hace Coachera, el logo y «Guárdalo»). Lo genera motor/cortos.py. */
+
+/* la barra de todo el Reel: se llena de principio a fin */
+.barra-c{position:absolute;left:70px;right:70px;top:236px;height:8px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden;z-index:6}
+.barra-c b{position:absolute;inset:0;background:var(--turquesa);transform-origin:left;animation:llenaTramo linear var(--dur) 0s both}
+
+/* la primera escena se ve desde el fotograma 0 (es la que decide si se sigue mirando) */
+.escena.primera{opacity:1;animation:desaparece .22s ease calc(var(--b) - .22s) forwards}
+.golpe{position:absolute;inset:0;animation:golpe .38s var(--curva) var(--a) both}
+@keyframes golpe{from{opacity:0;transform:scale(1.06);filter:blur(10px)}}
+/* el barrido de turquesa entre escenas */
+.corte{position:absolute;left:0;right:0;top:0;bottom:0;z-index:20;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(94,234,212,.5) 45%,rgba(20,184,166,.9) 50%,rgba(94,234,212,.5) 55%,transparent);transform:translateX(-110%);animation:cruza .42s cubic-bezier(.6,0,.3,1) var(--d) both}
+@keyframes cruza{from{transform:translateX(-110%)}to{transform:translateX(110%)}}
+
+/* ---- El gancho: la cifra se ve desde el fotograma 0, con un golpe ---- */
+.g-pre{position:absolute;left:70px;right:70px;top:470px;margin:0;text-align:center;font-size:62px;font-weight:500;color:var(--gris);letter-spacing:-.01em}
+.g-mega{position:absolute;left:0;right:0;top:560px;display:flex;flex-direction:column;align-items:center}
+.g-mega b{font-family:var(--mono);font-weight:600;font-size:330px;line-height:1;letter-spacing:-.06em;color:var(--turquesa-t);text-shadow:0 0 90px rgba(20,184,166,.6)}
+.g-mega b small,.g-contra b small,.cifra-p b small{font-size:.55em;letter-spacing:0;margin-left:.06em}
+.g-mega b i,.g-contra b i,.cifra-p b i{font-style:normal}
+.g-golpe{display:inline-block;animation:golpeCifra .45s var(--muelle) 0s both}
+@keyframes golpeCifra{from{transform:scale(1.35);filter:blur(6px)}}
+.g-mega span{margin-top:4px;font-size:62px;font-weight:600;color:var(--texto)}
+.g-contra{position:absolute;left:0;right:0;top:1120px;display:flex;justify-content:center;align-items:center;gap:28px}
+.g-contra span{font-size:56px;font-weight:500;color:var(--gris)}
+.g-contra b{font-family:var(--mono);font-size:104px;font-weight:600;color:var(--ko);letter-spacing:-.03em;padding:4px 28px;border-radius:22px;background:var(--ko-bg)}
+.g-pregunta{position:absolute;left:70px;right:70px;top:1330px;margin:0;text-align:center;font-size:64px;font-weight:600;color:var(--turquesa-t)}
+
+/* ---- La prueba: las dos pantallas una encima de otra, a todo el ancho, para que se lean en
+   el móvil (lado a lado, el texto de dentro quedaba en 10 px de pantalla) ---- */
+.corto .titular-p{top:392px;font-size:70px}
+.corto .pareja{top:572px;display:flex;flex-direction:column;gap:30px}
+.corto .tarjeta-p{height:390px;display:grid;grid-template-columns:1fr 290px;grid-template-rows:auto 1fr;column-gap:20px;padding:22px 22px 22px}
+.corto .tarjeta-p .chip-p{grid-column:1;grid-row:1;height:48px;font-size:23px}
+.corto .tarjeta-p .pantalla-p{grid-column:1;grid-row:2;margin-top:14px;padding:16px 18px}
+.corto .tarjeta-p .pantalla-p>*{zoom:1.04}
+.corto .fila-p{padding:5px 0}
+.corto .tarjeta-p .cifra-p{grid-column:2;grid-row:1 / span 2;height:auto}
+.corto .cifra-p b{font-size:112px}
+.corto .cifra-p span{font-size:32px;margin-top:10px}
+.corto .vs{left:auto;right:330px;top:369px;margin:0}
+.corto .cita{top:1398px;font-size:24px}
+.corto .regla{top:1438px}
+.corto .regla div{font-size:42px;padding:20px 32px}
+/* lo que pone data-clase lleva su retraso (--tm, --tb): el render pone cada animación en el
+   instante t contado desde 0, así que una animación añadida a los 7 s tiene que esperar 7 s */
+.tarjeta-p.acento-mal{animation:tiembla .3s linear var(--tm,0s) 2;border-color:rgba(248,113,113,.7);box-shadow:0 0 0 1px rgba(248,113,113,.25),0 30px 80px -30px rgba(248,113,113,.5)}
+.tarjeta-p.acento-bien{animation:pulsa .5s var(--curva) var(--tb,0s) 1;border-color:var(--turquesa-t);box-shadow:0 0 0 2px rgba(94,234,212,.4),0 30px 90px -20px rgba(20,184,166,.7)}
+.tarjeta-p.apagada{opacity:.45;filter:saturate(.4)}
+
+/* ---- El cierre ---- */
+.c-antes{position:absolute;left:70px;right:70px;top:520px;margin:0;text-align:center;font-size:56px;font-weight:500;color:var(--gris)}
+.c-texto{position:absolute;left:70px;right:70px;top:600px;margin:0;text-align:center;font-size:86px;line-height:1.06;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+.c-texto em{font-style:normal;color:var(--turquesa-t)}
+.c-logo{position:absolute;left:0;right:0;top:930px;text-align:center}
+.c-guarda{position:absolute;left:0;right:0;top:1150px;display:flex;justify-content:center}
+.c-guarda div{display:inline-flex;align-items:center;gap:18px;height:100px;padding:0 44px;border-radius:999px;background:var(--turquesa);color:var(--on-turquesa);font-size:44px;font-weight:600;box-shadow:0 0 80px -10px rgba(20,184,166,.7)}
+.c-guarda svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linejoin:round}
+.c-guarda .late{animation:pulsa .6s var(--curva) var(--d2) 2}
