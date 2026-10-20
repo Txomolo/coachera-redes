@@ -25,7 +25,7 @@
 .g-mega b i,.g-contra b i,.cifra-p b i{font-style:normal}
 .g-golpe{display:inline-block;animation:golpeCifra .45s var(--muelle) 0s both}
 @keyframes golpeCifra{from{transform:scale(1.35);filter:blur(6px)}}
-.g-mega span{margin-top:4px;font-size:62px;font-weight:600;color:var(--texto)}
+.g-mega>span{margin-top:4px;font-size:62px;font-weight:600;color:var(--texto)}
 .g-contra{position:absolute;left:0;right:0;top:1120px;display:flex;justify-content:center;align-items:center;gap:28px}
 .g-contra span{font-size:56px;font-weight:500;color:var(--gris)}
 .g-contra b{font-family:var(--mono);font-size:104px;font-weight:600;color:var(--ko);letter-spacing:-.03em;padding:4px 28px;border-radius:22px;background:var(--ko-bg)}
@@ -70,3 +70,42 @@
 .fila-p span em{font-style:normal;color:var(--turquesa-t);opacity:0}
 .fila-p span em.ve{opacity:1}
 .corto .semana-p span i{height:50px}
+
+/* ---- piezas de los ganchos de cada principio ---- */
+.g-contra b.bien{color:var(--turquesa-t);background:var(--ok-bg)}
+.g-mega .gris{color:var(--gris-2);text-shadow:none}
+.tacha{position:relative;display:inline-block}
+.tacha::after{content:"";position:absolute;left:-6%;right:-6%;top:50%;height:16px;margin-top:-8px;border-radius:8px;background:var(--ko);transform:scaleX(0);transform-origin:left}
+.tacha.tachado::after{transform:scaleX(1)}
+.tacha.tachado{color:var(--gris-2);text-shadow:none}
+.g-chat{position:absolute;left:80px;right:80px;top:470px;display:flex;flex-direction:column;gap:26px}
+.g-chat .msg-p{max-width:90%;font-size:56px;padding:24px 28px 16px;border-radius:10px 34px 34px 34px}
+.g-chat .msg-p.yo{border-radius:34px 10px 34px 34px}
+.g-chat .msg-p small{font-size:30px}
+.g-chat .msg-p i{font-size:26px}
+.g-puntos{position:absolute;left:230px;right:230px;top:1040px;display:grid;grid-template-columns:repeat(8,1fr);gap:16px}
+.g-puntos i{aspect-ratio:1;border-radius:50%;border:3px solid rgba(255,255,255,.18)}
+.g-puntos i.si{background:var(--turquesa);border-color:var(--turquesa);box-shadow:0 0 18px rgba(20,184,166,.5)}
+/* las pruebas de agua fría (c4) */
+.agua{display:flex;height:70px;border-radius:14px;overflow:hidden;margin:16px 0 12px;background:rgba(255,255,255,.04)}
+.agua i{display:block;height:100%}
+.agua .frio{background:linear-gradient(90deg,#1D3B63,#2C6296)}
+.agua .templado{background:linear-gradient(90deg,#2C6296,#14B8A6);opacity:0}
+.agua .templado.ve{opacity:1}
+.agua-et{display:flex;justify-content:space-between;font-family:var(--mono);font-size:22px;color:var(--gris)}
+.agua-et b{font-weight:500;color:var(--turquesa-t);opacity:0}
+.agua-et b.ve{opacity:1}
+.agua .fin-luz{box-shadow:inset -8px 0 0 var(--turquesa-t)}
+/* lo que aparece con la voz dentro de una pantalla */
+.aparece-voz{opacity:0}
+.aparece-voz.ve{opacity:1}
+.corto .sellos i{border-width:3px}
+.celdas-p i.hoy{box-shadow:0 0 0 3px var(--turquesa-t)}
+
+/* filas de hábitos con su nombre al lado (c3) */
+.hab{display:grid;grid-template-columns:200px 1fr;align-items:center;gap:14px;margin-top:10px}
+.hab span{font-size:22px;font-weight:500;color:var(--texto)}
+.hab .celdas-p{grid-template-columns:repeat(7,1fr)}
+/* la barra de lo que lleva hecho (c2) */
+.lleva{height:16px;border-radius:8px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:8px}
+.lleva b{display:block;height:100%;background:var(--turquesa);transform-origin:left}

@@ -28,7 +28,7 @@ def resolver(txt, M, F=None):
             v = l["t"] + (l["fin"] - l["t"]) * k / max(1, len(l["texto"]))
         v += (float(n) if signo == "+" else -float(n) if signo == "-" else 0)
         return f"{v:.2f}"
-    return re.sub(r"\{([a-z]+)(?:@([^}+\-]+?))?(?:([+-])([\d.]+))?\}", f, txt)
+    return re.sub(r"\{([A-Za-z]+\d*)(?:@([^}+\-]+?))?(?:([+-])([\d.]+))?\}", f, txt)
 
 def cuando_cifra(h, defecto):
     """Una cifra que cuenta no se enseña antes de empezar a contar (un «0 %» confunde)."""
@@ -37,13 +37,17 @@ def cuando_cifra(h, defecto):
 
 def pagina(serie, r, tiempos, wav):
     M, F = {}, {}
-    for f in tiempos:
+    for i, f in enumerate(tiempos):
+        M[f"L{i}"] = f["t"]; F[f"L{i}"] = f
         if f.get("marca") and f["marca"] not in M: M[f["marca"]] = f["t"]; F[f["marca"]] = f
     fin = round(tiempos[-1]["fin"] + 0.9, 2); M["fin"] = fin
     E, C_, R = M["explica"], M["cierre"], M["regla"]
     no = M.get("no", R)
+    ac = r.get("acentos", {})
+    t_mal = float(resolver(ac["mal"], M, F)) if ac.get("mal") else no
+    t_bien = float(resolver(ac["bien"], M, F)) if ac.get("bien") else R
     ph = lambda t: resolver(t, M, F)
-    lado = lambda c, cl, d, extra: f'''<div class="tarjeta-p {cl} entra" style="--d:{s(d)};{extra}" data-clase="{ 'acento-mal@' + f'{no:.2f}' if cl == 'mal' else 'acento-bien@' + f'{R:.2f}' }"><span class="chip-p">{html.escape(c["chip"])}</span>
+    lado = lambda c, cl, d, extra: f'''<div class="tarjeta-p {cl} entra" style="--d:{s(d)};{extra}" data-clase="{ 'acento-mal@' + f'{t_mal:.2f}' if cl == 'mal' else 'acento-bien@' + f'{t_bien:.2f}' }"><span class="chip-p">{html.escape(c["chip"])}</span>
         <div class="pantalla-p">{ph(c["pantalla"])}</div><div class="cifra-p funde" style="--d:{s(cuando_cifra(ph(c["cifra"]), d + .35))}">{ph(c["cifra"])}</div></div>'''
     tb = float(ph(r["bien"]["entra"])) if r["bien"].get("entra") else E + .25
     cab = f'PRINCIPIO {r["numero"]:02d} <b>/</b> 05 <b>—</b> {html.escape(r["etiqueta"].upper())}'
@@ -56,7 +60,7 @@ def pagina(serie, r, tiempos, wav):
   <section class="escena corto" style="--a:{s(E)};--b:{s(C_)}"><div class="golpe">
     <p class="etiqueta">{cab}</p>
     <h2 class="titular-p">{r["titular"]}</h2>
-    <div class="pareja">{lado(r["mal"], "mal", E + .1, f"--tm:{s(no)}")}{lado(r["bien"], "bien", tb, f"--tb:{s(R)}")}<span class="vs funde" style="--d:{s(tb + .1)}">vs</span></div>
+    <div class="pareja">{lado(r["mal"], "mal", E + .1, f"--tm:{s(t_mal)}")}{lado(r["bien"], "bien", tb, f"--tb:{s(t_bien)}")}<span class="vs funde" style="--d:{s(tb + .1)}">vs</span></div>
     <p class="cita funde" style="--d:{s(E + .5)}">{html.escape(r["cita"])}</p>
     <div class="regla entra" style="--d:{s(R)}"><div><small>REGLA</small>{html.escape(r["regla"])}</div></div>
   </div></section>
@@ -73,7 +77,7 @@ def pagina(serie, r, tiempos, wav):
     sonidos += [{"t": round(E - .2, 2), "tipo": "barrido", "vol": .4},
                 {"t": round(E + .1, 2), "tipo": "toque", "vol": .28}, {"t": round(tb, 2), "tipo": "toque", "vol": .3},
                 {"t": round(E + 1.5, 2), "tipo": "pop", "vol": .3},
-                {"t": round(no, 2), "tipo": "toque", "vol": .3},
+                {"t": round(t_mal, 2), "tipo": "toque", "vol": .3},
                 {"t": round(R + .05, 2), "tipo": "ok", "vol": .45},
                 {"t": round(C_ - .2, 2), "tipo": "barrido", "vol": .4},
                 {"t": round(C_ + .55, 2), "tipo": "marca", "vol": .6}]
