@@ -15,24 +15,37 @@ GUARDAR = '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>'
 
 def s(x): return f"{x:.2f}s"
 
-def resolver(txt, M):
+def resolver(txt, M, F=None):
+    """{marca}, {marca+0.3} y {marca@unas palabras±n}: el segundo en que se dicen esas palabras
+    dentro de la frase de esa marca (a velocidad media de la frase: basta para ir al compás)."""
     def f(m):
-        nombre, signo, n = m.group(1), m.group(2), m.group(3)
+        nombre, frase, signo, n = m.group(1), m.group(2), m.group(3), m.group(4)
         if nombre not in M: raise KeyError(f"marca «{nombre}» sin frase en la voz")
-        v = M[nombre] + (float(n) if signo == "+" else -float(n) if signo == "-" else 0)
+        v = M[nombre]
+        if frase:
+            l = F[nombre]; k = l["texto"].lower().find(frase.lower())
+            if k < 0: raise KeyError(f"«{frase}» no está en la frase «{l['texto']}»")
+            v = l["t"] + (l["fin"] - l["t"]) * k / max(1, len(l["texto"]))
+        v += (float(n) if signo == "+" else -float(n) if signo == "-" else 0)
         return f"{v:.2f}"
-    return re.sub(r"\{([a-z]+)(?:([+-])([\d.]+))?\}", f, txt)
+    return re.sub(r"\{([a-z]+)(?:@([^}+\-]+?))?(?:([+-])([\d.]+))?\}", f, txt)
+
+def cuando_cifra(h, defecto):
+    """Una cifra que cuenta no se enseña antes de empezar a contar (un «0 %» confunde)."""
+    m = re.search(r"data-t='([\d.]+)'", h)
+    return float(m.group(1)) - .1 if m else defecto
 
 def pagina(serie, r, tiempos, wav):
-    M = {}
+    M, F = {}, {}
     for f in tiempos:
-        if f.get("marca") and f["marca"] not in M: M[f["marca"]] = f["t"]
+        if f.get("marca") and f["marca"] not in M: M[f["marca"]] = f["t"]; F[f["marca"]] = f
     fin = round(tiempos[-1]["fin"] + 0.9, 2); M["fin"] = fin
     E, C_, R = M["explica"], M["cierre"], M["regla"]
     no = M.get("no", R)
-    ph = lambda t: resolver(t, M)
+    ph = lambda t: resolver(t, M, F)
     lado = lambda c, cl, d, extra: f'''<div class="tarjeta-p {cl} entra" style="--d:{s(d)};{extra}" data-clase="{ 'acento-mal@' + f'{no:.2f}' if cl == 'mal' else 'acento-bien@' + f'{R:.2f}' }"><span class="chip-p">{html.escape(c["chip"])}</span>
-        <div class="pantalla-p">{ph(c["pantalla"])}</div><div class="cifra-p funde" style="--d:{s(E + .6)}">{ph(c["cifra"])}</div></div>'''
+        <div class="pantalla-p">{ph(c["pantalla"])}</div><div class="cifra-p funde" style="--d:{s(cuando_cifra(ph(c["cifra"]), d + .35))}">{ph(c["cifra"])}</div></div>'''
+    tb = float(ph(r["bien"]["entra"])) if r["bien"].get("entra") else E + .25
     cab = f'PRINCIPIO {r["numero"]:02d} <b>/</b> 05 <b>—</b> {html.escape(r["etiqueta"].upper())}'
     g = r["cierre"]
     escenas = f'''
@@ -43,7 +56,7 @@ def pagina(serie, r, tiempos, wav):
   <section class="escena corto" style="--a:{s(E)};--b:{s(C_)}"><div class="golpe">
     <p class="etiqueta">{cab}</p>
     <h2 class="titular-p">{r["titular"]}</h2>
-    <div class="pareja">{lado(r["mal"], "mal", E + .1, f"--tm:{s(no)}")}{lado(r["bien"], "bien", E + .25, f"--tb:{s(R)}")}<span class="vs funde" style="--d:{s(E + .35)}">vs</span></div>
+    <div class="pareja">{lado(r["mal"], "mal", E + .1, f"--tm:{s(no)}")}{lado(r["bien"], "bien", tb, f"--tb:{s(R)}")}<span class="vs funde" style="--d:{s(tb + .1)}">vs</span></div>
     <p class="cita funde" style="--d:{s(E + .5)}">{html.escape(r["cita"])}</p>
     <div class="regla entra" style="--d:{s(R)}"><div><small>REGLA</small>{html.escape(r["regla"])}</div></div>
   </div></section>
@@ -58,7 +71,7 @@ def pagina(serie, r, tiempos, wav):
                {"t": round(M["gancho"] + 1.15, 2), "tipo": "pop", "vol": .3}]
     if "contra" in M: sonidos.append({"t": round(M["contra"], 2), "tipo": "toque", "vol": .35})
     sonidos += [{"t": round(E - .2, 2), "tipo": "barrido", "vol": .4},
-                {"t": round(E + .1, 2), "tipo": "toque", "vol": .28}, {"t": round(E + .25, 2), "tipo": "toque", "vol": .28},
+                {"t": round(E + .1, 2), "tipo": "toque", "vol": .28}, {"t": round(tb, 2), "tipo": "toque", "vol": .3},
                 {"t": round(E + 1.5, 2), "tipo": "pop", "vol": .3},
                 {"t": round(no, 2), "tipo": "toque", "vol": .3},
                 {"t": round(R + .05, 2), "tipo": "ok", "vol": .45},

@@ -62,3 +62,11 @@
 .c-guarda div{display:inline-flex;align-items:center;gap:18px;height:100px;padding:0 44px;border-radius:999px;background:var(--turquesa);color:var(--on-turquesa);font-size:44px;font-weight:600;box-shadow:0 0 80px -10px rgba(20,184,166,.7)}
 .c-guarda svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linejoin:round}
 .c-guarda .late{animation:pulsa .6s var(--curva) var(--d2) 2}
+
+/* lo que se enciende al compás de la voz (data-clase: sin animación, un cambio de estado) */
+.semana-p span:not(.si) i{color:transparent}
+.fila-p span b{font-weight:400}
+.fila-p span b.luce{color:var(--turquesa-t);font-weight:600}
+.fila-p span em{font-style:normal;color:var(--turquesa-t);opacity:0}
+.fila-p span em.ve{opacity:1}
+.corto .semana-p span i{height:50px}
