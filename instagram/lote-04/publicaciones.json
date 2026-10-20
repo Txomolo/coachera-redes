@@ -1,0 +1,36 @@
+[
+ {
+  "fecha": "2026-10-26",
+  "hora": "18:00",
+  "tipo": "carrusel",
+  "tema": "Equivalencias de alimentos",
+  "archivos": [
+   "p1-1.jpg",
+   "p1-2.jpg",
+   "p1-3.jpg"
+  ],
+  "texto": "«No tengo arroz, ¿qué como?» Seguro que te llega cada semana.\n\nEn Coachera tu cliente toca «Cambiar» en su menú, elige otro alimento y la app le dice cuántos gramos tomar. Se mantiene el macro que manda: el arroz se cambia por hidratos, el pollo por proteína y el aceite por grasa.\n\nGuárdalo y pásaselo a ese compañero que contesta esto a diario.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline #nutriciondeportiva"
+ },
+ {
+  "fecha": "2026-10-28",
+  "hora": "18:00",
+  "tipo": "imagen",
+  "tema": "Hábitos con su cifra",
+  "archivos": [
+   "p2-1.jpg"
+  ],
+  "texto": "Una racha de 12 días no te dice nada si no ves dónde falló.\n\nEn Coachera eliges los hábitos de cada cliente: pasos, agua, sueño, proteína… Él los marca en un toque en su hoja de la semana, y los pasos los apunta con su cifra: la casilla se marca sola si llega a la meta.\n\nTú ves la semana entera, con el hueco donde falló.\n\nGratis hasta 5 clientes. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline #habitossaludables"
+ },
+ {
+  "fecha": "2026-10-30",
+  "hora": "18:00",
+  "tipo": "carrusel",
+  "tema": "Plantillas de inicio",
+  "archivos": [
+   "p3-1.jpg",
+   "p3-2.jpg",
+   "p3-3.jpg"
+  ],
+  "texto": "Tu primer cliente no tiene que esperar a que montes tu primera rutina.\n\nEn Coachera tienes cuatro plantillas de inicio: cuerpo completo de 3 días, torso/pierna de 4, torso-pierna-empuje-tirón-pierna de 5 y glúteo y pierna de 4. Tocas «Usar», la cambias a tu manera y se la asignas a tu cliente.\n\nY si ya tienes tus rutinas en Excel, las pegas.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
+ }
+]
