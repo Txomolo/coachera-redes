@@ -1,0 +1,105 @@
+{
+ "destacadas": [
+  {
+   "destacada": "Empieza",
+   "fecha": "2026-10-22",
+   "horas": [
+    "12:00",
+    "12:02",
+    "12:04",
+    "12:06",
+    "12:08"
+   ],
+   "historias": [
+    "destacadas/empieza-1.jpg",
+    "destacadas/empieza-2.jpg",
+    "destacadas/empieza-3.jpg",
+    "destacadas/empieza-4.jpg",
+    "destacadas/empieza-5.jpg"
+   ],
+   "portada": "destacadas/portada-empieza.jpg"
+  },
+  {
+   "destacada": "Tu panel",
+   "fecha": "2026-10-23",
+   "horas": [
+    "12:00",
+    "12:02",
+    "12:04",
+    "12:06",
+    "12:08"
+   ],
+   "historias": [
+    "destacadas/panel-1.jpg",
+    "destacadas/panel-2.jpg",
+    "destacadas/panel-3.jpg",
+    "destacadas/panel-4.jpg",
+    "destacadas/panel-5.jpg"
+   ],
+   "portada": "destacadas/portada-panel.jpg"
+  },
+  {
+   "destacada": "Su app",
+   "fecha": "2026-10-25",
+   "horas": [
+    "12:00",
+    "12:02",
+    "12:04",
+    "12:06",
+    "12:08"
+   ],
+   "historias": [
+    "destacadas/app-1.jpg",
+    "destacadas/app-2.jpg",
+    "destacadas/app-3.jpg",
+    "destacadas/app-4.jpg",
+    "destacadas/app-5.jpg"
+   ],
+   "portada": "destacadas/portada-app.jpg"
+  }
+ ],
+ "carruseles": [
+  {
+   "fecha": "2026-10-23",
+   "hora": "18:00",
+   "titulo": "De tu Excel a su móvil",
+   "imagenes": [
+    "como-funciona/excel-1.jpg",
+    "como-funciona/excel-2.jpg",
+    "como-funciona/excel-3.jpg",
+    "como-funciona/excel-4.jpg",
+    "como-funciona/excel-5.jpg",
+    "como-funciona/excel-6.jpg"
+   ],
+   "texto": "Tu rutina y tu dieta ya están escritas. No hace falta volver a escribirlas.\n\nEn Coachera copias las celdas de tu Excel (o de Google Sheets, Numbers o LibreOffice), las pegas y la app entiende días, series, repes y descansos. Con la dieta, igual: opciones en cada comida y menús para los días de entreno y los de descanso. Tu cliente la sigue en su móvil.\n\nGuárdalo para el día que te cambies y pásaselo a ese compañero que lo lleva todo en Excel.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
+  },
+  {
+   "fecha": "2026-10-25",
+   "hora": "18:00",
+   "titulo": "Las revisiones del domingo, en una bandeja",
+   "imagenes": [
+    "como-funciona/revisiones-1.jpg",
+    "como-funciona/revisiones-2.jpg",
+    "como-funciona/revisiones-3.jpg",
+    "como-funciona/revisiones-4.jpg",
+    "como-funciona/revisiones-5.jpg"
+   ],
+   "texto": "Las revisiones del domingo no tienen por qué estar repartidas en diez chats.\n\nEn Coachera llegan todas a una bandeja, la que más lleva esperando primero. Cada una viene comparada con la anterior: peso medio, hábitos, entrenos y sus respuestas, con el cambio al lado. La contestas grabando un audio y pasas a la siguiente. A tu cliente le llega a su chat.\n\nGuárdalo para el domingo.\n\nGratis hasta 5 clientes. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline #coachingonline"
+  },
+  {
+   "fecha": "2026-10-31",
+   "hora": "18:00",
+   "titulo": "Sin hoja de cálculo para saber quién te debe",
+   "imagenes": [
+    "como-funciona/cobros-1.jpg",
+    "como-funciona/cobros-2.jpg",
+    "como-funciona/cobros-3.jpg",
+    "como-funciona/cobros-4.jpg",
+    "como-funciona/cobros-5.jpg",
+    "como-funciona/cobros-6.jpg"
+   ],
+   "texto": "Fin de mes. ¿Sabes quién te ha pagado sin abrir el banco?\n\nEn Coachera cada cliente tiene su cuota: importe, cada cuánto y el próximo cobro. Los cobros que tocan salen en tu lista de hoy, «Recordar» abre su chat con el mensaje ya escrito (lo lees y lo envías tú) y ves lo cobrado, lo que falta y lo vencido del mes.\n\nGuárdalo para fin de mes.\n\nGratis hasta 5 clientes. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
+  }
+ ],
+ "base": "https://raw.githubusercontent.com/Txomolo/coachera-redes/main/instagram/"
+}

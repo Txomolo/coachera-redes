@@ -1,0 +1,242 @@
+[
+ {
+  "nombre": "t-e-hoy",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {},
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-ficha",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {
+   "vista": "v-ficha"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-nutri",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {
+   "vista": "v-ficha",
+   "tab": "nutricion",
+   "dieta": "menus"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-fact",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {
+   "vista": "v-facturacion"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-rev3",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {
+   "vista": "v-seguimiento",
+   "revision": "r3"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-bandeja",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {
+   "vista": "v-seguimiento"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-c-hoy",
+  "escena": "cliente",
+  "alto": 2200,
+  "datos": {
+   "hoy": "2026-10-22",
+   "marca": "#2563EB"
+  },
+  "antes": "document.querySelectorAll('.oferta-avisos').forEach(e=>e.hidden=true);",
+  "escala": 3
+ },
+ {
+  "nombre": "t-c-hoy-b",
+  "escena": "cliente",
+  "alto": 2200,
+  "datos": {
+   "hoy": "2026-10-22",
+   "marca": "#E11D48"
+  },
+  "antes": "document.querySelectorAll('.oferta-avisos').forEach(e=>e.hidden=true); const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT); let n; while(n=w.nextNode()){ let t=n.nodeValue; if(/Ibáñez Coaching|Carlos|^\\s*IC\\s*$/.test(t)){ n.nodeValue=t.replace(/Ibáñez Coaching/g,'Nora Training').replace(/Carlos/g,'Nora').replace(/^(\\s*)IC(\\s*)$/,'$1NT$2'); } }",
+  "escala": 3
+ },
+ {
+  "nombre": "t-c-entreno",
+  "escena": "cliente",
+  "alto": 2200,
+  "datos": {
+   "vista": "c-entrenamiento",
+   "historia": true,
+   "hoy": "2026-10-22",
+   "marca": "#2563EB"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-c-nueva",
+  "escena": "cliente",
+  "alto": 2200,
+  "datos": {
+   "nueva": true,
+   "hoy": "2026-10-22",
+   "marca": "#2563EB"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "m-c-equiv",
+  "escena": "cliente",
+  "alto": 812,
+  "datos": {
+   "vista": "c-nutricion",
+   "dieta": "menus",
+   "hoy": "2026-10-22",
+   "marca": "#2563EB"
+  },
+  "antes": "const b=[...document.querySelectorAll('button')].filter(x=>x.textContent.trim()==='Cambiar'); const fila=b.find(x=>/arroz/i.test(x.closest('div').parentElement.textContent)) || b[1]; fila.click(); await new Promise(r=>setTimeout(r,800)); const s=document.getElementById('equiv-destino'); const o=[...s.options].find(x=>/avena/i.test(x.textContent)) || [...s.options].find(x=>/quinoa/i.test(x.textContent)) || s.options[1]; s.value=o.value; s.dispatchEvent(new Event('change',{bubbles:true})); if(typeof calcularEquivalencia==='function') calcularEquivalencia(); await new Promise(r=>setTimeout(r,400));",
+  "escala": 3,
+  "nota": "el catálogo de la escena solo trae Arroz blanco, Avena, Plátano y Yogur natural: se elige Avena"
+ },
+ {
+  "nombre": "m-e-pegar-vista",
+  "escena": "entrenador",
+  "alto": 812,
+  "datos": {
+   "vista": "v-biblioteca",
+   "abrir": "pegar"
+  },
+  "antes": "const el=[...document.querySelectorAll('*')].find(x=>x.childElementCount===0&&/^\\d+ días · \\d+ ejercicios/.test(x.textContent.trim())); if(el) el.scrollIntoView({block:'start'}); await new Promise(r=>setTimeout(r,400));",
+  "escala": 3
+ },
+ {
+  "nombre": "m-e-dieta",
+  "escena": "entrenador",
+  "alto": 812,
+  "datos": {
+   "vista": "v-biblioteca",
+   "abrir": "dieta"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "m-e-recordar",
+  "escena": "entrenador",
+  "alto": 812,
+  "datos": {
+   "vista": "v-facturacion"
+  },
+  "antes": "const b=[...document.querySelectorAll('button')].find(x=>x.textContent.trim()==='Recordar'); b.click(); await new Promise(r=>setTimeout(r,1200));",
+  "escala": 3
+ },
+ {
+  "nombre": "t-c-comida",
+  "escena": "cliente",
+  "alto": 2200,
+  "datos": {
+   "vista": "c-nutricion",
+   "dieta": "menus",
+   "hoy": "2026-10-22",
+   "marca": "#2563EB"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-hoy-cobros",
+  "escena": "entrenador",
+  "alto": 2200,
+  "datos": {},
+  "antes": "const b=[...document.querySelectorAll('button,[role=tab]')].find(x=>/^Cobros?\\s*\\d*$/.test(x.textContent.trim())); if(b) b.click(); await new Promise(r=>setTimeout(r,600));",
+  "escala": 3
+ },
+ {
+  "nombre": "t-e-info",
+  "escena": "entrenador",
+  "alto": 3000,
+  "datos": {
+   "vista": "v-ficha",
+   "tab": "datos"
+  },
+  "escala": 3
+ },
+ {
+  "nombre": "m-entrada-signup",
+  "escena": "entrada",
+  "alto": 812,
+  "escala": 3,
+  "datos": {
+   "tab": "signup"
+  }
+ },
+ {
+  "nombre": "m-ent-pegar",
+  "escena": "entrenador",
+  "alto": 812,
+  "escala": 3,
+  "datos": {
+   "vista": "v-biblioteca",
+   "abrir": "pegar"
+  }
+ },
+ {
+  "nombre": "m-ent-whatsapp-limpio",
+  "escena": "entrenador",
+  "alto": 812,
+  "escala": 3,
+  "datos": {
+   "vista": "v-clientes",
+   "abrir": "invitar-whatsapp"
+  },
+  "antes": "document.querySelectorAll('textarea,input').forEach(e=>{if(e.value&&e.value.includes('127.0.0.1')) e.value=e.value.replace(/http:\\/\\/127\\.0\\.0\\.1:8765/g,'https://www.coachera.fit');});"
+ },
+ {
+  "nombre": "m-cli-sinred",
+  "escena": "cliente",
+  "alto": 812,
+  "escala": 3,
+  "datos": {
+   "vista": "c-entrenamiento",
+   "sinRed": true,
+   "anotar": 3,
+   "marca": "#2563EB"
+  }
+ },
+ {
+  "nombre": "m-cli-respuesta",
+  "escena": "cliente",
+  "alto": 812,
+  "escala": 3,
+  "datos": {
+   "vista": "c-chat",
+   "respuestas": true,
+   "marca": "#2563EB"
+  }
+ },
+ {
+  "nombre": "m-cli-cerrado",
+  "escena": "cliente",
+  "alto": 812,
+  "escala": 3,
+  "datos": {
+   "vista": "c-entrenamiento",
+   "faltaUna": true,
+   "marca": "#2563EB"
+  },
+  "nota": "guardando después la última serie («Entreno terminado»)"
+ }
+]
