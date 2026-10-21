@@ -50,7 +50,7 @@ def pagina(serie, r, tiempos, wav):
     lado = lambda c, cl, d, extra: f'''<div class="tarjeta-p {cl} entra" style="--d:{s(d)};{extra}" data-clase="{ 'acento-mal@' + f'{t_mal:.2f}' if cl == 'mal' else 'acento-bien@' + f'{t_bien:.2f}' }"><span class="chip-p">{html.escape(c["chip"])}</span>
         <div class="pantalla-p">{ph(c["pantalla"])}</div><div class="cifra-p funde" style="--d:{s(cuando_cifra(ph(c["cifra"]), d + .35))}">{ph(c["cifra"])}</div></div>'''
     tb = float(ph(r["bien"]["entra"])) if r["bien"].get("entra") else E + .25
-    cab = f'PRINCIPIO {r["numero"]:02d} <b>/</b> 05 <b>—</b> {html.escape(r["etiqueta"].upper())}'
+    cab = f'PRINCIPIO {r["numero"]:02d} <b>/</b> {serie.get("total", 5):02d} <b>—</b> {html.escape(r["etiqueta"].upper())}'
     g = r["cierre"]
     escenas = f'''
   <section class="escena primera" style="--a:0s;--b:{s(E)}">

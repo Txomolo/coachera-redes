@@ -109,3 +109,10 @@
 /* la barra de lo que lleva hecho (c2) */
 .lleva{height:16px;border-radius:8px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:8px}
 .lleva b{display:block;height:100%;background:var(--turquesa);transform-origin:left}
+
+/* ---- serie 2 (c6-c10, desde el 21-oct-2026) ---- */
+.semana-p span.gris i{background:#5B6B78;border-color:#5B6B78;color:#fff}
+.semana-p span.gris{color:var(--texto)}
+.g-prohibidos{position:absolute;left:90px;right:90px;top:600px;display:flex;flex-wrap:wrap;justify-content:center;gap:22px}
+.prohibido{display:inline-flex;align-items:center;height:110px;padding:0 40px;border-radius:999px;background:var(--ko-bg);border:3px solid rgba(248,113,113,.55);color:var(--ko);font-size:56px;font-weight:600}
+.graf{display:block;margin-top:2px}

@@ -88,11 +88,17 @@ def alinear(x, guion, rec, verbose=True):
     sm = difflib.SequenceMatcher(None, "".join(o[0] for o in oido), "".join(escrito), autojunk=False)
     casa = {}
     for blk in sm.get_matching_blocks():
+        if blk.size < 3: continue        # una o dos letras sueltas casan por azar («Cuárt» con «sesenTa»)
         for d in range(blk.size): casa[blk.b + d] = blk.a + d
     def segundo(j, inicio):
         p, k, i, n = oido[casa[j]]
         a, b = ts[k]
         return a + (b - a) * (i if inicio else i + 1) / max(1, n), k
+    # los tramos donde Whisper oyó algo que casa con el guion: lo que falta por casar al principio
+    # o al final de una frase no se puede ir a uno de esos (sería la frase de al lado; pasó el
+    # 21-oct: «61.000 personas» no casa con «Sesenta y un mil personas» y el principio de la
+    # frase se iba hasta el «Guárdalo» del reel anterior)
+    usados = {oido[a][1] for a in casa.values()}
     planas = []           # todas las frases en orden, con t/fin si se pudieron casar
     for r, reel in enumerate(guion["reels"]):
         for f, l in enumerate(reel["voz"]):
@@ -104,6 +110,12 @@ def alinear(x, guion, rec, verbose=True):
                 # lo que falta por casar al principio o al final se reparte a velocidad media
                 vel = max(1e-3, (t1 - t0) / max(1, dentro[-1] - dentro[0] + 1))
                 t0 -= (dentro[0] - i0) * vel; t1 += (i1 - 1 - dentro[-1]) * vel
+                # hacia atrás, al tramo de antes solo si está libre y la frase anterior se casó (si
+                # no, ese tramo es suyo: se lo dará el relleno de abajo); hacia delante, nunca
+                ant = planas[-1] if planas else None
+                libre = k0 > 0 and k0 - 1 not in usados and (ant is None or (ant["k1"] is not None and ant["k1"] < k0 - 1))
+                if t0 < ts[k0][0]: t0, k0 = (max(t0, ts[k0 - 1][0]), k0 - 1) if libre else (ts[k0][0], k0)
+                t1 = min(t1, ts[k1][1])
                 # si cae cerca del borde de un tramo, a ese borde: ahí está la pausa
                 if abs(t0 - ts[k0][0]) < 0.45: t0 = ts[k0][0]
                 if abs(t1 - ts[k1][1]) < 0.45: t1 = ts[k1][1]
