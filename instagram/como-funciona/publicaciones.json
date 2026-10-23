@@ -55,7 +55,8 @@
     "destacadas/app-4.jpg",
     "destacadas/app-5.jpg"
    ],
-   "portada": "destacadas/portada-app.jpg"
+   "portada": "destacadas/portada-app.jpg",
+   "nota": "La sube el usuario a mano desde la app (el 25-oct): el plan gratis de Metricool solo publica 20 al mes."
   }
  ],
  "carruseles": [
@@ -74,7 +75,7 @@
    "texto": "Tu rutina y tu dieta ya están escritas. No hace falta volver a escribirlas.\n\nEn Coachera copias las celdas de tu Excel (o de Google Sheets, Numbers o LibreOffice), las pegas y la app entiende días, series, repes y descansos. Con la dieta, igual: opciones en cada comida y menús para los días de entreno y los de descanso. Tu cliente la sigue en su móvil.\n\nGuárdalo para el día que te cambies y pásaselo a ese compañero que lo lleva todo en Excel.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
   },
   {
-   "fecha": "2026-10-25",
+   "fecha": "2026-11-01",
    "hora": "18:00",
    "titulo": "Las revisiones del domingo, en una bandeja",
    "imagenes": [
@@ -87,7 +88,7 @@
    "texto": "Las revisiones del domingo no tienen por qué estar repartidas en diez chats.\n\nEn Coachera llegan todas a una bandeja, la que más lleva esperando primero. Cada una viene comparada con la anterior: peso medio, hábitos, entrenos y sus respuestas, con el cambio al lado. La contestas grabando un audio y pasas a la siguiente. A tu cliente le llega a su chat.\n\nGuárdalo para el domingo.\n\nGratis hasta 5 clientes. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline #coachingonline"
   },
   {
-   "fecha": "2026-10-31",
+   "fecha": "2026-11-30",
    "hora": "18:00",
    "titulo": "Sin hoja de cálculo para saber quién te debe",
    "imagenes": [
@@ -101,5 +102,6 @@
    "texto": "Fin de mes. ¿Sabes quién te ha pagado sin abrir el banco?\n\nEn Coachera cada cliente tiene su cuota: importe, cada cuánto y el próximo cobro. Los cobros que tocan salen en tu lista de hoy, «Recordar» abre su chat con el mensaje ya escrito (lo lees y lo envías tú) y ves lo cobrado, lo que falta y lo vencido del mes.\n\nGuárdalo para fin de mes.\n\nGratis hasta 5 clientes. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
   }
  ],
- "base": "https://raw.githubusercontent.com/Txomolo/coachera-redes/main/instagram/"
+ "base": "https://raw.githubusercontent.com/Txomolo/coachera-redes/main/instagram/",
+ "nota": "23-oct-2026: el plan gratis de Metricool publica 20 al mes (las historias cuentan); lo que no cabía en octubre pasó a noviembre."
 }
