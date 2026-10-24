@@ -80,7 +80,7 @@ def pagina(serie, r, tiempos, wav=None):
   </div></section>
   <section class="escena" style="--a:{s(CIE)};--b:999s"><div class="golpe" style="--a:{s(CIE)}">
     <div class="c-logo entra" style="--d:{s(CIE + .1)};top:820px"><span class="logo-p" style="--d:{s(CIE + .2)}">{C}<span class="txt">oachera</span></span></div>
-    <div class="d-cta entra" style="--d:{s(num("{cierre@gratis}"))}"><div>Gratis hasta 5 clientes</div><span>coachera.fit · enlace en la bio</span></div>
+    <div class="d-cta entra" style="--d:{s(num("{cierre@gratis}"))}"><div>{html.escape(serie.get("oferta", "14 días gratis"))}</div><span>coachera.fit · enlace en la bio</span></div>
   </div></section>
   <span class="corte" style="--d:{s(CON - .2)}"></span><span class="corte" style="--d:{s(CIE - .2)}"></span>'''
     sonidos = [{"t": 0.02, "tipo": "golpe", "vol": .35}]
