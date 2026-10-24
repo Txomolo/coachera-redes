@@ -1,0 +1,82 @@
+/* ============================================================================
+   «Un día de entrenador» (desde el 24-oct-2026): el lío de WhatsApp y Excel y la app
+   ============================================================================
+   Sobre principios.css y cortos.css. Tres escenas al ritmo de la voz: el lío (la hora,
+   los mensajes que se amontonan, la hoja que se descuadra), la app de verdad en un móvil
+   que entra, se acerca a lo que lo resuelve y deja paso a una segunda pantalla, y el cierre.
+   Lo genera motor/dia.py. Sin logos de otras marcas: los mensajes y la hoja son genéricos. */
+
+/* ---- la hora ---- */
+.d-hora{position:absolute;left:0;right:0;top:400px;text-align:center}
+.d-hora small{display:block;font-family:var(--mono);font-size:34px;font-weight:500;letter-spacing:.2em;color:var(--gris)}
+.d-hora b{display:inline-block;margin-top:6px;font-family:var(--mono);font-weight:600;font-size:190px;line-height:1;letter-spacing:-.05em;color:var(--texto);text-shadow:0 0 70px rgba(255,255,255,.18)}
+.d-frase{position:absolute;left:80px;right:80px;top:400px;margin:0;text-align:center;font-size:80px;line-height:1.08;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+.d-frase em{font-style:normal;color:var(--ko)}
+.d-contador{position:absolute;left:0;right:0;top:650px;text-align:center;font-size:44px;font-weight:500;color:var(--gris)}
+.d-contador b{font-family:var(--mono);font-weight:600;font-size:64px;color:var(--ko);margin-right:14px}
+
+/* ---- las notificaciones que se amontonan ---- */
+.notis{position:absolute;left:70px;right:70px;top:760px;display:flex;flex-direction:column;gap:14px}
+.noti{display:grid;grid-template-columns:76px 1fr auto;align-items:center;column-gap:22px;height:120px;padding:0 26px;border-radius:30px;background:#18212A;border:2px solid rgba(255,255,255,.1);box-shadow:0 20px 50px -20px rgba(0,0,0,.8);
+  animation:sube .35s var(--muelle) var(--d) both}
+.noti i{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-family:var(--mono);font-size:26px;font-weight:600;background:#2A3442;color:#C9D3DE}
+.noti b{display:block;font-size:30px;font-weight:600;color:var(--texto)}
+.noti span{display:block;font-size:30px;color:#C9D3DE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.noti time{align-self:start;margin-top:26px;font-family:var(--mono);font-size:24px;color:var(--gris-2)}
+.agobio{animation:tiembla .25s linear var(--t) 3}
+
+/* ---- la hoja de cálculo que se descuadra ---- */
+.hoja{position:absolute;left:60px;right:60px;top:700px;border-radius:22px;overflow:hidden;background:#F4F6F8;color:#1B232C;box-shadow:0 40px 100px -30px rgba(0,0,0,.9)}
+.hoja-tit{display:flex;align-items:center;gap:14px;height:76px;padding:0 26px;background:#DDE3E8;font-family:var(--mono);font-size:26px;color:#3A4652}
+.hoja-tit::before{content:"";width:28px;height:28px;border-radius:6px;background:#8A97A4}
+.hoja table{width:100%;border-collapse:collapse;font-size:28px}
+.hoja th{height:58px;background:#E9EDF0;color:#5A6673;font-weight:500;font-family:var(--mono);font-size:22px;letter-spacing:.06em;border:1px solid #C9D1D8}
+.hoja td{height:84px;padding:0 18px;border:1px solid #C9D1D8;white-space:nowrap}
+.hoja td.n{font-family:var(--mono);text-align:center}
+.cambio .b,.cambio .e{display:none}
+.cambio .b.ve,.cambio .e.ve{display:inline}
+.cambio .b.ve ~ .a,.cambio .e.ve ~ .a,.cambio .e.ve ~ .b{display:none}
+.cambio .b{background:#FFF3B0;box-shadow:0 0 0 3px #F2C94C;border-radius:6px;padding:2px 6px}
+.cambio .e{color:#C62828;font-family:var(--mono);font-weight:600}
+td.mal{background:#FDE2E2}
+
+/* ---- el chat ---- */
+.chat-d{position:absolute;left:70px;right:70px;top:680px;display:flex;flex-direction:column;gap:22px}
+.chat-d .msg-p{font-size:38px;max-width:86%;padding:22px 26px 14px;border-radius:10px 32px 32px 32px}
+.chat-d .msg-p.yo{border-radius:32px 10px 32px 32px}
+.chat-d .msg-p small{font-size:26px}
+.chat-d .msg-p i{font-size:24px}
+.buscar{display:flex;align-items:center;gap:16px;height:96px;padding:0 30px;border-radius:999px;background:#18212A;border:2px solid rgba(255,255,255,.14);font-size:36px;color:var(--texto)}
+.buscar::before{content:"";width:30px;height:30px;border-radius:50%;border:4px solid var(--gris);box-sizing:border-box;flex:none}
+.encontrado{box-shadow:0 0 0 4px rgba(242,201,76,.8)}
+.d-grande{position:absolute;left:0;right:0;top:1230px;text-align:center;font-family:var(--mono);font-weight:600;font-size:150px;color:var(--ko);letter-spacing:-.03em}
+.d-nota{position:absolute;left:0;right:0;top:1420px;text-align:center;font-size:56px;font-weight:600;color:var(--gris)}
+.dias-d{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:6px}
+.dias-d span{display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:28px;color:var(--gris)}
+.dias-d span i{width:100%;height:110px;border-radius:20px;border:3px dashed rgba(255,255,255,.18);display:grid;place-items:center;font-style:normal;font-size:30px;color:var(--gris-2)}
+
+/* ---- la app ---- */
+.d-titular{position:absolute;left:70px;right:70px;top:370px;margin:0;text-align:center;font-size:72px;line-height:1.07;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+.d-titular em{font-style:normal;color:var(--turquesa-t)}
+.d-titular.sale{animation:desaparece .25s ease var(--f) forwards}
+.d-titular.entra2{animation:aparece .3s ease var(--d) both}
+.d-movil{position:absolute;left:50%;top:610px;width:760px;margin-left:-380px;padding:16px 16px 0;border-radius:74px 74px 0 0;background:#0B1016;border:2px solid rgba(255,255,255,.16);border-bottom:0;height:1500px;
+  box-shadow:0 0 0 10px rgba(255,255,255,.035),0 40px 160px -20px rgba(20,184,166,.55);animation:desdeAbajo3d .7s var(--curva) var(--d) both}
+.d-movil.segundo{animation:desdeDerecha .45s var(--curva) var(--d) both;z-index:3}
+.d-movil::before{content:"";position:absolute;left:50%;top:calc(16px + 12px * var(--k));width:calc(110px * var(--k));height:calc(32px * var(--k));margin-left:calc(-55px * var(--k));border-radius:99px;background:#05080B;z-index:3}
+.d-pantalla{position:relative;border-radius:58px 58px 0 0;overflow:hidden;background:#F5F7FA;height:100%}
+.d-zoom{transform-origin:var(--ox) var(--oy);animation:acerca .8s var(--curva) var(--tz) both}
+@keyframes acerca{from{transform:scale(1)}to{transform:scale(var(--z))}}
+.d-pantalla [style*="background-image"]{background-repeat:no-repeat;background-size:100% auto}
+.estado{display:flex;align-items:center;justify-content:space-between;height:calc(50px * var(--k));padding:calc(8px * var(--k)) calc(30px * var(--k)) 0;font-size:calc(15px * var(--k));font-weight:600}
+.estado i{display:flex;gap:calc(5px * var(--k));align-items:center}
+.estado i::before{content:"";width:calc(17px * var(--k));height:calc(10px * var(--k));border-radius:calc(2px * var(--k));background:linear-gradient(90deg,currentColor 0 18%,transparent 18% 27%,currentColor 27% 45%,transparent 45% 54%,currentColor 54% 72%,transparent 72% 81%,currentColor 81%)}
+.estado i::after{content:"";width:calc(22px * var(--k));height:calc(11px * var(--k));border-radius:calc(3px * var(--k));border:calc(1.5px * var(--k)) solid currentColor;box-sizing:border-box;background:linear-gradient(90deg,currentColor 0 70%,transparent 70%) content-box;padding:calc(1.5px * var(--k))}
+.d-foco{position:absolute;border-radius:18px;box-shadow:0 0 0 6px var(--turquesa-t),0 0 0 16px rgba(94,234,212,.22),0 0 70px rgba(20,184,166,.7);z-index:2;opacity:0;animation:muestra .25s ease var(--d) forwards, pulsa .6s var(--curva) var(--d) 1}
+
+/* ---- el cierre ---- */
+.d-cta{position:absolute;left:0;right:0;top:1150px;display:flex;flex-direction:column;align-items:center;gap:26px}
+.d-cta div{display:inline-flex;align-items:center;height:104px;padding:0 48px;border-radius:999px;background:var(--turquesa);color:var(--on-turquesa);font-size:46px;font-weight:600;box-shadow:0 0 80px -10px rgba(20,184,166,.7)}
+.d-cta span{font-family:var(--mono);font-size:34px;color:var(--gris);letter-spacing:.04em}
+.d-contador i{font-style:normal}
+.d-pantalla .estado{position:relative;z-index:2}
