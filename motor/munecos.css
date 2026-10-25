@@ -1,0 +1,56 @@
+/* ============================================================================
+   Reels animados con muñecos (desde el 25-oct-2026)
+   ============================================================================
+   Sobre reel.css y principios.css. Un escenario oscuro con un foco de arriba, un suelo que
+   refleja y un muñeco blanco con brillo (motor/munecos.js). Una idea por vídeo, sin voz: el
+   texto arriba, la música y los efectos. El turquesa solo sale en lo que hace Coachera; el
+   logo, pequeño y al final. */
+
+.escenario{position:absolute;inset:0;overflow:hidden;background:
+  radial-gradient(700px 520px at 50% 1470px, rgba(255,240,220,.10), transparent 70%),
+  radial-gradient(1200px 1300px at 50% 700px, #10161D, var(--tinta) 72%)}
+/* el foco: un cono de luz que cae sobre el muñeco */
+.foco{position:absolute;left:50%;top:-80px;width:900px;height:1600px;margin-left:-450px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,250,240,.10),rgba(255,250,240,.03) 70%,transparent);
+  clip-path:polygon(41% 0,59% 0,100% 100%,0 100%);filter:blur(18px)}
+.suelo{position:absolute;left:0;right:0;top:1490px;bottom:0;background:linear-gradient(180deg,#0C1218,var(--tinta) 60%)}
+.suelo::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent)}
+#lienzo{position:absolute;inset:0;width:1080px;height:1920px;overflow:visible}
+
+/* el texto de arriba: una frase cada vez */
+.frase-m{position:absolute;left:80px;right:80px;top:300px;margin:0;text-align:center;font-size:68px;line-height:1.1;font-weight:600;letter-spacing:-.025em;text-wrap:balance;
+  opacity:0;animation:fraseEntra .35s var(--curva) var(--a) forwards, desaparece .2s ease var(--b) forwards}
+.frase-m em{font-style:normal;color:var(--turquesa-t)}
+.frase-m small{display:block;margin-bottom:14px;font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:.16em;color:var(--gris)}
+@keyframes fraseEntra{from{opacity:0;transform:translateY(24px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+
+/* la lectura de la báscula, encima del muñeco */
+.lectura{position:absolute;left:0;right:0;top:470px;text-align:center;font-family:var(--mono);opacity:0;animation:muestra .3s ease var(--a) forwards, desaparece .3s ease var(--b) forwards}
+.lectura .dia{font-size:36px;font-weight:500;letter-spacing:.18em;color:var(--gris)}
+.lectura .kg{display:block;margin-top:2px;font-size:180px;font-weight:600;line-height:1;letter-spacing:-.05em;color:var(--texto);text-shadow:0 0 60px rgba(255,255,255,.16)}
+.lectura .kg small{font-size:56px;letter-spacing:0;margin-left:12px;color:var(--gris)}
+.lectura .dif{display:inline-block;margin-top:14px;height:64px;font-size:52px;font-weight:600}
+.lectura .dif.sube{color:var(--ko)}
+.lectura .dif.baja{color:#86EFAC}
+.lectura .dif.golpea{animation:golpeCifra .3s var(--curva) both}
+.lectura .nota{display:block;margin-top:6px;height:40px;font-family:var(--sans);font-size:32px;color:var(--gris)}
+
+/* la báscula */
+.bascula-pantalla{font-family:var(--mono);font-weight:600}
+
+/* el logo, pequeño, al final */
+.firma{position:absolute;left:0;right:0;top:1560px;text-align:center;opacity:0;animation:muestra .4s ease var(--a) forwards}
+.firma .logo-p{font-size:64px}
+
+/* la gráfica de varias semanas: los días en gris, la media en turquesa (lo que hace Coachera) */
+.g-todo{opacity:0;animation:muestra .35s ease var(--a) forwards}
+.g-ley{font-family:var(--mono);font-size:34px;font-weight:500}
+.g-ley-media{fill:var(--turquesa-t);opacity:0;animation:muestra .3s ease var(--a) forwards}
+.g-sep{stroke:rgba(255,255,255,.08);stroke-width:2}
+.g-sem{font-family:var(--mono);font-size:28px;letter-spacing:.1em;fill:var(--gris)}
+.g-dia{fill:rgba(238,243,247,.55);transform-box:fill-box;transform-origin:center;animation:crece .25s var(--muelle) var(--a) both}
+.g-linea{fill:none;stroke:var(--turquesa);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;
+  filter:drop-shadow(0 0 14px rgba(20,184,166,.8));animation:dibuja .9s cubic-bezier(.5,0,.2,1) var(--a) both}
+.g-media{fill:var(--turquesa-t);stroke:var(--tinta);stroke-width:5;transform-box:fill-box;transform-origin:center;animation:crece .3s var(--muelle) var(--a) both}
+.g-valor{font-family:var(--mono);font-size:36px;font-weight:600;fill:var(--turquesa-t);animation:aparece .3s ease var(--a) both}
+.g-total{font-family:var(--mono);font-size:34px;font-weight:600;fill:var(--turquesa-t);opacity:0;animation:muestra .3s ease var(--a) forwards}

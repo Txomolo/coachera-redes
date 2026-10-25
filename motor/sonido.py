@@ -100,6 +100,26 @@ def fx(tipo):
         sub = np.sin(2 * np.pi * np.cumsum(38 + 60 * np.exp(-t * 18)) / SR) * np.exp(-t * 4.5)
         ruido = filtro(rng.standard_normal(n), "lowpass", 1800) * np.exp(-t * 9) * 0.5
         return np.tanh((sub + ruido) * 1.2) * 0.9
+    # ---- muñecos (25-oct-2026): lo cómico de los Reels animados ----
+    if tipo == "salto":        # el «boing» de un salto
+        n = int(0.32 * SR); t = np.arange(n) / SR
+        f = 180 + 520 * (t / t[-1]) ** .6 + 25 * np.sin(2 * np.pi * 28 * t)
+        return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.minimum(1, t / .01) * np.exp(-t * 6) * 0.45
+    if tipo == "plof":         # caer de pie: un golpe sordo y corto
+        n = int(0.25 * SR); t = np.arange(n) / SR
+        sub = np.sin(2 * np.pi * np.cumsum(70 + 90 * np.exp(-t * 30)) / SR) * np.exp(-t * 14)
+        ruido = filtro(rng.standard_normal(n), "lowpass", 900) * np.exp(-t * 30) * .4
+        return (sub + ruido) * .6
+    if tipo == "trombon":      # el «wah, wah, wah, waaah» de cuando algo sale mal
+        x = np.zeros(int(2.1 * SR))
+        for i, (nt, d) in enumerate([("D4", .32), ("C#4", .32), ("C4", .32), ("B3", .95)]):
+            k = int(i * .34 * SR); m_ = int(d * SR); tt = np.arange(m_) / SR
+            f = nota(nt) * (1 + (0.014 * np.sin(2 * np.pi * 5.5 * tt) if i == 3 else 0))
+            fase = 2 * np.pi * np.cumsum(np.full(m_, 1.0) * f) / SR
+            s = filtro(sum(np.sin(h * fase) / h for h in range(1, 7)), "lowpass", 1400)
+            env = np.minimum(1, tt / .03) * np.clip((d - tt) / .08, 0, 1) * (0.7 + 0.3 * np.minimum(1, tt / 0.15))
+            x[k:k + m_] += s * env
+        return x * .22
     # ---- Coachera TV (15-oct-2026) ----
     if tipo == "silbato":      # el del árbitro: un tono agudo con el «trino» de la bolita
         n = int(0.55 * SR); t = np.arange(n) / SR
