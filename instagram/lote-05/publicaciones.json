@@ -1,0 +1,26 @@
+[
+ {
+  "fecha": "2026-11-11",
+  "hora": "18:00",
+  "tipo": "carrusel",
+  "tema": "Avisos al móvil",
+  "archivos": [
+   "p1-1.jpg",
+   "p1-2.jpg",
+   "p1-3.jpg"
+  ],
+  "texto": "¿Cuántas veces a la semana escribes «te toca la revisión»?\n\nEn Coachera escribes el aviso una vez, con tus palabras, y le llega al móvil a cada cliente, firmado por ti. Son tres: el día que le toca la revisión, los días que toca entrenar si aún no ha anotado nada, y cuando lleva unos días sin anotar (tú eliges cuántos).\n\nComo mucho, uno al día. Tu cliente los activa en su app.\n\nGuárdalo y pásaselo a ese compañero que manda los recordatorios a mano.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
+ },
+ {
+  "fecha": "2026-11-13",
+  "hora": "18:00",
+  "tipo": "carrusel",
+  "tema": "Contratos firmados desde el móvil",
+  "archivos": [
+   "p2-1.jpg",
+   "p2-2.jpg",
+   "p2-3.jpg"
+  ],
+  "texto": "¿Todavía mandas el contrato en PDF y esperas a que te lo devuelvan firmado?\n\nEn Coachera lo envías desde la ficha de tu cliente, con tu plantilla y sus datos ya puestos. Le llega por el chat, lo lee, lo acepta y lo firma con el dedo desde su móvil. Queda guardado para los dos, con su fecha, y el texto firmado ya no cambia.\n\nGuárdalo para tu próximo cliente.\n\nGratis hasta 5 clientes, sin tarjeta. Enlace en la bio.\n\n#entrenadorpersonal #entrenadoronline #asesoriaonline"
+ }
+]
