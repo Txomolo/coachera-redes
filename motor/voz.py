@@ -88,7 +88,7 @@ def montar(reel):
     return pulir(pista)
 
 if __name__ == "__main__":
-    reel = json.load(open(sys.argv[1]))
+    reel = json.load(open(sys.argv[1], encoding="utf-8"))
     x = montar(reel)
     import wave
     with wave.open(sys.argv[2], "wb") as w:

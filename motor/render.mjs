@@ -17,16 +17,27 @@
 // sintetiza motor/sonido.py con los momentos de REEL.sonidos.
 //
 // Sin dependencias: Chrome por su protocolo de depuración (WebSocket de Node 22) y ffmpeg.
+// Funciona en Linux y en Windows. Las variables CHROME y PYTHON cambian el Chrome y el
+// Python que usa; si no están, coge los de serie de cada sistema.
 
 import { spawn } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const AQUI = dirname(fileURLToPath(import.meta.url));
-const CHROME = process.env.CHROME || "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const WINDOWS = process.platform === "win32";
+const CHROME = process.env.CHROME || chromeDeSerie();
+const PYTHON = process.env.PYTHON || (WINDOWS ? "python" : "python3");   // en Windows, python3 es el atajo de la tienda
 const ANCHO = 1080, ALTO = 1920;
+
+function chromeDeSerie() {
+  if (!WINDOWS) return "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+  const sitios = [process.env.PROGRAMFILES, process.env["PROGRAMFILES(X86)"], process.env.LOCALAPPDATA]
+    .filter(Boolean).map((d) => join(d, "Google", "Chrome", "Application", "chrome.exe"));
+  return sitios.find(existsSync) || sitios[0];
+}
 
 const args = process.argv.slice(2);
 const pagina = resolve(args[0] || "");
@@ -95,7 +106,7 @@ try {
   await cdp("Page.enable");
   await cdp("Emulation.setDeviceMetricsOverride", { width: W, height: H, deviceScaleFactor: 1, mobile: false });
   await cdp("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "no-preference" }] });
-  await cdp("Page.navigate", { url: "file://" + pagina });
+  await cdp("Page.navigate", { url: pathToFileURL(pagina).href });
   await evaluar(cdp, `new Promise(r => { const ya = () => document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.decode().catch(() => {})))).then(r); document.readyState === "complete" ? ya() : addEventListener("load", ya); })`);
   const REEL = await evaluar(cdp, `window.REEL || null`);
   if (!REEL || !REEL.duracion) throw new Error("La página no declara window.REEL = { duracion, ... }");
@@ -114,7 +125,8 @@ try {
       writeFileSync(f, await capturar(cdp, t)); lista.push(f);
     }
     await new Promise((ok, mal) => {
-      const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-pattern_type", "glob", "-i", join(dir, "f*.jpg"), "-vf", `scale=${w}:${h},tile=${col}x${fil}:padding=6:color=0x222222`, "-frames:v", "1", salida]);
+      // f00.jpg, f01.jpg…: la secuencia numerada vale en todos los ffmpeg (el glob no existe en Windows)
+      const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-i", join(dir, "f%02d.jpg"), "-vf", `scale=${w}:${h},tile=${col}x${fil}:padding=6:color=0x222222`, "-frames:v", "1", salida]);
       ff.on("exit", c => c === 0 ? ok() : mal(new Error("ffmpeg " + c)));
     });
     rmSync(dir, { recursive: true, force: true });
@@ -137,7 +149,7 @@ try {
     // el sonido
     const pista = salida.replace(/\.mp4$/, ".wav");
     writeFileSync(pista + ".json", JSON.stringify(REEL));
-    await new Promise((ok, mal) => { const p = spawn("python3", [join(AQUI, "sonido.py"), pista + ".json", pista], { stdio: "inherit" }); p.on("exit", c => c === 0 ? ok() : mal(new Error("sonido.py " + c))); });
+    await new Promise((ok, mal) => { const p = spawn(PYTHON, [join(AQUI, "sonido.py"), pista + ".json", pista], { stdio: "inherit" }); p.on("exit", c => c === 0 ? ok() : mal(new Error("sonido.py " + c))); });
     await new Promise((ok, mal) => {
       const m = spawn("ffmpeg", ["-y", "-loglevel", "error", "-i", sinSonido, "-i", pista, "-c:v", "copy", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", "-movflags", "+faststart", salida], { stdio: "inherit" });
       m.on("exit", c => c === 0 ? ok() : mal(new Error("ffmpeg (mezcla) " + c)));

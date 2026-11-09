@@ -354,7 +354,7 @@ def mezclar(reel):
     return est
 
 if __name__ == "__main__":
-    reel = json.load(open(sys.argv[1]))
+    reel = json.load(open(sys.argv[1], encoding="utf-8"))
     est = mezclar(reel)
     import wave
     with wave.open(sys.argv[2], "wb") as w:
