@@ -3,155 +3,150 @@
 <title>V6 · Cena de empresa: en directo</title>
 <link rel="stylesheet" href="../motor/fuentes.css">
 <link rel="stylesheet" href="../motor/reel.css">
-<link rel="stylesheet" href="../motor/tv.css">
+<link rel="stylesheet" href="../motor/principios.css">
+<link rel="stylesheet" href="../motor/cortos.css">
+<link rel="stylesheet" href="../motor/dia.css">
 <style>
-/* V6 · «Cena de empresa: en directo» (martes 1 de diciembre). La cena de empresa retransmitida como
-   un partido: PLAN contra CENA, cuatro goles de la cena (cerveza, croquetas, turrón y «la última»),
-   cinta de última hora con «empiezo en enero». Cortinilla «LUNES»: el partido se pierde si no vuelve
-   el lunes. El móvil con su entreno del lunes (recursos/cliente-hoy.png) y «VUELTA AL PLAN 1 - 0».
-   19,5 s. El gancho (directo, marcador y título) se ve desde el primer fotograma. */
-#marcador{top:318px}
-#marcador .eq{transition:none}
-#marcador.vuelta .eq.izq{font-size:38px;line-height:1}
-.vivo{position:absolute;left:60px;top:240px;height:58px;display:flex;align-items:center;gap:14px;padding:0 22px;background:var(--tv-rojo);font-family:var(--tv);font-size:38px;letter-spacing:.06em;color:#fff;z-index:21}
-.vivo i{width:18px;height:18px;border-radius:50%;background:#fff;animation:latido 1s steps(1) infinite}
-.vivo .reloj{margin-left:6px;padding-left:16px;border-left:2px solid rgba(255,255,255,.5)}
+/* V6 · «Cena de empresa: en directo» (martes 1 de diciembre), con la identidad actual (turquesa de
+   la app, Plex, fundidos). La cena retransmitida como un partido, pero contado con una línea de
+   marcador en mono: PLAN 0 · CENA 4. Cuatro jugadas (cerveza, croquetas, turrón y «la última»),
+   la última hora («empiezo en enero»), la frase del lunes, el móvil con su entreno del lunes
+   (recursos/cliente-hoy.png) y «VUELTA AL PLAN 1 · CENA 0». Cierre: logo, frase y píldora. 20 s.
+   El gancho (directo, marcador y frase) se ve desde el primer fotograma. */
 
-.gancho{position:absolute;left:60px;right:60px;top:620px;animation:desaparece .01s linear 1.8s forwards}
-.gancho .tv-narra{position:static;font-size:150px;line-height:1.1}
-.gancho p{margin:40px 0 0;font-family:var(--tv);font-size:58px;letter-spacing:.06em;color:var(--gris)}
+/* el directo y el marcador: una línea fina en mono, de 0 a «el lunes» */
+.directo{position:absolute;left:0;right:0;top:276px;text-align:center;font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:.16em;color:var(--gris);animation:desaparece .25s ease 11.05s forwards}
+.directo i{display:inline-block;width:16px;height:16px;margin-right:16px;border-radius:50%;background:var(--ko);box-shadow:0 0 14px var(--ko);vertical-align:2px;animation:latidoP 1s steps(1) infinite}
+@keyframes latidoP{50%{opacity:.25}}
+.marcador-l{position:absolute;left:110px;right:110px;top:350px;height:116px;display:flex;align-items:center;justify-content:center;gap:30px;border-top:2px solid var(--linea-2);border-bottom:2px solid var(--linea-2);font-family:var(--mono);font-size:54px;font-weight:500;letter-spacing:.04em;color:var(--texto);animation:desaparece .25s ease 11.05s forwards}
+.marcador-l b{font-weight:600;font-size:66px;padding:0 14px;border-radius:14px}
+.marcador-l .sep{color:var(--gris-2)}
+.marcador-l .cena{color:var(--ko)}
+.marcador-l .cena.golazo{background:var(--ko-bg);box-shadow:0 0 40px -6px rgba(248,113,113,.5)}
 
-.jugada{position:absolute;inset:0;opacity:0;animation:muestra .01s linear var(--t) forwards, desaparece .01s linear var(--fin) forwards}
-.minuto{position:absolute;left:60px;top:560px;display:flex;align-items:baseline;gap:22px;font-family:var(--tv);animation:desdeIzquierda .35s var(--curva) var(--t) both}
-.minuto small{font-size:56px;letter-spacing:.08em;color:var(--gris)}
-.minuto b{font-weight:400;font-size:190px;line-height:1;color:var(--voltio)}
-.jugada .tv-narra{top:800px;font-size:104px;line-height:1.06}
-.nota{position:absolute;left:60px;right:60px;top:1290px;margin:0;font-family:var(--tv);font-size:54px;letter-spacing:.03em;color:#fff;animation:sube .35s var(--curva) calc(var(--t) + 1.0s) both}
-.nota span{color:var(--gris)}
-.sello-gol{position:absolute;right:60px;top:590px;font-size:84px;padding:14px 34px;background:var(--tv-rojo);color:#fff;box-shadow:0 30px 80px -10px rgba(255,59,48,.55)}
+/* el gancho */
+.g-frase{position:absolute;left:70px;right:70px;top:620px;margin:0;text-align:center;font-size:104px;line-height:1.06;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
+.g-frase em{font-style:normal;color:var(--ko)}
+.g-sub{position:absolute;left:0;right:0;top:1010px;text-align:center;font-family:var(--mono);font-size:32px;letter-spacing:.14em;color:var(--gris)}
 
-.cinta-v6{top:1460px;height:96px;font-size:50px;animation:tvEntra .35s ease 8.6s both, desaparece .01s linear 11.3s forwards}
-.cinta-v6 b{padding:0 24px}
-.cinta-v6 .texto-c{white-space:nowrap;padding-left:26px;animation:corre6 2.7s linear 8.6s both}
-@keyframes corre6{from{transform:translateX(40px)}to{transform:translateX(-420px)}}
+/* las jugadas: una cada vez */
+.jugada{position:absolute;inset:0;opacity:0;animation:muestra .01s linear var(--a) forwards, desaparece .01s linear var(--b) forwards}
+.minuto{position:absolute;left:0;right:0;top:580px;text-align:center;font-family:var(--mono);font-size:36px;font-weight:500;letter-spacing:.16em;color:var(--gris);animation:fraseEntra .35s var(--curva) var(--a) both}
+.minuto b{font-weight:600;color:var(--texto)}
+.jugada .frase{position:absolute;left:70px;right:70px;top:660px;margin:0;text-align:center;font-size:88px;line-height:1.08;font-weight:600;letter-spacing:-.025em;text-wrap:balance;animation:fraseEntra .4s var(--curva) calc(var(--a) + .1s) both}
+.jugada .frase em{font-style:normal;color:var(--ko)}
+.comenta{position:absolute;left:70px;right:70px;top:1130px;margin:0;text-align:center;font-size:50px;font-weight:500;color:var(--gris);animation:fraseEntra .4s var(--curva) calc(var(--a) + 1.0s) both}
+.comenta small{display:block;margin-bottom:12px;font-family:var(--mono);font-size:26px;letter-spacing:.16em;color:var(--gris-2)}
+.ultima{position:absolute;left:90px;right:90px;top:1110px;padding:30px 36px;border-radius:24px;background:var(--sf);border:2px solid rgba(248,113,113,.55);box-shadow:0 30px 80px -30px rgba(248,113,113,.4);animation:sube .45s var(--curva) 9.3s both}
+.ultima small{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:28px;font-weight:600;letter-spacing:.16em;color:var(--ko)}
+.ultima small::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--ko)}
+.ultima p{margin:14px 0 0;font-size:56px;line-height:1.14;font-weight:600;letter-spacing:-.02em}
 
-.narrador{position:absolute;left:60px;right:60px;top:620px;opacity:0;animation:muestra .01s linear 11.3s forwards, desaparece .12s linear 14.0s forwards}
-.narrador .quien{margin:0 0 34px;font-family:var(--tv);font-size:52px;letter-spacing:.1em;color:var(--gris)}
-.narrador .tv-narra{position:static;font-size:112px;line-height:1.04}
+/* el lunes */
+.lunes-a{position:absolute;left:70px;right:70px;top:600px;margin:0;text-align:center;font-size:66px;line-height:1.1;font-weight:500;color:var(--gris);animation:fraseEntra .4s var(--curva) 11.45s both}
+.lunes-b{position:absolute;left:70px;right:70px;top:820px;margin:0;text-align:center;font-size:104px;line-height:1.05;font-weight:600;letter-spacing:-.03em;text-wrap:balance;animation:fraseEntra .45s var(--curva) 12.4s both}
 
-.lunes{position:absolute;inset:0;opacity:0;animation:muestra .01s linear 14.0s forwards}
-.movil{position:absolute;left:60px;top:470px;width:540px;padding:16px;border-radius:66px;background:#151B23;box-shadow:0 0 0 3px rgba(255,255,255,.14),0 50px 120px -20px rgba(0,0,0,.9),0 0 140px -30px rgba(214,255,63,.35);animation:desdeAbajo3d .6s var(--curva) 14.0s both}
-.movil img{display:block;width:508px;height:auto;border-radius:52px}
-.movil .marca-btn{position:absolute;left:52px;top:564px;width:436px;height:62px;border-radius:12px;box-shadow:0 0 0 6px var(--voltio);opacity:0;animation:muestra .2s linear 15.2s forwards}
-.toque.t-empezar{left:330px;top:1065px;animation:toque .6s ease-out 15.25s both}
-.lado{position:absolute;left:640px;right:60px;top:640px}
-.lado .hora{margin:0 0 26px;font-family:var(--tv);font-size:54px;letter-spacing:.06em;color:var(--gris);animation:sube .35s var(--curva) 14.35s both}
-.lado .tv-narra{position:static;font-size:84px;line-height:1.04}
+/* la app */
+.app .d-titular{top:318px}
+.vuelta{position:absolute;left:150px;right:150px;top:488px;height:76px;display:flex;align-items:center;justify-content:center;gap:22px;border-top:2px solid var(--linea-2);border-bottom:2px solid var(--linea-2);font-family:var(--mono);font-size:34px;font-weight:500;letter-spacing:.04em;color:var(--texto);animation:aparece .4s ease 14.9s both}
+.vuelta b{font-weight:600;font-size:42px}
+.vuelta .plan{color:var(--turquesa-t)} .vuelta .sep{color:var(--gris-2)}
+.app .d-movil{top:596px}
+.d-pantalla .img-hoy{height:1576px;background:url(../recursos/cliente-hoy.png) no-repeat 0 0/100% auto}
 
-.final-fondo{position:absolute;inset:0;z-index:30;background:var(--fondo);opacity:0;animation:muestra .01s linear 16.45s forwards}
-.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 60px 240px;text-align:center;opacity:0;animation:muestra .01s linear 16.45s forwards}
-.final .rotulo-f{font-family:var(--tv);font-size:52px;letter-spacing:.14em;color:var(--voltio);margin:0 0 26px;animation:sube .35s var(--curva) 16.5s both}
-.final .tv-marcador{position:relative;left:auto;right:auto;top:auto;width:960px;animation:crece .4s var(--muelle) 16.55s both}
-.final .tv-marcador .eq.izq{font-size:38px}
-.final .tv-narra{position:static;margin-top:60px;font-size:96px;text-align:center}
-.logo-medio{margin-top:56px;font-size:104px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .5s var(--curva) 17.3s both}
-.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
-.logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 17.35s both}
-.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
-.final .pildora{margin-top:44px;animation:crece .45s var(--muelle) 17.7s both}
+/* el cierre */
+.cierre .c-logo{top:640px}
+.cierre .c-texto{top:860px;font-size:80px}
+.cierre .d-cta{top:1150px}
 </style></head>
 <body><div id="escena">
-  <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:45%"></div><div class="grano"></div></div>
-  <div class="vivo"><i></i>EN DIRECTO<span class="reloj" id="reloj">MIN. 0'</span></div>
-  <div class="tv-marcador" id="marcador"><span class="eq izq" id="eq-izq">PLAN</span><span class="n" id="n-plan">0</span><span class="g">-</span><span class="n b" id="n-cena">0</span><span class="eq">CENA</span></div>
+  <div class="fondo-p"></div>
+  <div class="barra-c" style="--dur:20s"><b></b></div>
 
-  <div class="gancho"><h1 class="tv-narra">Tu cliente,<br><span class="v">en la cena de empresa</span></h1><p>RETRANSMISIÓN EN DIRECTO</p></div>
+  <p class="directo"><i></i>EN DIRECTO · <span id="minuto">MIN. 0'</span></p>
+  <div class="marcador-l">PLAN <b id="n-plan">0</b><span class="sep">·</span>CENA <b class="cena" id="n-cena">0</b></div>
 
-  <div class="jugada" style="--t:1.8s;--fin:4.0s">
-    <div class="minuto"><small>MINUTO</small><b>5'</b></div>
-    <div class="tv-sello sello-gol" style="--t:2.3s">GOL</div>
-    <h2 class="tv-narra">«Solo una <span class="v">cerveza.</span>»</h2>
-    <p class="nota">COMENTARISTA: <span>era de litro.</span></p>
-  </div>
-  <div class="jugada" style="--t:4.0s;--fin:6.2s">
-    <div class="minuto"><small>MINUTO</small><b>32'</b></div>
-    <div class="tv-sello sello-gol" style="--t:4.5s">GOL</div>
-    <h2 class="tv-narra">Croquetas al centro. <span class="v">«Son caseras, no cuentan.»</span></h2>
-    <p class="nota">COMENTARISTA: <span>lleva seis.</span></p>
-  </div>
-  <div class="jugada" style="--t:6.2s;--fin:8.4s">
-    <div class="minuto"><small>MINUTO</small><b>58'</b></div>
-    <div class="tv-sello sello-gol" style="--t:6.7s">GOL</div>
-    <h2 class="tv-narra">El turrón llega <span class="v">por la banda.</span></h2>
-    <p class="nota">COMENTARISTA: <span>y nadie lo defiende.</span></p>
-  </div>
-  <div class="jugada" style="--t:8.4s;--fin:11.3s">
-    <div class="minuto"><small>MINUTO</small><b>90+4'</b></div>
-    <div class="tv-sello sello-gol" style="--t:8.9s">GOL</div>
-    <h2 class="tv-narra">Alguien ha dicho<br><span class="v">«la última y nos vamos».</span></h2>
-    <p class="nota">COMENTARISTA: <span>son las 3:40.</span></p>
-  </div>
-  <div class="tv-cinta cinta-v6"><b>ÚLTIMA HORA</b><span class="texto-c">TU CLIENTE PIENSA EMPEZAR DE CERO EN ENERO</span></div>
+  <section class="escena primera" style="--b:1.9s">
+    <h1 class="g-frase">Tu cliente,<br><em>en la cena de empresa</em>.</h1>
+    <p class="g-sub">RETRANSMISIÓN EN DIRECTO</p>
+  </section>
 
-  <div class="tv-cortinilla" style="--t:10.95s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">LUNES</p></div>
-
-  <div class="narrador">
-    <p class="quien">EL COMENTARISTA</p>
-    <h2 class="tv-narra"><span class="linea"><span style="--d:11.4s">El partido</span></span><span class="linea"><span style="--d:11.5s">no se pierde</span></span><span class="linea"><span style="--d:11.6s">en una cena.</span></span><span class="linea"><span style="--d:12.3s" class="v">Se pierde si no</span></span><span class="linea"><span style="--d:12.4s" class="v">vuelve el lunes.</span></span></h2>
+  <div class="jugada" style="--a:1.9s;--b:4.1s">
+    <p class="minuto">MINUTO <b>5'</b></p>
+    <h2 class="frase">«Solo una <em>cerveza</em>.»</h2>
+    <p class="comenta"><small>COMENTARISTA</small>Era de litro.</p>
+  </div>
+  <div class="jugada" style="--a:4.1s;--b:6.3s">
+    <p class="minuto">MINUTO <b>32'</b></p>
+    <h2 class="frase">Croquetas al centro. <em>«Son caseras, no cuentan.»</em></h2>
+    <p class="comenta"><small>COMENTARISTA</small>Lleva seis.</p>
+  </div>
+  <div class="jugada" style="--a:6.3s;--b:8.5s">
+    <p class="minuto">MINUTO <b>58'</b></p>
+    <h2 class="frase">El turrón llega <em>por la banda</em>.</h2>
+    <p class="comenta"><small>COMENTARISTA</small>Y nadie lo defiende.</p>
+  </div>
+  <div class="jugada" style="--a:8.5s;--b:11.05s">
+    <p class="minuto">MINUTO <b>90+4'</b></p>
+    <h2 class="frase">Alguien ha dicho<br><em>«la última y nos vamos»</em>.</h2>
+    <div class="ultima"><small>ÚLTIMA HORA</small><p>Tu cliente piensa empezar de cero en enero.</p></div>
   </div>
 
-  <div class="lunes">
-    <div class="movil"><img src="../recursos/cliente-hoy.png" alt=""><div class="marca-btn"></div></div>
-    <div class="toque t-empezar"></div>
-    <div class="lado">
-      <p class="hora">LUNES, 07:30</p>
-      <h2 class="tv-narra"><span class="linea"><span style="--d:14.45s">Su entreno,</span></span><span class="linea"><span style="--d:14.55s">ahí.</span></span><span class="linea"><span style="--d:14.85s" class="v">Como si</span></span><span class="linea"><span style="--d:14.95s" class="v">nada.</span></span></h2>
-    </div>
-  </div>
+  <span class="corte" style="--d:11.05s"></span>
+  <section class="escena" style="--a:11.25s;--b:14.3s">
+    <p class="lunes-a">El partido no se pierde<br>en una cena.</p>
+    <p class="lunes-b">Se pierde si no vuelve el lunes.</p>
+  </section>
 
-  <div class="final-fondo"></div>
-  <div class="final">
-    <p class="rotulo-f">RESULTADO DEL LUNES</p>
-    <div class="tv-marcador"><span class="eq izq">VUELTA AL PLAN</span><span class="n">1</span><span class="g">-</span><span class="n b">0</span><span class="eq">CENA</span></div>
-    <h2 class="tv-narra"><span class="linea"><span style="--d:16.75s">Lo que cuenta</span></span><span class="linea"><span style="--d:16.85s" class="v">es volver.</span></span></h2>
-    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
-    <span class="pildora">Gratis hasta 5 clientes</span>
-  </div>
+  <span class="corte" style="--d:14.1s"></span>
+  <section class="escena app" style="--a:14.3s;--b:17.45s"><div class="golpe" style="--a:14.3s">
+    <p class="etiqueta" style="top:250px">CON COACHERA</p>
+    <h2 class="d-titular">El lunes abre la app y <em>su entreno está ahí</em>.</h2>
+    <div class="vuelta"><span class="plan">VUELTA AL PLAN <b>1</b></span><span class="sep">·</span>CENA <b>0</b></div>
+    <div class="d-movil" style="--k:1.941;--d:14.35s"><div class="d-pantalla">
+      <div class="estado" style="background:rgb(20,26,34);color:#FFFFFF"><b>7:30</b><i></i></div>
+      <div style="position:relative"><div class="img-hoy"></div>
+        <i class="d-foco" style="left:50px;top:785px;width:628px;height:96px;--d:15.7s"></i></div>
+    </div></div>
+  </div></section>
+
+  <span class="corte" style="--d:17.25s"></span>
+  <section class="escena cierre" style="--a:17.45s;--b:999s"><div class="golpe" style="--a:17.45s">
+    <div class="c-logo entra" style="--d:17.5s"><span class="logo-p" style="--d:17.6s"><svg viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></span></div>
+    <p class="c-texto entra" style="--d:17.85s">Lo que cuenta es volver, <em>y su entreno ya le espera</em>.</p>
+    <div class="d-cta entra" style="--d:18.35s"><div>Gratis hasta 5 clientes</div><span>coachera.fit · enlace en la bio</span></div>
+  </div></section>
 </div>
 <script src="../motor/reel.js"></script>
-<script src="../motor/tv.js"></script>
 <script>
-const GOLES = [2.3, 4.5, 6.7, 8.9];
+const GOLES = [2.4, 4.6, 6.8, 9.0];
 window.REEL = {
-  duracion: 19.5,
-  musica: { estilo: "phonk", caida: 1.8, vol: .55 },
+  duracion: 20,
+  musica: { estilo: "pulso", vol: .28 },
   sonidos: [
-    { t: .1, tipo: "silbato", vol: .8 },
-    ...GOLES.map((t) => ({ t, tipo: "golpe", vol: .8 })),
-    { t: 4.6, tipo: "publico", vol: .6 },
-    { t: 8.6, tipo: "noticia", vol: .9 },
-    { t: 10.3, tipo: "silbato", vol: .6 }, { t: 10.6, tipo: "silbato", vol: .7 },
-    { t: 10.95, tipo: "barrido", vol: .8 },
-    { t: 14.0, tipo: "ok", vol: .9 },
-    { t: 14.05, tipo: "publico", vol: .7 },
-    { t: 15.25, tipo: "toque", vol: .8 },
-    { t: 17.35, tipo: "marca", vol: .9 },
+    { t: .02, tipo: "golpe", vol: .35 },
+    ...GOLES.map((t) => ({ t, tipo: "pop", vol: .4 })),
+    { t: 9.3, tipo: "tecla", vol: .35 },
+    { t: 11.05, tipo: "barrido", vol: .4 },
+    { t: 14.1, tipo: "barrido", vol: .4 },
+    { t: 14.5, tipo: "toque", vol: .3 },
+    { t: 14.9, tipo: "ok", vol: .45 },
+    { t: 15.7, tipo: "toque", vol: .4 },
+    { t: 17.25, tipo: "barrido", vol: .4 },
+    { t: 17.75, tipo: "marca", vol: .6 },
   ],
 };
-const MINUTOS = [[0, "0'"], [1.8, "5'"], [4.0, "32'"], [6.2, "58'"], [8.4, "90+4'"], [11.3, "FIN"], [14.0, "LUNES"]];
+const MINUTOS = [[0, "0'"], [1.9, "5'"], [4.1, "32'"], [6.3, "58'"], [8.5, "90+4'"]];
 window.alTiempoReel = (t) => {
   const cena = GOLES.filter((g) => t >= g).length;
-  const lunes = t >= 14.0;
-  const m = document.getElementById("marcador");
-  m.classList.toggle("vuelta", lunes);
-  document.getElementById("eq-izq").textContent = lunes ? "VUELTA AL PLAN" : "PLAN";
-  document.getElementById("n-plan").textContent = lunes ? "1" : "0";
-  document.getElementById("n-cena").textContent = lunes ? "0" : String(cena);
-  document.getElementById("n-cena").classList.toggle("gol", !lunes && GOLES.some((g) => t >= g && t < g + .45));
-  document.getElementById("n-plan").classList.toggle("gol", t >= 14.0 && t < 14.45);
-  let txt = "0'";
-  for (const [s, v] of MINUTOS) if (t >= s) txt = v;
-  document.getElementById("reloj").textContent = txt === "FIN" || txt === "LUNES" ? txt : "MIN. " + txt;
+  const n = document.getElementById("n-cena");
+  n.textContent = String(cena);
+  const ultimo = GOLES.filter((g) => t >= g).pop();
+  const golazo = ultimo !== undefined && t < ultimo + .9;
+  n.classList.toggle("golazo", golazo);
+  let m = "0'";
+  for (const [s, v] of MINUTOS) if (t >= s) m = v;
+  document.getElementById("minuto").textContent = "MIN. " + m;
 };
 </script>
 </body></html>
