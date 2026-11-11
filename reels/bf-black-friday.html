@@ -3,158 +3,152 @@
 <title>BF · Ofertas que no deberías hacer</title>
 <link rel="stylesheet" href="../motor/fuentes.css">
 <link rel="stylesheet" href="../motor/reel.css">
-<link rel="stylesheet" href="../motor/tv.css">
+<link rel="stylesheet" href="../motor/principios.css">
+<link rel="stylesheet" href="../motor/cortos.css">
 <style>
-/* BF · Especial Black Friday (viernes 27 de noviembre): cuatro «ofertas» que un entrenador no
-   debería hacer nunca, como etiquetas de un folleto de rebajas (la estrella roja, el precio que se
-   tacha) y la cinta de noticias con «BLACK FRIDAY». Al final las cuatro juntas y el sello
-   «OFERTA RETIRADA»; después, la única oferta que sí: gratis hasta 5 clientes. 18 s.
-   El gancho se ve desde el primer fotograma. */
-.gancho{position:absolute;left:60px;right:60px;top:560px;text-align:center;animation:desaparece .01s linear 1.6s forwards}
-.gancho .bf{display:block;font-family:var(--tv);font-size:240px;line-height:.92;letter-spacing:.01em;color:var(--voltio);text-shadow:0 0 80px rgba(214,255,63,.35)}
-.gancho .para{display:block;margin-top:18px;font-family:var(--tv);font-size:104px;line-height:1;text-transform:uppercase;color:#fff}
-.gancho .banda{display:inline-block;margin-top:56px;padding:18px 34px;background:var(--tv-rojo);color:#fff;font-family:var(--tv);font-size:66px;letter-spacing:.04em;transform:rotate(-3deg);box-shadow:0 30px 70px -20px rgba(255,59,48,.6)}
-.gancho .estrella{position:absolute;right:-10px;top:-170px;--r:12deg}
+/* BF · Especial Black Friday (viernes 27 de noviembre), con la identidad actual (principios.css):
+   cuatro «ofertas» que un entrenador no debería hacer nunca, cada una en una tarjeta fina con el
+   precio tachado en rojo suave y una frase debajo. Después, las cuatro en una lista, retiradas, y
+   el cierre: la única oferta que sí, «Gratis hasta 5 clientes · Sin tarjeta». Sin voz: una frase
+   cada vez. El gancho se ve desde el primer fotograma. 19 s. */
+@keyframes fraseEntra{from{opacity:0;transform:translateY(24px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.fe{animation:fraseEntra .45s var(--curva) var(--d) both}
 
-/* la estrella roja del folleto */
-.estrella{width:250px;height:250px;display:grid;place-items:center;background:var(--tv-rojo);color:#fff;font-family:var(--tv);font-size:76px;line-height:.95;text-align:center;transform:rotate(var(--r,-10deg));
-  clip-path:polygon(50% 0%,57% 12%,69% 4%,72% 18%,85% 15%,83% 29%,96% 31%,89% 43%,100% 50%,89% 57%,96% 69%,83% 71%,85% 85%,72% 82%,69% 96%,57% 88%,50% 100%,43% 88%,31% 96%,28% 82%,15% 85%,17% 71%,4% 69%,11% 57%,0% 50%,11% 43%,4% 31%,17% 29%,15% 15%,28% 18%,31% 4%,43% 12%)}
+/* el gancho */
+.gancho-bf{position:absolute;left:80px;right:80px;top:600px;text-align:center}
+.gancho-bf small{display:block;font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:.2em;color:var(--gris)}
+.gancho-bf h1{margin:30px 0 0;font-size:112px;line-height:1.02;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
+.gancho-bf p{margin:44px 0 0;font-size:70px;line-height:1.1;font-weight:600;letter-spacing:-.02em;color:var(--gris);text-wrap:balance}
+.gancho-bf p em{font-style:normal;color:var(--ko)}
 
-.oferta{position:absolute;inset:0;opacity:0;animation:muestra .01s linear var(--t) forwards, desaparece .12s linear calc(var(--t) + 2.5s) forwards}
-.oferta .tv-rotulo{top:290px}
-/* la etiqueta de precio: con su agujero y su cordel */
-.colgada{position:absolute;left:60px;right:60px;top:480px;height:440px;display:flex;justify-content:center;align-items:center;filter:drop-shadow(0 40px 60px rgba(0,0,0,.85)) drop-shadow(0 0 60px rgba(214,255,63,.18));
-  transform-origin:50% 0;animation:cuelga .7s cubic-bezier(.3,1.5,.4,1) calc(var(--t) + .05s) both}
-@keyframes cuelga{from{opacity:0;transform:translateY(-180px) rotate(-14deg)}}
-.etiqueta{position:relative;width:900px;min-height:380px;padding:50px 60px 50px 150px;display:flex;flex-direction:column;justify-content:center;background:var(--voltio);color:var(--negro);transform:rotate(-3deg);
-  clip-path:polygon(90px 0,100% 0,100% 100%,90px 100%,0 50%)}
-.etiqueta::before{content:"";position:absolute;left:52px;top:50%;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:var(--fondo)}
-.etiqueta small{font-family:var(--tv);font-size:48px;letter-spacing:.08em;opacity:.7}
-.etiqueta b{display:block;font-family:var(--tv);font-weight:400;font-size:150px;line-height:.95;text-transform:uppercase}
-.etiqueta b.m{font-size:118px}
-.colgada .estrella{position:absolute;right:-30px;top:-105px;width:230px;height:230px;z-index:2;animation:crece .4s var(--muelle) calc(var(--t) + .35s) both}
+/* cada oferta */
+.bloque{position:absolute;left:80px;right:80px;top:470px;display:flex;flex-direction:column;gap:56px}
+.num-of{text-align:center;font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:.16em;color:var(--gris)}
+.num-of b{font-weight:500;color:var(--texto)}
+.puntos{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.puntos i{width:60px;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+.puntos i.si{background:var(--ko)}
+.oferta-t{position:relative;padding:44px 50px 50px;border-radius:32px;background:linear-gradient(180deg,var(--sf),var(--tinta-2));border:2px solid var(--linea-2);box-shadow:0 40px 100px -40px rgba(0,0,0,.9)}
+.oferta-t .cab{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:.14em;color:var(--gris-2)}
+.oferta-t .chip{display:inline-flex;align-items:center;height:56px;padding:0 22px;border-radius:999px;background:var(--ko-bg);border:2px solid rgba(248,113,113,.45);color:var(--ko);font-family:var(--mono);font-size:30px;font-weight:600;letter-spacing:.02em}
+.oferta-t h2{margin:30px 0 0;font-size:96px;line-height:1.05;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
+.oferta-t .precio{margin-top:34px;padding-top:30px;border-top:2px solid var(--linea);display:flex;flex-direction:column;gap:8px;font-family:var(--mono)}
+.precio .antes{align-self:flex-start;position:relative;font-size:60px;font-weight:500;color:var(--gris)}
+.precio .antes::after{content:"";position:absolute;left:-4%;right:-4%;top:50%;height:6px;margin-top:-3px;border-radius:3px;background:var(--ko);transform:scaleX(0);transform-origin:left;animation:tachar .4s cubic-bezier(.6,0,.3,1) var(--d) forwards}
+@keyframes tachar{to{transform:scaleX(1)}}
+.precio .ahora{white-space:nowrap;font-size:88px;font-weight:600;letter-spacing:-.03em;color:var(--texto);line-height:1.1}
+.precio .ahora small{display:block;margin:10px 0 4px;font-size:28px;font-weight:500;letter-spacing:.14em;line-height:1.2;color:var(--gris-2)}
+.dice{margin:0;text-align:center;font-size:74px;line-height:1.12;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+.dice em{font-style:normal;color:var(--ko)}
+.dice small{display:block;margin-bottom:16px;font-family:var(--mono);font-size:28px;font-weight:500;letter-spacing:.16em;color:var(--gris-2)}
+.hora{text-align:center;font-family:var(--mono)}
+.hora small{display:block;font-size:34px;font-weight:500;letter-spacing:.2em;color:var(--gris)}
+.hora b{display:block;font-size:200px;font-weight:600;line-height:1;letter-spacing:-.05em;color:var(--ko);text-shadow:0 0 70px rgba(248,113,113,.25)}
+.letra-p{margin-top:24px;font-family:var(--mono);font-size:24px;color:var(--gris-2)}
 
-/* el precio que se tacha */
-.precio{position:absolute;left:60px;right:60px;top:950px;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--tv);text-transform:uppercase;white-space:nowrap}
-.precio .antes{position:relative;font-size:90px;line-height:1.1;color:var(--gris);animation:sube .35s var(--curva) calc(var(--t) + .45s) both}
-.precio .antes::after{content:"";position:absolute;left:-10px;right:-10px;top:52%;height:12px;border-radius:6px;background:var(--tv-rojo);transform:scaleX(0) rotate(-6deg);transform-origin:left;animation:tacha .3s cubic-bezier(.6,0,.3,1) calc(var(--t) + .85s) forwards}
-@keyframes tacha{to{transform:scaleX(1) rotate(-6deg)}}
-.precio .ahora{font-size:150px;line-height:1.05;color:#fff;transform-origin:50% 50%;animation:crece .4s var(--muelle) calc(var(--t) + 1.0s) both}
-.comenta{position:absolute;left:60px;right:60px;top:1270px;margin:0;font-family:var(--tv);font-size:62px;line-height:1.1;color:var(--voltio);text-transform:uppercase;animation:sube .35s var(--curva) calc(var(--t) + 1.35s) both}
-.comenta span{color:#fff}
+/* las cuatro, retiradas */
+.lista{display:flex;flex-direction:column;gap:18px}
+.lista .fila{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;height:130px;padding:0 34px;border-radius:24px;background:var(--sf);border:2px solid var(--linea);font-size:50px;font-weight:600;animation:sube .4s var(--curva) var(--d) both}
+.lista .fila span{position:relative;justify-self:start}
+.lista .fila span::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:5px;margin-top:-2px;border-radius:3px;background:var(--ko);transform:scaleX(0);transform-origin:left;animation:tachar .35s cubic-bezier(.6,0,.3,1) var(--x) forwards}
+.lista .fila span.r{color:var(--texto);animation:apaga .35s ease var(--x) forwards}
+@keyframes apaga{to{color:var(--gris-2)}}
+.lista .fila i{font-style:normal;font-family:var(--mono);font-size:24px;font-weight:600;letter-spacing:.1em;color:var(--ko);opacity:0;animation:aparece .3s ease var(--x) forwards}
+.lista .fila i{animation-name:muestra}
 
-/* oferta 3: el remate llega tarde, como la revisión */
-.remate{position:absolute;left:60px;right:60px;top:960px;text-align:center;font-family:var(--tv);text-transform:uppercase;animation:crece .45s var(--muelle) calc(var(--t) + 1.0s) both}
-.remate .pp{display:block;font-size:90px;line-height:1;color:var(--gris)}
-.remate .reloj{display:inline-block;margin-top:14px;padding:6px 34px;border:5px solid var(--tv-rojo);border-radius:20px;font-family:var(--font-num);font-weight:600;font-size:150px;line-height:1.1;color:#fff;box-shadow:0 0 70px -10px rgba(255,59,48,.6);animation:latido .5s steps(1) calc(var(--t) + 1.4s) 3}
-.remate .dia{display:block;margin-top:14px;font-size:100px;line-height:1;color:#fff}
-
-/* oferta 4: la letra pequeña, que se acerca */
-.letra{position:absolute;left:60px;right:60px;top:1040px;text-align:center;font-family:var(--font-text);font-weight:600;font-size:72px;line-height:1.25;color:#fff;transform-origin:50% 50%;
-  animation:acerca .55s cubic-bezier(.3,1.3,.4,1) calc(var(--t) + .9s) both}
-@keyframes acerca{0%,30%{transform:scale(.4);color:var(--gris-3)}100%{transform:none}}
-.letra i{font-style:normal;color:var(--voltio)}
-.letra u{text-decoration:none;box-shadow:inset 0 -14px 0 rgba(255,59,48,.75)}
-
-/* las cuatro juntas, retiradas */
-.todas{position:absolute;inset:0;opacity:0;animation:muestra .01s linear 11.95s forwards}
-.todas .rotulo-t{position:absolute;left:60px;right:60px;top:330px;margin:0;text-align:center;font-family:var(--tv);font-size:56px;letter-spacing:.1em;color:var(--gris)}
-.rejilla4{position:absolute;left:60px;right:60px;top:450px;display:grid;grid-template-columns:1fr 1fr;gap:40px 30px}
-.mini{position:relative;height:300px;padding:30px 30px 30px 84px;display:flex;align-items:center;background:var(--voltio);color:var(--negro);font-family:var(--tv);font-size:68px;line-height:.98;text-transform:uppercase;clip-path:polygon(54px 0,100% 0,100% 100%,54px 100%,0 50%);transform:rotate(var(--r));
-  animation:crece .3s var(--muelle) var(--d) both}
-.mini::before{content:"";position:absolute;left:30px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--fondo)}
-.todas.apagadas .mini{filter:grayscale(1) brightness(.7)}
-.todas .tv-sello{left:110px;right:110px;top:700px;font-size:130px;padding:26px 20px}
-
-/* el final */
-.final-fondo{position:absolute;inset:0;z-index:30;background:var(--fondo);opacity:0;animation:muestra .01s linear 13.35s forwards}
-.final{position:absolute;inset:0;z-index:31;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 60px 200px;text-align:center;opacity:0;animation:muestra .01s linear 13.35s forwards}
-.final .rotulo-f{font-family:var(--tv);font-size:52px;letter-spacing:.14em;color:var(--voltio);margin:0 0 30px;animation:sube .35s var(--curva) 13.4s both}
-.final .tv-narra{position:static;font-size:108px;text-align:center}
-.logo-medio{margin-top:64px;font-size:124px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .5s var(--curva) 14.6s both}
-.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
-.logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 14.65s both}
-.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
-.final .pildora{margin-top:50px;height:auto;flex-direction:column;gap:6px;padding:30px 64px;border-radius:70px;font-size:56px;line-height:1.05;animation:crece .45s var(--muelle) 15.1s both}
-.final .pildora i{font-style:normal;font-size:46px;opacity:.75}
-
-.tv-cinta{z-index:28}
-.tv-cinta.sale{animation:tvEntra .4s ease var(--t,0s) both, desaparece .01s linear 13.35s forwards}
+/* el cierre */
+.cierre-bf{position:absolute;left:70px;right:70px;top:620px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.cierre-bf .frase{margin:0;font-size:84px;line-height:1.08;font-weight:600;letter-spacing:-.03em;text-wrap:balance}
+.cierre-bf .frase em{font-style:normal;color:var(--turquesa-t)}
+.cierre-bf .logo-p{margin-top:110px}
+.cierre-bf .boton{margin-top:70px;display:inline-flex;align-items:center;height:110px;padding:0 50px;border-radius:999px;background:var(--turquesa);color:var(--on-turquesa);font-size:42px;font-weight:600;white-space:nowrap;box-shadow:0 0 80px -10px rgba(20,184,166,.7)}
+.cierre-bf .web{margin-top:30px;font-family:var(--mono);font-size:32px;color:var(--gris);letter-spacing:.04em}
 </style></head>
 <body><div id="escena">
-  <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
+  <div class="fondo-p"></div>
 
-  <div class="gancho">
-    <span class="bf">BLACK<br>FRIDAY</span>
-    <span class="para">para entrenadores</span>
-    <span class="banda">OFERTAS QUE NO DEBERÍAS HACER</span>
-  </div>
-  <div class="tv-cortinilla" style="--t:1.25s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">REBAJAS</p></div>
-
-  <div class="tv-cinta sale" style="--t:1.6s"><b>BLACK FRIDAY</b><span class="corre">OFERTAS QUE NO DEBERÍAS HACER · SOLO HOY · HASTA AGOTAR PACIENCIA · NO SE ADMITEN DEVOLUCIONES · OFERTAS QUE NO DEBERÍAS HACER · SOLO HOY · HASTA AGOTAR PACIENCIA · NO SE ADMITEN DEVOLUCIONES · </span></div>
-
-  <div class="oferta" style="--t:1.6s">
-    <div class="tv-rotulo" style="--t:1.6s"><b>OFERTA 1/4</b><span>NO LA HAGAS</span></div>
-    <div class="colgada"><div class="etiqueta"><small>SOLO HOY</small><b>En burpees</b></div><div class="estrella" style="--r:10deg;font-size:110px">2×1</div></div>
-    <div class="precio"><span class="antes">20 burpees</span><span class="ahora">40 burpees</span></div>
-    <p class="comenta">COMENTARISTA: <span>tu cliente no lo ve como una oferta.</span></p>
-  </div>
-
-  <div class="oferta" style="--t:4.2s">
-    <div class="tv-rotulo" style="--t:4.2s"><b>OFERTA 2/4</b><span>NO LA HAGAS</span></div>
-    <div class="colgada"><div class="etiqueta"><small>DESCUENTAZO</small><b class="m">En sentadillas</b></div><div class="estrella" style="--r:-8deg;font-size:84px">−70&nbsp;%</div></div>
-    <div class="precio"><span class="antes">10 repeticiones</span><span class="ahora">3 repeticiones</span></div>
-    <p class="comenta">COMENTARISTA: <span>son 3 repeticiones. Las ha hecho de pie.</span></p>
-  </div>
-
-  <div class="oferta" style="--t:6.8s">
-    <div class="tv-rotulo" style="--t:6.8s"><b>OFERTA 3/4</b><span>NO LA HAGAS</span></div>
-    <div class="colgada"><div class="etiqueta"><small>REGALO</small><b class="m">Revisión gratis…</b></div><div class="estrella" style="--r:10deg;font-size:70px">GRATIS</div></div>
-    <div class="remate"><span class="pp">…a las</span><span class="reloj">23:58</span><span class="dia">del domingo</span></div>
-  </div>
-
-  <div class="oferta" style="--t:9.4s">
-    <div class="tv-rotulo" style="--t:9.4s"><b>OFERTA 4/4</b><span>NO LA HAGAS</span></div>
-    <div class="colgada"><div class="etiqueta"><small>EXCLUSIVA*</small><b class="m">Rutina personalizada</b></div><div class="estrella" style="--r:-8deg;font-size:64px">NUEVO</div></div>
-    <p class="letra"><i>*</i>Letra pequeña: <u>la misma para todos</u>, en PDF.</p>
-  </div>
-
-  <div class="todas" data-clase="apagadas@12.25">
-    <p class="rotulo-t">LAS CUATRO OFERTAS</p>
-    <div class="rejilla4">
-      <div class="mini" style="--r:-3deg;--d:11.95s">2×1 en burpees</div>
-      <div class="mini" style="--r:2deg;--d:12.0s">−70&nbsp;% en sentadillas</div>
-      <div class="mini" style="--r:2deg;--d:12.05s">Revisión a las 23:58</div>
-      <div class="mini" style="--r:-2deg;--d:12.1s">Rutina «personalizada»</div>
+  <section class="escena primera" style="--a:0s;--b:2.2s">
+    <div class="gancho-bf">
+      <small>ESPECIAL · 27 DE NOVIEMBRE</small>
+      <h1>Black Friday para entrenadores</h1>
+      <p>Cuatro ofertas que <em>no deberías hacer</em>.</p>
     </div>
-    <div class="tv-sello rojo" style="--t:12.25s">OFERTA<br>RETIRADA</div>
-  </div>
+  </section>
 
-  <div class="tv-cortinilla" style="--t:13.0s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">LA DE VERDAD</p></div>
-  <div class="final-fondo"></div>
-  <div class="final">
-    <p class="rotulo-f">BLACK FRIDAY · TODO EL AÑO</p>
-    <h2 class="tv-narra"><span class="linea"><span style="--d:13.45s">La única oferta</span></span><span class="linea"><span style="--d:13.55s">que <span class="v">sí</span> vale</span></span><span class="linea"><span style="--d:13.65s">la pena:</span></span></h2>
-    <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
-    <span class="pildora">Gratis hasta 5 clientes<i>Sin tarjeta</i></span>
-  </div>
+  <section class="escena" style="--a:2.2s;--b:5.0s"><div class="golpe" style="--a:2.2s">
+    <div class="bloque">
+      <div class="num-of">OFERTA <b>1</b> DE 4<div class="puntos"><i class="si"></i><i></i><i></i><i></i></div></div>
+      <div class="oferta-t"><div class="cab">SOLO HOY<span class="chip">2×1</span></div>
+        <h2>2×1 en burpees</h2>
+        <div class="precio"><span class="antes" style="--d:2.9s">20 burpees</span><span class="ahora fe" style="--d:3.2s"><small>AHORA</small>40 burpees</span></div></div>
+      <p class="dice fe" style="--d:3.7s">Tu cliente <em>no lo ve como una oferta</em>.</p>
+    </div>
+  </div></section>
+
+  <section class="escena" style="--a:5.0s;--b:7.8s"><div class="golpe" style="--a:5.0s">
+    <div class="bloque">
+      <div class="num-of">OFERTA <b>2</b> DE 4<div class="puntos"><i class="si"></i><i class="si"></i><i></i><i></i></div></div>
+      <div class="oferta-t"><div class="cab">DESCUENTAZO<span class="chip">−70&nbsp;%</span></div>
+        <h2>−70&nbsp;% en sentadillas</h2>
+        <div class="precio"><span class="antes" style="--d:5.7s">10 repeticiones</span><span class="ahora fe" style="--d:6.0s"><small>AHORA</small>3 repeticiones</span></div></div>
+      <p class="dice fe" style="--d:6.5s">Son 3 repeticiones. <em>Las ha hecho de pie.</em></p>
+    </div>
+  </div></section>
+
+  <section class="escena" style="--a:7.8s;--b:10.6s"><div class="golpe" style="--a:7.8s">
+    <div class="bloque">
+      <div class="num-of">OFERTA <b>3</b> DE 4<div class="puntos"><i class="si"></i><i class="si"></i><i class="si"></i><i></i></div></div>
+      <div class="oferta-t"><div class="cab">REGALO<span class="chip">GRATIS</span></div>
+        <h2>Revisión gratis…</h2></div>
+      <div class="hora fe" style="--d:8.6s"><small>…A LAS</small><b>23:58</b><small style="margin-top:14px">DEL DOMINGO</small></div>
+    </div>
+  </div></section>
+
+  <section class="escena" style="--a:10.6s;--b:13.4s"><div class="golpe" style="--a:10.6s">
+    <div class="bloque">
+      <div class="num-of">OFERTA <b>4</b> DE 4<div class="puntos"><i class="si"></i><i class="si"></i><i class="si"></i><i class="si"></i></div></div>
+      <div class="oferta-t"><div class="cab">EXCLUSIVA<span class="chip">NUEVO</span></div>
+        <h2>Rutina personalizada*</h2>
+        <div class="letra-p">*Consulte condiciones.</div></div>
+      <p class="dice fe" style="--d:11.4s"><small>LA LETRA PEQUEÑA</small>La misma para todos, <em>en PDF</em>.</p>
+    </div>
+  </div></section>
+
+  <section class="escena" style="--a:13.4s;--b:15.3s"><div class="golpe" style="--a:13.4s">
+    <div class="bloque" style="gap:44px">
+      <p class="dice fe" style="--d:13.45s">Mejor, <em>retiradas</em>.</p>
+      <div class="lista">
+        <div class="fila" style="--d:13.5s;--x:14.0s"><span class="r" style="--x:14.0s">2×1 en burpees</span><i style="--x:14.0s">RETIRADA</i></div>
+        <div class="fila" style="--d:13.56s;--x:14.15s"><span class="r" style="--x:14.15s">−70&nbsp;% en sentadillas</span><i style="--x:14.15s">RETIRADA</i></div>
+        <div class="fila" style="--d:13.62s;--x:14.3s"><span class="r" style="--x:14.3s">Revisión a las 23:58</span><i style="--x:14.3s">RETIRADA</i></div>
+        <div class="fila" style="--d:13.68s;--x:14.45s"><span class="r" style="--x:14.45s">Rutina «personalizada»</span><i style="--x:14.45s">RETIRADA</i></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="escena" style="--a:15.3s;--b:999s"><div class="golpe" style="--a:15.3s">
+    <div class="cierre-bf">
+      <p class="frase fe" style="--d:15.35s">La única oferta que <em>sí vale la pena</em>.</p>
+      <span class="logo-p fe" style="--d:15.9s"><svg viewBox="8 24 85 66" style="--d:16.0s"><path pathLength="1" style="--d:16.0s" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></span>
+      <span class="boton fe" style="--d:16.5s">Gratis hasta 5 clientes · Sin tarjeta</span>
+      <span class="web fe" style="--d:16.7s">coachera.fit · enlace en la bio</span>
+    </div>
+  </div></section>
+  <span class="corte" style="--d:15.1s"></span>
 </div>
 <script src="../motor/reel.js"></script>
-<script src="../motor/tv.js"></script>
 <script>
-const OFERTAS = [1.6, 4.2, 6.8, 9.4];
+const OFERTAS = [2.2, 5.0, 7.8, 10.6];
 window.REEL = {
-  duracion: 18,
-  musica: { estilo: "phonk", caida: 1.6, vol: .55 },
+  duracion: 19,
+  musica: { estilo: "pulso", caida: 2.2, vol: .28 },
   sonidos: [
-    { t: .05, tipo: "silbato", vol: .8 },
-    { t: 1.25, tipo: "barrido", vol: .8 },
-    ...OFERTAS.flatMap((t) => [{ t: t + .1, tipo: "pop", vol: .7 }, { t: t + .9, tipo: "golpe", vol: .7 }]),
-    { t: 12.25, tipo: "var", vol: .9 },
-    { t: 12.3, tipo: "golpe", vol: .8 },
-    { t: 13.0, tipo: "barrido", vol: .8 },
-    { t: 14.65, tipo: "marca", vol: .9 },
-    { t: 15.1, tipo: "publico", vol: .6 },
+    { t: .02, tipo: "golpe", vol: .35 },
+    ...OFERTAS.flatMap((t) => [{ t: t + .02, tipo: "pop", vol: .3 }, { t: t + .7, tipo: "toque", vol: .35 }]),
+    ...[14.0, 14.15, 14.3, 14.45].map((t) => ({ t, tipo: "tecla", vol: .35 })),
+    { t: 15.1, tipo: "barrido", vol: .4 },
+    { t: 16.0, tipo: "marca", vol: .6 },
+    { t: 16.5, tipo: "ok", vol: .45 },
   ],
 };
 </script>
