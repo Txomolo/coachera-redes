@@ -3,133 +3,132 @@
 <title>V4 · Audio de 4 minutos</title>
 <link rel="stylesheet" href="../motor/fuentes.css">
 <link rel="stylesheet" href="../motor/reel.css">
-<link rel="stylesheet" href="../motor/tv.css">
-<link rel="stylesheet" href="../motor/efectos.css">
+<link rel="stylesheet" href="../motor/principios.css">
+<link rel="stylesheet" href="../motor/cortos.css">
+<link rel="stylesheet" href="../motor/dia.css">
 <style>
-/* V4 · «Audio de 4 minutos». Una nota de voz de 4:37 retransmitida en directo, con sus
-   subtítulos, hasta que en el minuto 4:31 llega la pregunta: «¿El pollo se pesa en crudo o en
-   cocinado?». Al final, la equivalencia en la app del cliente. 17,5 s.
-   El gancho (título y la nota de voz con 4:37) se ve desde el primer fotograma. */
-.gancho{position:absolute;left:60px;right:60px;top:360px;animation:baja .25s ease-in 1.3s forwards}
-.gancho .tv-narra{position:static;margin:0;font-size:140px;line-height:1.02}
+/* V4 · «Audio de 4 minutos» (serie «Cosas de entrenador»), con la identidad de la app.
+   Una nota de voz de 4:37 que se reproduce con sus subtítulos hasta que, en el minuto 4:31,
+   llega la pregunta: «¿El pollo se pesa en crudo o en cocinado?». Después, con Coachera, la
+   equivalencia en el menú del cliente y el cierre. 18,2 s. El gancho (la frase y la nota de
+   voz con 4:37) se ve desde el primer fotograma. El lío va en gris y rojo; el turquesa, solo
+   en lo que hace Coachera. */
+@keyframes fraseEntra{from{opacity:0;transform:translateY(24px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.t{opacity:0;animation:fraseEntra .4s var(--curva) var(--a) forwards, desaparece .25s ease var(--b,999s) forwards}
 
-/* la nota de voz, con los colores de un chat genérico */
-.audio{position:absolute;left:60px;right:60px;top:470px;padding:30px 40px 24px;border-radius:8px 40px 40px 40px;background:#202C33;box-shadow:0 40px 90px -20px rgba(0,0,0,.95);z-index:15;
-  transform:translateY(400px);animation:subeAudio .5s var(--curva) 1.5s forwards}
+.gancho-f{top:380px;animation:desaparece .25s ease 1.35s forwards}
+.gancho-f em{color:var(--ko)}
+.et-gancho{animation:desaparece .25s ease 1.35s forwards}
+#et-rep{--a:1.6s;--b:11.75s}
+#et-rep .rojo{color:var(--ko)}
+
+/* la nota de voz: un chat genérico, en gris */
+.audio{position:absolute;left:70px;right:70px;top:400px;padding:30px 38px 26px;border-radius:10px 40px 40px 40px;background:#18212A;border:2px solid rgba(255,255,255,.1);box-shadow:0 30px 80px -30px rgba(0,0,0,.9);
+  transform:translateY(300px);animation:subeAudio .55s var(--curva) 1.45s forwards}
 @keyframes subeAudio{to{transform:none}}
-.audio .quien{display:block;font-size:36px;font-weight:600;color:#7FE3A8;margin-bottom:14px}
+.audio .quien{display:block;font-size:36px;font-weight:600;color:var(--texto);margin-bottom:16px}
 .audio .fila{display:flex;align-items:center;gap:26px}
-.audio .ava{flex:none;position:relative;width:120px;height:120px;border-radius:50%;background:#6B7C85;display:grid;place-items:center;font-family:var(--titular);font-size:56px;color:#DCE3E7}
-.audio .ava svg{position:absolute;right:-8px;bottom:-4px;width:46px;height:46px;fill:#7FE3A8}
-.audio .play{flex:none;width:0;height:0;border-left:50px solid #AEBAC1;border-top:30px solid transparent;border-bottom:30px solid transparent;margin-left:6px}
-.audio .play.pausa{width:46px;height:60px;border:0;background:linear-gradient(90deg,#AEBAC1 0 16px,transparent 16px 30px,#AEBAC1 30px)}
-.onda{position:relative;flex:1;height:110px}
+.audio .ava{flex:none;position:relative;width:116px;height:116px;border-radius:50%;background:#2A3442;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:44px;color:#C9D3DE}
+.audio .ava svg{position:absolute;right:-6px;bottom:-4px;width:44px;height:44px;fill:var(--gris)}
+.audio .play{flex:none;width:0;height:0;border-left:46px solid #C9D3DE;border-top:28px solid transparent;border-bottom:28px solid transparent;margin-left:6px}
+.audio .play.pausa{width:42px;height:56px;border:0;background:linear-gradient(90deg,#C9D3DE 0 15px,transparent 15px 27px,#C9D3DE 27px)}
+.onda{position:relative;flex:1;height:104px}
 .onda .capa{position:absolute;inset:0;display:flex;align-items:center;gap:6px}
-.onda .capa i{flex:1;height:var(--h);border-radius:5px;background:#55636C}
-.onda .capa.ya i{background:#7FE3A8}
+.onda .capa i{flex:1;height:var(--h);border-radius:5px;background:#3A4652}
+.onda .capa.ya i{background:#C9D3DE}
 .onda .capa.ya{clip-path:inset(0 calc(100% - var(--p,0%)) 0 0)}
-.onda .bola{position:absolute;top:50%;left:var(--p,0%);width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#7FE3A8;box-shadow:0 0 0 6px rgba(127,227,168,.2)}
-.audio .pie{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;padding-left:146px}
-.audio .dur{font-family:var(--font-num);font-weight:600;font-size:118px;line-height:1;color:#fff;letter-spacing:-.02em}
-.audio .dur small{font-size:.4em;color:#8696A0;font-weight:500;letter-spacing:0}
-.audio .hora{font-family:var(--font-num);font-size:32px;color:#8696A0}
-.audio .hora b{color:#53BDEB;font-weight:500}
-
-/* el directo */
-#rotulo{top:300px;font-size:50px}
-#rotulo span{font-family:var(--font-num);font-weight:600;letter-spacing:-.01em}
-#rotulo span em{font-style:normal;font-family:var(--tv);letter-spacing:.03em;font-weight:400;margin-right:.35em}
+.onda .bola{position:absolute;top:50%;left:var(--p,0%);width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;background:#fff}
+.audio .pie{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-left:142px}
+.audio .dur{font-family:var(--mono);font-weight:600;font-size:124px;line-height:1;color:var(--ko);letter-spacing:-.04em}
+.audio .dur small{font-size:.36em;color:var(--gris-2);font-weight:500;letter-spacing:0}
+.audio .hora{font-family:var(--mono);font-size:30px;color:var(--gris-2)}
 
 /* los subtítulos */
-.sub{position:absolute;left:60px;right:60px;top:930px;margin:0;opacity:0;animation:muestra .01s linear var(--t) forwards, fuera .25s ease-in var(--f) forwards}
-@keyframes fuera{to{opacity:0;transform:translateY(-40px)}}
-.sub .et{display:block;font-family:var(--tv);font-size:40px;letter-spacing:.14em;color:var(--gris);margin-bottom:22px;animation:sube .3s var(--curva) var(--t) both}
-.sub q{display:block;quotes:"«" "»";font-size:92px;line-height:1.22;font-weight:700;color:#fff;animation:sube .38s var(--curva) calc(var(--t) + .05s) both}
-.sub q span{background:rgba(0,0,0,.72);padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.sub{position:absolute;left:80px;right:80px;top:880px;margin:0;text-align:center}
+.sub small{display:block;margin-bottom:22px;font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:.16em;color:var(--gris)}
+.sub q{display:block;quotes:"«" "»";font-size:76px;line-height:1.12;font-weight:600;letter-spacing:-.02em;color:var(--texto);text-wrap:balance}
 
-/* el entrenador, esperando */
-.espera{position:absolute;left:60px;right:60px;top:930px;opacity:0;animation:muestra .01s linear 7.5s forwards, fuera .25s ease-in 8.85s forwards}
-.espera .tv-narra{position:static;margin:0;font-size:116px}
-.espera .tv-narra .linea>span{--d:7.5s}
-.espera .linea:nth-child(2)>span{--d:7.6s} .espera .linea:nth-child(3)>span{--d:7.7s}
-.reloj{position:absolute;left:50%;margin-left:-150px;top:1320px;width:300px;height:300px;animation:crece .4s var(--muelle) 7.8s both}
+/* la espera */
+.reloj{position:absolute;left:50%;top:1200px;width:260px;height:260px;margin-left:-130px}
 .reloj svg{width:100%;height:100%;overflow:visible}
-.reloj circle{fill:rgba(214,255,63,.08);stroke:var(--voltio);stroke-width:5}
-.reloj .agujas line{stroke:#fff;stroke-width:6;stroke-linecap:round}
-.reloj .min{transform-origin:50px 50px;animation:gira .5s linear infinite}
-.reloj .hor{transform-origin:50px 50px;animation:gira 6s linear infinite}
+.reloj .esfera{fill:none;stroke:rgba(255,255,255,.22);stroke-width:2.5}
+.reloj .marcas line{stroke:var(--gris-2);stroke-width:2.5;stroke-linecap:round}
+.reloj .min,.reloj .hor{stroke:var(--texto);stroke-linecap:round;transform-origin:50px 50px}
+.reloj .min{stroke-width:3;animation:gira .6s linear infinite}
+.reloj .hor{stroke-width:5;animation:gira 7s linear infinite}
 @keyframes gira{to{transform:rotate(360deg)}}
 
 /* la pregunta */
-.preg{position:absolute;left:60px;right:60px;top:900px;opacity:0;animation:muestra .01s linear 9.0s forwards}
-.preg .et{display:block;font-family:var(--tv);font-size:46px;letter-spacing:.14em;color:var(--voltio);margin-bottom:20px;animation:sube .3s var(--curva) 9.0s both}
-.preg .tv-narra{position:static;margin:0;font-size:126px;line-height:1.04}
-.preg .tv-narra .linea>span{--d:9.05s}
-.preg .linea:nth-child(2)>span{--d:9.15s} .preg .linea:nth-child(3)>span{--d:9.25s}
-.preg .golpe-zoom{--t:9.25s;--z:1.07;--ox:0%;--oy:50%;--d:.7s}
-.sello-p{left:220px;top:1410px;font-size:104px;--t:11.0s}
+.preg{position:absolute;left:80px;right:80px;top:860px;text-align:center}
+.preg small{display:block;margin-bottom:24px;font-family:var(--mono);font-size:32px;font-weight:600;letter-spacing:.14em;color:var(--ko)}
+.preg q{display:block;quotes:"«" "»";font-size:84px;line-height:1.1;font-weight:600;letter-spacing:-.025em;color:var(--texto);text-wrap:balance}
+.cuenta{position:absolute;left:0;right:0;top:1330px;display:flex;justify-content:center}
+.cuenta div{display:inline-flex;align-items:center;gap:26px;padding:22px 36px;border-radius:20px;background:var(--ko-bg);border:2px solid rgba(248,113,113,.5);font-family:var(--mono);font-weight:600;font-size:52px;letter-spacing:.02em;color:var(--ko)}
+.cuenta div i{font-style:normal;color:rgba(248,113,113,.5)}
 
-/* el final */
-.final-fondo{position:absolute;inset:0;z-index:30;background:var(--fondo);opacity:0;animation:muestra .01s linear 12.66s forwards}
-.final{position:absolute;inset:0;z-index:31;opacity:0;animation:muestra .01s linear 12.66s forwards}
-.final .rotulo-f{position:absolute;left:0;right:0;top:300px;margin:0;text-align:center;font-family:var(--tv);font-size:48px;letter-spacing:.12em;color:var(--voltio);animation:sube .35s var(--curva) 12.7s both}
-.final .tv-narra{top:380px;margin:0;font-size:92px;text-align:center}
-.tel-sitio{position:absolute;left:50%;top:705px;width:440px;margin-left:-220px;animation:desdeAbajo3d .7s var(--curva) 13.0s both, telSale .4s cubic-bezier(.6,0,.8,.4) 14.75s forwards}
-@keyframes telSale{to{opacity:0;transform:translateY(500px) rotate(4deg)}}
-.tel{position:relative;padding:12px;border-radius:58px;background:#14181D;box-shadow:0 60px 120px -10px rgba(0,0,0,.95), inset 0 0 0 2px rgba(255,255,255,.14), 0 0 160px -30px rgba(214,255,63,.35);transform:rotate(-3deg)}
-.tel img{display:block;width:100%;border-radius:46px}
-.foco{position:absolute;left:28px;right:28px;top:296px;height:334px;border-radius:26px;box-shadow:0 0 0 5px var(--voltio), 0 0 40px rgba(214,255,63,.6);opacity:0;animation:muestra .25s linear 13.6s forwards}
-.tel-sitio .golpe-zoom{--t:13.5s;--d:1.2s;--z:1.2;--ox:50%;--oy:0%}
-.cierre{position:absolute;left:0;right:0;top:860px;display:flex;flex-direction:column;align-items:center}
-.logo-medio{font-size:132px;display:inline-flex;align-items:baseline;color:#fff;animation:sube .5s var(--curva) 15.0s both}
-.logo-medio svg{height:.56em;width:auto;margin-right:.07em;transform:translateY(.016em);color:var(--voltio)}
-.logo-medio svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .55s cubic-bezier(.5,0,.2,1) 15.05s both}
-.logo-medio .txt{font-family:var(--titular);letter-spacing:-.02em}
-.cierre .pildora{margin-top:60px;height:110px;font-size:46px;padding:0 52px;animation:crece .45s var(--muelle) 15.45s both}
-.cierre .texto{margin-top:64px;max-width:880px;text-align:center;font-size:50px;animation:sube .45s var(--curva) 15.7s both}
+/* con Coachera */
+.d-movil{top:640px}
+.c-logo{top:740px}
+.c-logo .logo-p{font-size:120px}
+.cierre-f{position:absolute;left:90px;right:90px;top:950px;margin:0;text-align:center;font-size:66px;line-height:1.1;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+.cierre-f em{font-style:normal;color:var(--turquesa-t)}
+.d-cta{top:1230px}
 </style></head>
 <body><div id="escena">
-  <div class="fondo"><div class="rejilla"></div><div class="luz" style="top:42%"></div><div class="grano"></div></div>
+  <div class="fondo-p"></div>
+  <div class="barra-c" style="--dur:18.2s"><b></b></div>
 
-  <div class="gancho"><h1 class="tv-narra">Tu cliente<br>te ha mandado<br><span class="v">un audio</span></h1></div>
+  <!-- el lío: la nota de voz -->
+  <section class="escena primera" style="--b:12.05s">
+    <p class="etiqueta et-gancho">COSAS DE ENTRENADOR — MARTES · 21:47</p>
+    <h1 class="d-frase gancho-f">Tu cliente te ha mandado <em>un audio</em>.</h1>
+    <p class="etiqueta t" id="et-rep"><span class="rojo">●</span> REPRODUCIENDO · MINUTO <span id="minuto">0:12</span></p>
 
-  <div class="audio">
-    <span class="quien">Andrés · cliente</span>
-    <div class="fila">
-      <div class="ava">A<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg></div>
-      <div class="play" id="play"></div>
-      <div class="onda" id="onda"><div class="capa"></div><div class="capa ya"></div><div class="bola"></div></div>
+    <div class="audio">
+      <span class="quien">Andrés</span>
+      <div class="fila">
+        <div class="ava">A<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg></div>
+        <div class="play" id="play"></div>
+        <div class="onda" id="onda"><div class="capa"></div><div class="capa ya"></div><div class="bola"></div></div>
+      </div>
+      <div class="pie"><span class="dur" id="dur">4:37</span><span class="hora">21:47</span></div>
     </div>
-    <div class="pie"><span class="dur" id="dur">4:37</span><span class="hora">21:47 <b>✓✓</b></span></div>
-  </div>
 
-  <div class="tv-rotulo rojo" id="rotulo" style="--t:1.6s;--fin:12.3s"><b>EN DIRECTO</b><span><em>MINUTO</em><i id="minuto" style="font-style:normal">0:12</i></span></div>
+    <div class="sub t" style="--a:1.75s;--b:3.3s"><small>SUBTÍTULOS</small><q>Hola, oye, una cosa…</q></div>
+    <div class="sub t" style="--a:3.5s;--b:5.3s"><small>SUBTÍTULOS</small><q>…que mi cuñado dice que el arroz por la noche…</q></div>
+    <div class="sub t" style="--a:5.5s;--b:7.3s"><small>SUBTÍTULOS</small><q>…y luego está lo del ayuno, que lo vi en un vídeo…</q></div>
 
-  <div class="sub" style="--t:1.75s;--f:3.3s"><span class="et">SUBTÍTULOS</span><q><span>Hola, oye, una cosa…</span></q></div>
-  <div class="sub" style="--t:3.5s;--f:5.3s"><span class="et">SUBTÍTULOS</span><q><span>…que mi cuñado dice que el arroz por la noche…</span></q></div>
-  <div class="sub" style="--t:5.5s;--f:7.3s"><span class="et">SUBTÍTULOS</span><q><span>…y luego está lo del ayuno, que lo vi en un vídeo…</span></q></div>
-
-  <div class="espera"><h2 class="tv-narra"><span class="linea"><span>El entrenador</span></span><span class="linea"><span>sigue esperando</span></span><span class="linea"><span class="v">la pregunta.</span></span></h2></div>
-  <div class="reloj" style="opacity:0;animation:muestra .01s linear 7.8s forwards, desaparece .2s linear 8.85s forwards"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><g style="stroke:var(--voltio);stroke-width:4;stroke-linecap:round"><line x1="50" y1="10" x2="50" y2="17"/><line x1="90" y1="50" x2="83" y2="50"/><line x1="50" y1="90" x2="50" y2="83"/><line x1="10" y1="50" x2="17" y2="50"/></g><g class="agujas"><line class="hor" x1="50" y1="50" x2="50" y2="31" style="stroke-width:9"/><line class="min" x1="50" y1="50" x2="50" y2="13"/><circle cx="50" cy="50" r="5" style="fill:var(--voltio);stroke:none"/></g></svg></div>
-
-  <div class="preg"><span class="et">LA PREGUNTA:</span><div class="golpe-zoom"><h2 class="tv-narra"><span class="linea"><span>¿El pollo se pesa</span></span><span class="linea"><span class="v">en crudo o</span></span><span class="linea"><span class="v">en cocinado?</span></span></h2></div></div>
-  <div class="tv-sello sello-p">4 MINUTOS<br>1 PREGUNTA</div>
-
-  <div class="tv-cortinilla" style="--t:12.3s"><div class="lamina"></div><div class="lamina dos"></div><svg viewBox="8 24 85 66"><path d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><p class="pal">FINAL</p></div>
-  <div class="final-fondo"></div>
-  <div class="final">
-    <p class="rotulo-f">FIN DEL AUDIO</p>
-    <h2 class="tv-narra"><span class="linea"><span style="--d:12.75s">Lo que no hace falta</span></span><span class="linea"><span style="--d:12.85s">preguntar, ya lo tiene</span></span><span class="linea"><span style="--d:12.95s" class="v">en su app.</span></span></h2>
-    <div class="tel-sitio"><div class="golpe-zoom"><div class="tel"><img src="../recursos/cliente-equivalencia.png" alt=""><div class="foco"></div></div></div></div>
-    <div class="cierre">
-      <div class="logo-medio"><svg class="c-marca" viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
-      <span class="pildora">Gratis hasta 5 clientes</span>
-      <p class="texto">Ve su menú con las cantidades y, si no tiene arroz, toca <b>«Cambiar»</b>.</p>
+    <div class="t" style="--a:7.5s;--b:8.8s">
+      <h2 class="d-frase" style="top:880px">Tú, todavía esperando <span style="color:var(--gris)">la pregunta.</span></h2>
+      <div class="reloj"><svg viewBox="0 0 100 100"><circle class="esfera" cx="50" cy="50" r="44"/><g class="marcas"><line x1="50" y1="10" x2="50" y2="16"/><line x1="90" y1="50" x2="84" y2="50"/><line x1="50" y1="90" x2="50" y2="84"/><line x1="10" y1="50" x2="16" y2="50"/></g><line class="hor" x1="50" y1="50" x2="50" y2="30"/><line class="min" x1="50" y1="50" x2="50" y2="16"/></svg></div>
     </div>
-  </div>
+
+    <div class="preg t" style="--a:9.0s"><small>MINUTO 4:31 · LA PREGUNTA</small><q>¿El pollo se pesa en crudo o en cocinado?</q></div>
+    <div class="cuenta t" style="--a:10.6s"><div>4 MINUTOS <i>·</i> 1 PREGUNTA</div></div>
+  </section>
+
+  <!-- con Coachera -->
+  <section class="escena" style="--a:12.05s;--b:15.25s"><div class="golpe" style="--a:12.05s">
+    <p class="etiqueta">CON COACHERA</p>
+    <h2 class="d-titular">Toca «Cambiar» y <em>le sale la equivalencia</em>.</h2>
+    <div class="d-movil" style="--k:1.941;--d:12.2s"><div class="d-pantalla">
+      <div class="estado" style="background:rgb(122,124,127);color:#0B0F14"><b>9:41</b><i></i></div>
+      <div class="d-zoom" style="--z:1.1;--ox:50%;--oy:580px;--tz:13.2s"><div style="position:relative">
+        <div style="height:1207px;background-image:url(../recursos/cliente-equivalencia.png);background-position:0 -369px"></div>
+        <i class="d-foco" style="left:56px;top:498px;width:620px;height:172px;--d:13.5s"></i>
+      </div></div>
+    </div></div>
+  </div></section>
+
+  <!-- el cierre -->
+  <section class="escena" style="--a:15.25s;--b:999s"><div class="golpe" style="--a:15.25s">
+    <div class="c-logo entra" style="--d:15.35s"><span class="logo-p" style="--d:15.45s"><svg viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></span></div>
+    <p class="cierre-f entra" style="--d:15.7s">Lo que no hace falta preguntar, <em>ya está en su app</em>.</p>
+    <div class="d-cta entra" style="--d:16.1s"><div>Gratis hasta 5 clientes</div><span>coachera.fit · enlace en la bio</span></div>
+  </div></section>
+  <span class="corte" style="--d:11.85s"></span><span class="corte" style="--d:15.05s"></span>
 </div>
 <script src="../motor/reel.js"></script>
-<script src="../motor/tv.js"></script>
 <script>
 // la onda del audio: barras fijas (siempre las mismas), una capa gris y otra que se va llenando
 (function () {
@@ -137,23 +136,25 @@
   const html = Array.from({ length: 30 }, (_, k) => `<i style="--h:${Math.round(18 + 82 * Math.abs(Math.sin(k * .7)) * (.45 + .55 * r()))}%"></i>`).join("");
   document.querySelectorAll("#onda .capa").forEach((c) => (c.innerHTML = html));
 })();
-// el minuto del audio (en segundos de audio) según el segundo del vídeo
-// se queda casi quieto en cada minuto del guion y salta al siguiente; en la espera, corre
-const TRAMOS = [[0, 0], [1.6, 12], [3.2, 19], [3.5, 108], [5.2, 115], [5.5, 182], [7.5, 189], [8.85, 271], [12.3, 271]];
+// el segundo del audio según el del vídeo: casi quieto en cada minuto del guion (0:12, 1:48,
+// 3:02) y salta al siguiente; en la espera corre hasta 4:31
+const TRAMOS = [[0, 0], [1.6, 12], [3.2, 19], [3.5, 108], [5.2, 115], [5.5, 182], [7.5, 189], [8.85, 271], [99, 271]];
 const mmss = (x) => Math.floor(x / 60) + ":" + String(Math.floor(x % 60)).padStart(2, "0");
 window.REEL = {
-  duracion: 17.5,
-  musica: { estilo: "phonk", caida: 1.6, vol: .6 },
+  duracion: 18.2,
+  musica: { estilo: "pulso", vol: .28 },
   sonidos: [
-    { t: .1, tipo: "silbato", vol: .8 },
-    { t: 1.6, tipo: "toque", vol: .8 },
-    { t: 3.5, tipo: "barrido", vol: .6 },
-    { t: 5.5, tipo: "barrido", vol: .6 },
-    { t: 7.5, tipo: "tecla", vol: .7 }, { t: 7.85, tipo: "tecla", vol: .6 }, { t: 8.2, tipo: "tecla", vol: .6 }, { t: 8.55, tipo: "tecla", vol: .6 },
-    { t: 9.0, tipo: "golpe", vol: .8 }, { t: 9.3, tipo: "publico", vol: .6 },
-    { t: 11.0, tipo: "var", vol: .9 },
-    { t: 12.3, tipo: "barrido", vol: .8 },
-    { t: 15.05, tipo: "marca", vol: .9 }, { t: 15.45, tipo: "toque", vol: .7 },
+    { t: .02, tipo: "golpe", vol: .35 },
+    { t: 1.6, tipo: "toque", vol: .4 },
+    { t: 3.5, tipo: "pop", vol: .3 },
+    { t: 5.5, tipo: "pop", vol: .3 },
+    { t: 7.5, tipo: "tecla", vol: .35 }, { t: 7.9, tipo: "tecla", vol: .3 }, { t: 8.3, tipo: "tecla", vol: .3 },
+    { t: 9.0, tipo: "pop", vol: .45 },
+    { t: 10.6, tipo: "golpe", vol: .3 },
+    { t: 11.85, tipo: "barrido", vol: .4 }, { t: 12.3, tipo: "toque", vol: .3 },
+    { t: 13.5, tipo: "ok", vol: .45 },
+    { t: 15.05, tipo: "barrido", vol: .4 },
+    { t: 15.5, tipo: "marca", vol: .6 },
   ],
 };
 window.alTiempoReel = (t) => {
@@ -162,8 +163,7 @@ window.alTiempoReel = (t) => {
     const [t0, e0] = TRAMOS[k - 1], [t1, e1] = TRAMOS[k];
     if (t >= t0) e = t >= t1 ? e1 : e0 + (e1 - e0) * (t - t0) / (t1 - t0);
   }
-  const dur = document.getElementById("dur");
-  dur.innerHTML = t < 1.6 ? "4:37" : mmss(e) + "<small> / 4:37</small>";
+  document.getElementById("dur").innerHTML = t < 1.6 ? "4:37" : mmss(e) + "<small> / 4:37</small>";
   document.getElementById("onda").style.setProperty("--p", (100 * e / 277).toFixed(2) + "%");
   document.getElementById("play").classList.toggle("pausa", t >= 1.6 && t < 9.0);
   document.getElementById("minuto").textContent = mmss(Math.max(12, e));
