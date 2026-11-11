@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>V5 · ¿Notas el cambio?</title>
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/reel.css">
+<link rel="stylesheet" href="../motor/principios.css">
+<link rel="stylesheet" href="../motor/cortos.css">
+<link rel="stylesheet" href="../motor/dia.css">
+<link rel="stylesheet" href="../motor/munecos.css">
+<style>
+/* V5 · «¿Notas el cambio?» (identidad de la app: tinta, Plex, turquesa solo en Coachera).
+   Un «encuentra las diferencias» con dos fotos de revisión (semana 1 y semana 6) que son la
+   misma: mismo espejo, misma luz, misma camiseta. Diferencias: la toalla, la planta y el pelo;
+   en el cuerpo, 0. Spoiler: el cambio está en lo que no sale en la foto. Con Coachera, el panel
+   de revisión: peso y hábitos comparados con la anterior y las fotos por fecha. 18,5 s.
+   La primera escena (frase y fotos) se ve desde el fotograma 0. */
+.etiqueta{top:278px}
+
+/* lo de arriba: una cosa cada vez */
+.arriba{position:absolute;left:70px;right:70px;top:350px;opacity:0;animation:fraseEntra .4s var(--curva) var(--a) forwards, desaparece .25s ease var(--b) forwards}
+.arriba.ya{opacity:1;animation:desaparece .25s ease var(--b) forwards}
+.arriba .d-frase{position:static;margin:0;font-size:84px}
+
+.chat-v5{display:flex;justify-content:flex-start}
+.chat-v5 .msg-p{font-size:62px;max-width:none;padding:22px 34px 14px;border-radius:10px 36px 36px 36px}
+.chat-v5 .msg-p small{display:block;font-size:30px;font-weight:600;color:#7FE3A8;margin-bottom:4px}
+.chat-v5 .msg-p i{display:block;text-align:right;font-style:normal;font-family:var(--mono);font-size:26px;color:#8696A0;margin-top:2px}
+.crono{text-align:center}
+.crono small{display:block;font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:.2em;color:var(--gris)}
+.crono b{display:block;margin-top:4px;font-family:var(--mono);font-weight:600;font-size:150px;line-height:1;letter-spacing:-.04em;color:var(--texto)}
+.crono b.poco{color:var(--ko)}
+
+/* las dos fotos */
+.foto{position:absolute;top:610px;width:465px;height:659px;border-radius:26px;overflow:hidden;background:#11161D;border:2px solid var(--linea-2);box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
+.foto svg{display:block;width:100%;height:100%}
+.foto .et{position:absolute;left:16px;top:16px;padding:6px 14px;border-radius:999px;background:rgba(7,11,16,.82);border:1px solid var(--linea-2);font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:.12em;color:var(--texto)}
+.anillo{fill:none;stroke:var(--ko);stroke-width:8;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dibuja .45s cubic-bezier(.5,0,.2,1) var(--t) both}
+.lupa{position:absolute;left:0;top:0;width:230px;height:230px;z-index:5;opacity:0;animation:muestra .3s ease 3.5s forwards, lupa 2.5s ease-in-out 3.5s both, desaparece .3s ease 5.9s forwards}
+.lupa svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 16px 26px rgba(0,0,0,.7))}
+@keyframes lupa{0%{transform:translate(170px,700px)}25%{transform:translate(660px,720px)}50%{transform:translate(180px,950px)}75%{transform:translate(680px,980px)}100%{transform:translate(420px,820px)}}
+
+/* las diferencias encontradas */
+.difs{position:absolute;left:60px;right:60px;top:1300px;display:flex;flex-direction:column;gap:12px;animation:desaparece .3s ease 9.3s forwards}
+.dif{display:grid;grid-template-columns:70px 1fr;align-items:center;height:88px;padding:0 26px;border-radius:20px;background:var(--sf);border:2px solid var(--linea);font-size:44px;font-weight:500;color:var(--texto);animation:fraseEntra .35s var(--curva) var(--t) both}
+.dif b{font-family:var(--mono);font-weight:500;color:var(--ko)}
+.cero{position:absolute;left:0;right:0;top:1300px;text-align:center;opacity:0;animation:fraseEntra .4s var(--curva) 9.55s forwards}
+.cero small{display:block;font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:.16em;color:var(--gris)}
+.cero b{display:inline-block;font-family:var(--mono);font-weight:600;font-size:220px;line-height:1.02;letter-spacing:-.04em;color:var(--ko);text-shadow:0 0 80px rgba(248,113,113,.35)}
+
+/* el spoiler, encima de las fotos apagadas */
+.velo{position:absolute;inset:0;z-index:8;background:rgba(7,11,16,.9);opacity:0;animation:muestra .4s ease 11.0s forwards}
+.spoiler{position:absolute;left:70px;right:70px;top:640px;z-index:9;text-align:center;opacity:0;animation:fraseEntra .45s var(--curva) 11.05s forwards}
+.spoiler small{display:block;margin-bottom:26px;font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:.2em;color:var(--gris)}
+.spoiler h2{margin:0;font-size:100px;line-height:1.05;font-weight:600;letter-spacing:-.03em}
+.spoiler p{margin:34px 0 0;font-size:60px;line-height:1.15;font-weight:500;color:var(--gris);opacity:0;animation:fraseEntra .4s var(--curva) 11.6s forwards}
+
+/* con Coachera: el panel de revisión, recortado y grande */
+.d-titular{top:350px}
+.ventana-c{position:absolute;left:60px;right:60px;top:590px;height:1040px;border-radius:36px;overflow:hidden;background:#12171D;border:2px solid var(--linea-2);
+  box-shadow:0 0 0 10px rgba(255,255,255,.035),0 40px 160px -20px rgba(20,184,166,.55);animation:desdeAbajo3d .7s var(--curva) 13.15s both}
+.ventana-c img{position:absolute;max-width:none}
+.ventana-c::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,#12171D)}
+.foco-v{position:absolute;border-radius:18px;box-shadow:0 0 0 6px var(--turquesa-t),0 0 0 16px rgba(94,234,212,.22),0 0 70px rgba(20,184,166,.7);z-index:2;opacity:0;
+  animation:muestra .25s ease var(--d) forwards, pulsa .6s var(--curva) var(--d) 1, desaparece .25s ease var(--f,99s) forwards}
+
+/* el cierre */
+.c-logo{top:700px}
+.c-frase{position:absolute;left:70px;right:70px;top:880px;margin:0;text-align:center;font-size:76px;line-height:1.08;font-weight:600;letter-spacing:-.025em}
+.c-frase em{font-style:normal;color:var(--turquesa-t)}
+.d-cta{top:1110px}
+</style></head>
+<body><div id="escena">
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <radialGradient id="esfera" cx=".38" cy=".34" r=".72"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#E4EAF0"/><stop offset="1" stop-color="#B9C4CF"/></radialGradient>
+    <linearGradient id="espejo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#26313F"/><stop offset=".55" stop-color="#1A222D"/><stop offset="1" stop-color="#202A36"/></linearGradient>
+    <radialGradient id="luzfoto" cx=".5" cy="0" r=".9"><stop offset="0" stop-color="rgba(255,236,200,.26)"/><stop offset="1" stop-color="rgba(255,236,200,0)"/></radialGradient>
+  </defs></svg>
+  <div class="fondo-p"></div>
+  <div class="barra-c" style="--dur:18.5s"><b></b></div>
+
+  <!-- 1 · el juego (desde el fotograma 0) -->
+  <section class="escena primera" style="--b:12.95s">
+    <p class="etiqueta">REVISIÓN · SEMANA 1 VS. SEMANA 6</p>
+    <div class="arriba ya" style="--b:1.55s"><h1 class="d-frase">Encuentra las diferencias.</h1></div>
+    <div class="arriba" style="--a:1.65s;--b:3.4s"><div class="chat-v5"><div class="msg-p"><small>Andrés</small>¿Notas el cambio?<i>dom 22:41</i></div></div></div>
+    <div class="arriba crono" style="--a:3.5s;--b:99s"><small>TIENES 10 SEGUNDOS</small><b id="seg">0:10</b></div>
+
+    <div class="foto" style="left:60px"><svg viewBox="0 0 600 850" id="foto1"></svg><span class="et">SEMANA 1</span></div>
+    <div class="foto" style="left:555px"><svg viewBox="0 0 600 850" id="foto2"></svg><span class="et">SEMANA 6</span></div>
+    <div class="lupa"><svg viewBox="0 0 230 230"><circle cx="96" cy="96" r="74" fill="rgba(255,255,255,.06)" stroke="#EEF3F7" stroke-width="9"/><path d="M150 150L214 214" stroke="#EEF3F7" stroke-width="20" stroke-linecap="round"/></svg></div>
+
+    <div class="difs">
+      <div class="dif" style="--t:6.0s"><b>1</b>La toalla está doblada</div>
+      <div class="dif" style="--t:7.1s"><b>2</b>Hay otra planta</div>
+      <div class="dif" style="--t:8.2s"><b>3</b>¿Se ha cortado el pelo?</div>
+    </div>
+    <div class="cero"><small>DIFERENCIAS EN EL CUERPO</small><b>0</b></div>
+
+    <div class="velo"></div>
+    <div class="spoiler"><small>SPOILER</small><h2>Sí que había cambio.</h2><p>Pero en lo que no sale en la foto.</p></div>
+  </section>
+
+  <!-- 2 · con Coachera -->
+  <section class="escena" style="--a:12.95s;--b:15.95s"><div class="golpe" style="--a:12.95s">
+    <p class="etiqueta">CON COACHERA</p>
+    <h2 class="d-titular sale" style="--f:14.7s">Lo que no sale en la foto, <em>sale aquí</em>.</h2>
+    <h2 class="d-titular entra2" style="--d:15.0s">Fotos, peso y respuestas, <em>al lado de la anterior</em>.</h2>
+    <div class="ventana-c"><img src="../recursos/panel-revision.png" id="captura" alt="">
+      <i class="foco-v" id="foco1" style="--d:13.9s;--f:14.85s"></i>
+      <i class="foco-v" id="foco2" style="--d:15.0s"></i>
+    </div>
+  </div></section>
+
+  <!-- 3 · el cierre -->
+  <section class="escena" style="--a:15.95s;--b:999s"><div class="golpe" style="--a:15.95s">
+    <div class="c-logo entra" style="--d:16.05s"><span class="logo-p" style="--d:16.15s"><svg viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></span></div>
+    <p class="c-frase entra" style="--d:16.35s">Que el cambio <em>se vea</em>.</p>
+    <div class="d-cta entra" style="--d:16.75s"><div>Gratis hasta 5 clientes</div><span>coachera.fit · enlace en la bio</span></div>
+  </div></section>
+
+  <span class="corte" style="--d:12.75s"></span><span class="corte" style="--d:15.75s"></span>
+</div>
+<script src="../motor/reel.js"></script>
+<script src="../motor/munecos.js"></script>
+<script>
+// ---- la captura: recorte del panel de revisión (px de la imagen original, 2560×1600) ----
+const RECORTE = { x: 1212, y: 562, w: 560 };
+const ESC = 956 / RECORTE.w;
+Object.assign(document.getElementById("captura").style, {
+  width: 2560 * ESC + "px", left: -RECORTE.x * ESC + "px", top: -RECORTE.y * ESC + "px" });
+const foco = (id, x0, y0, x1, y1) => Object.assign(document.getElementById(id).style, {
+  left: (x0 - RECORTE.x) * ESC + "px", top: (y0 - RECORTE.y) * ESC + "px",
+  width: (x1 - x0) * ESC + "px", height: (y1 - y0) * ESC + "px" });
+foco("foco1", 1222, 576, 1764, 728);    // peso del día −0,7 kg y hábitos 83 %
+foco("foco2", 1222, 752, 1752, 1160);   // las fotos por fecha (1 oct / 8 oct)
+
+// ---- las dos fotos: el mismo espejo, la misma luz, la misma camiseta ----
+const NS = "http://www.w3.org/2000/svg";
+const pinta = (svg, h) => svg.insertAdjacentHTML("beforeend", h);
+const MUNECOS = [];
+function foto(id, semana6) {
+  const svg = document.getElementById(id);
+  pinta(svg, `<rect width="600" height="850" fill="#141A22"/>
+    <path d="M0 640H600" stroke="rgba(255,255,255,.05)" stroke-width="3"/>
+    <rect x="110" y="70" width="380" height="760" rx="26" fill="url(#espejo)" stroke="#8C99AA" stroke-width="9"/>
+    <path d="M150 120L230 120L150 260Z" fill="rgba(255,255,255,.05)"/>
+    <rect width="600" height="850" fill="url(#luzfoto)"/>
+    <rect x="290" y="14" width="90" height="24" rx="12" fill="#FFF3D6"/>`);
+  pinta(svg, semana6
+    ? `<rect x="40" y="610" width="34" height="140" rx="17" fill="#3C9A5B"/><rect x="12" y="640" width="22" height="60" rx="11" fill="#3C9A5B"/><rect x="18" y="682" width="30" height="18" fill="#3C9A5B"/><rect x="80" y="630" width="22" height="56" rx="11" fill="#3C9A5B"/><rect x="66" y="666" width="26" height="18" fill="#3C9A5B"/>
+       <path d="M18 750H96L88 830H26Z" fill="#9A6A44"/>`
+    : `<path d="M57 750C40 690 10 670 6 640C40 650 55 690 57 750Z" fill="#3C9A5B"/><path d="M57 750C60 680 50 630 70 600C88 640 70 700 57 750Z" fill="#4FB36D"/><path d="M57 750C80 700 100 680 110 660C112 700 80 730 57 750Z" fill="#3C9A5B"/>
+       <path d="M18 750H96L88 830H26Z" fill="#9A6A44"/>`);
+  pinta(svg, `<rect x="528" y="290" width="16" height="16" rx="8" fill="#8C99AA"/><rect x="502" y="716" width="92" height="10" fill="#8C99AA"/>`);
+  pinta(svg, semana6
+    ? `<rect x="510" y="660" width="76" height="56" rx="8" fill="#E07A5F"/><path d="M510 688H586" stroke="#B85A43" stroke-width="5"/>`
+    : `<path d="M512 300H560L566 520Q538 532 508 520Z" fill="#E07A5F"/><path d="M514 470H562" stroke="#B85A43" stroke-width="5"/>`);
+  const g = document.createElementNS(NS, "g"); svg.appendChild(g);
+  const m = Muneco(g, { grosor: 30 });
+  m.linea([[0, { x: 300, y: 520, mI: [-84, 186], mD: [78, 14], pI: [262, 800], pD: [338, 800], poloI: [-700, 60], poloD: [700, 200] }]]);
+  m.en(0); MUNECOS.push(m);
+  pinta(svg, `<path d="M238 330H362L402 392L372 412L356 388L354 516H246L244 388L228 412L198 392Z" fill="#4A6283" stroke="#3A4F6C" stroke-width="4" stroke-linejoin="round"/>
+    <rect x="352" y="300" width="56" height="96" rx="10" fill="#0B0F14" stroke="#5A6678" stroke-width="5"/>`);
+  pinta(svg, semana6
+    ? `<path d="M252 214Q300 176 348 214" fill="none" stroke="#2A2F37" stroke-width="22" stroke-linecap="round"/>`
+    : `<path d="M250 224Q262 170 290 186Q298 150 318 184Q342 160 350 224" fill="none" stroke="#2A2F37" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`);
+  if (semana6) pinta(svg, `<circle class="anillo" pathLength="1" cx="548" cy="688" r="66" style="--t:6.05s"/>
+    <circle class="anillo" pathLength="1" cx="58" cy="690" r="80" style="--t:7.15s"/>
+    <circle class="anillo" pathLength="1" cx="300" cy="200" r="72" style="--t:8.25s"/>`);
+}
+foto("foto1", false);
+foto("foto2", true);
+
+window.REEL = {
+  duracion: 18.5,
+  musica: { estilo: "pulso", vol: .28 },
+  sonidos: [
+    { t: .02, tipo: "golpe", vol: .3 },
+    { t: 1.65, tipo: "pop", vol: .4 },
+    ...Array.from({ length: 10 }, (_, k) => ({ t: 4.1 + k * .6, tipo: "tecla", vol: .25 })),
+    { t: 6.0, tipo: "pop", vol: .35 }, { t: 7.1, tipo: "pop", vol: .35 }, { t: 8.2, tipo: "pop", vol: .35 },
+    { t: 9.55, tipo: "golpe", vol: .4 },
+    { t: 11.05, tipo: "toque", vol: .35 },
+    { t: 12.75, tipo: "barrido", vol: .4 }, { t: 13.15, tipo: "toque", vol: .3 },
+    { t: 13.9, tipo: "ok", vol: .4 }, { t: 15.0, tipo: "ok", vol: .45 },
+    { t: 15.75, tipo: "barrido", vol: .4 }, { t: 16.15, tipo: "marca", vol: .6 },
+  ],
+};
+window.alTiempoReel = (t) => {
+  const n = t < 3.5 ? 10 : Math.max(0, 10 - Math.floor((t - 3.5) / .6));
+  const seg = document.getElementById("seg");
+  seg.textContent = "0:" + String(n).padStart(2, "0");
+  seg.classList.toggle("poco", n <= 3);
+};
+</script>
+</body></html>
