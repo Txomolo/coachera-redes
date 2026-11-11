@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>M10 · Este es Dani, a fin de mes</title>
+<!--
+  M10 · «Este es Dani, a fin de mes» (guion: guiones/m10-dani-fin-de-mes.md). Continuación de m9
+  «Este es Dani, un lunes»: el mismo escritorio, el mismo Dani y la misma estructura (el lío,
+  «Con Coachera» con la captura de Facturación y el cierre con el logo). Esta vez, de noche.
+
+  CÓMO CAMBIAR LOS TIEMPOS (cuando llegue la voz de Arlo)
+  -------------------------------------------------------
+  Todo el vídeo sale del objeto TIEMPOS, al principio del <script> de abajo: el segundo en que
+  EMPIEZA cada frase de la locución, y «fin», la duración total del vídeo. Escucha el WAV (o
+  míralo en Audacity), apunta dónde empieza cada frase y cambia solo esos números. Las
+  animaciones, los subtítulos (palabra a palabra, repartidos dentro de cada frase), los
+  sonidos y la música se recalculan solos. Si una frase dura mucho más o menos de lo normal,
+  ajusta también RITMO (palabras por segundo) para que el karaoke del subtítulo vaya a la par.
+
+  CÓMO AÑADIR LA VOZ
+  ------------------
+  1. Guarda el WAV de Arlo, ya montado desde el segundo 0 del vídeo (mono o estéreo, 16 bits;
+     si no es de 48 kHz, motor/sonido.py lo remuestrea), por ejemplo en
+     instagram/munecos/voz/m10-dani-fin-de-mes.wav
+  2. En window.REEL, al final, quita las // de las líneas «voz» y «vol_voz» (la ruta es
+     relativa a la carpeta desde la que lanzas node, la raíz del repo). Con voz, la música se
+     aparta sola mientras habla (ducking de motor/sonido.py).
+  3. node motor/render.mjs reels/m10-dani-fin-de-mes.html instagram/munecos/m10-dani-fin-de-mes.mp4
+
+  Captura: recursos/panel-facturacion.png (2560×1600, datos inventados). Sin marcas de bancos:
+  el banco es una lista genérica de movimientos.
+-->
+<link rel="stylesheet" href="../motor/fuentes.css">
+<link rel="stylesheet" href="../motor/reel.css">
+<link rel="stylesheet" href="../motor/principios.css">
+<style>
+@font-face{font-family:'IBM Plex Sans';font-weight:700;font-style:normal;src:url('../motor/fuentes/IBMPlexSans-Bold.woff') format('woff');}
+:root{--amarillo:#FFD54A;--rojo:#EF4444;--marco:#12161D}
+#escena{background:#263045}
+#sala{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.capa{position:absolute;inset:0;pointer-events:none}
+
+/* el título de arriba, como en m9 */
+.titulo{position:absolute;left:0;right:0;top:178px;text-align:center;z-index:20}
+.titulo h1{margin:0;font-weight:700;font-size:112px;line-height:1.0;letter-spacing:-.025em;text-transform:uppercase;color:#EEF2F7;
+  text-shadow:0 6px 0 rgba(10,14,20,.55),0 10px 40px rgba(0,0,0,.35)}
+.titulo h1 span{display:block}
+.titulo h1 .am{color:var(--amarillo)}
+.titulo p{margin:28px 0 0;font-family:var(--mono);font-size:44px;font-weight:500;letter-spacing:.3em;color:rgba(200,208,222,.62);text-shadow:0 3px 0 rgba(0,0,0,.35)}
+
+/* la cifra roja y la pegatina */
+.badge{position:absolute;left:390px;top:340px;width:300px;height:216px;border-radius:108px;background:var(--rojo);border:9px solid var(--marco);
+  display:grid;place-items:center;font-weight:600;font-size:150px;line-height:1;color:#fff;letter-spacing:-.03em;z-index:12;
+  box-shadow:0 0 70px rgba(239,68,68,.65),0 0 0 2px rgba(255,255,255,.04)}
+.badge-et{position:absolute;left:0;right:0;top:572px;text-align:center;font-family:var(--mono);font-size:30px;letter-spacing:.38em;color:#F58A8A;z-index:12;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.pegatina{position:absolute;left:150px;top:640px;padding:18px 34px;border-radius:18px;background:var(--amarillo);color:#1A1405;font-weight:700;font-size:46px;letter-spacing:-.01em;z-index:12;
+  box-shadow:0 14px 30px -8px rgba(0,0,0,.6);transform-origin:50% 50%}
+.duda-q{position:absolute;font-weight:700;color:var(--amarillo);z-index:13;text-shadow:0 6px 0 rgba(0,0,0,.35),0 0 30px rgba(255,213,74,.35);line-height:1}
+
+/* tarjetas del lío (como las de m9) */
+.tarjeta{position:absolute;left:70px;right:70px;border-radius:24px;background:#161C25;border:2px solid rgba(255,255,255,.12);box-shadow:0 30px 70px -18px rgba(0,0,0,.9);z-index:14;padding:22px 30px 18px}
+.t-cab{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:26px;letter-spacing:.14em;color:#8A96A6;padding-bottom:12px;border-bottom:2px solid rgba(255,255,255,.08)}
+.mov{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;height:84px;border-bottom:2px solid rgba(255,255,255,.06);font-size:33px;border-radius:14px;padding:0 12px;margin:0 -12px}
+.mov:last-child{border-bottom:0}
+.mov time{font-family:var(--mono);font-size:24px;color:#7D8898;width:110px}
+.mov b{font-weight:600;color:#E9EEF4;white-space:nowrap}
+.mov b small{font-weight:500;font-size:28px;color:#97A3B3;margin-right:10px}
+.mov span{font-family:var(--mono);font-size:32px;font-weight:500;color:#E9EEF4}
+.mov span.mas{color:#86EFAC}
+.mov.encontrado{background:rgba(255,213,74,.14);box-shadow:0 0 0 4px var(--amarillo),0 0 40px rgba(255,213,74,.35)}
+
+.chat-cab{display:flex;align-items:center;gap:20px;padding-bottom:16px;border-bottom:2px solid rgba(255,255,255,.08)}
+.av{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#2A3442;color:#C9D3DE;font-family:var(--mono);font-weight:600;font-size:26px}
+.chat-cab b{display:block;font-size:36px;font-weight:600}
+.chat-cab small{font-size:25px;color:#8A96A6}
+.caja{display:flex;align-items:center;gap:18px;margin-top:22px}
+.entrada{flex:1;min-height:92px;display:flex;align-items:center;padding:14px 28px;border-radius:46px;background:#0E131A;border:2px solid rgba(255,255,255,.14);font-size:38px;color:#E9EEF4}
+.entrada .cursor{display:inline-block;width:4px;height:44px;margin-left:3px;background:var(--amarillo);vertical-align:middle}
+.enviar{flex:none;width:92px;height:92px;border-radius:50%;background:#2A3442;display:grid;place-items:center}
+.enviar svg,.b-env svg{width:42px;height:42px;fill:none;stroke:#8A96A6;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* «Con Coachera» y la captura */
+.pildora-c{position:absolute;left:50%;top:252px;height:96px;padding:0 48px;border-radius:999px;background:#22C3AD;color:#06231F;display:flex;align-items:center;
+  font-weight:700;font-size:46px;letter-spacing:.01em;text-transform:uppercase;z-index:22;transform:translateX(-50%);box-shadow:0 0 70px rgba(20,184,166,.55)}
+.panel{position:absolute;left:30px;top:370px;width:1020px;height:630px;border-radius:28px;overflow:hidden;background:#0E1217;z-index:21;
+  box-shadow:0 0 0 3px rgba(94,234,212,.55),0 0 90px rgba(20,184,166,.5),0 50px 120px -20px rgba(0,0,0,.9)}
+.camara{position:absolute;left:0;top:0;width:2560px;height:1600px;transform-origin:0 0}
+.camara img{display:block;width:2560px;height:1600px}
+.foco{position:absolute;border-radius:22px;box-shadow:0 0 0 7px var(--turquesa-t),0 0 0 18px rgba(94,234,212,.22),0 0 80px rgba(20,184,166,.75);opacity:0}
+.toque{z-index:5}
+.borrador{position:absolute;left:44px;right:44px;top:726px;border-radius:26px;background:#121920;border:3px solid rgba(94,234,212,.6);box-shadow:0 -20px 80px -10px rgba(0,0,0,.95),0 0 60px -10px rgba(20,184,166,.5);z-index:23;padding:20px 26px 22px}
+.borrador p{margin:0 0 12px;font-family:var(--mono);font-size:25px;letter-spacing:.12em;color:var(--turquesa-t)}
+.borrador .fila{display:flex;align-items:flex-end;gap:18px}
+.b-txt{flex:1;padding:16px 22px;border-radius:20px;background:#0B1015;border:2px solid rgba(94,234,212,.35);font-size:33px;line-height:1.33;color:#E8EDF3;height:158px}
+.b-env{flex:none;width:88px;height:88px;border-radius:50%;background:var(--turquesa);display:grid;place-items:center}
+.b-env svg{stroke:#06231F}
+
+/* subtítulos, sobre la madera */
+.subs{position:absolute;left:50px;right:50px;top:1592px;z-index:30;text-align:center}
+.sub{position:absolute;left:0;right:0;top:0;margin:0;font-weight:700;font-size:76px;line-height:80px;word-spacing:.16em;color:#fff;opacity:0;
+  text-shadow:0 4px 0 rgba(40,22,8,.55),0 0 24px rgba(0,0,0,.35);text-wrap:balance}
+.sub span.ya.clave,.sub span.ahora{color:var(--amarillo)}
+
+/* cierre */
+.cierre{position:absolute;inset:0;background:#070B10;z-index:40;opacity:0}
+.cierre .logo-p{position:absolute;left:0;right:0;top:706px;justify-content:center;font-size:104px;display:flex}
+.cierre .logo-p svg path{animation:none;stroke-dashoffset:var(--dib,1)}
+.cierre h2{position:absolute;left:60px;right:60px;top:1022px;margin:0;text-align:center;font-weight:600;font-size:66px;line-height:1.16;letter-spacing:-.015em;color:#EEF3F7}
+.cierre h2 em{font-style:normal;color:var(--turquesa-t)}
+.cierre .cta{position:absolute;left:0;right:0;top:1204px;text-align:center;font-size:42px;color:#9AA6B8}
+</style></head>
+<body><div id="escena">
+
+<svg id="sala" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pared" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3550"/><stop offset="1" stop-color="#242C3D"/></linearGradient>
+    <linearGradient id="noche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E1C38"/><stop offset="1" stop-color="#27477A"/></linearGradient>
+    <linearGradient id="cono" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FC3FF" stop-opacity=".10"/><stop offset="1" stop-color="#9FC3FF" stop-opacity=".03"/></linearGradient>
+    <radialGradient id="calor" cx="110" cy="1190" r="430" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFD98C" stop-opacity=".42"/><stop offset=".5" stop-color="#FFD98C" stop-opacity=".15"/><stop offset="1" stop-color="#FFD98C" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tapa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E1E6EC"/><stop offset="1" stop-color="#A9B4C2"/></linearGradient>
+    <linearGradient id="encimera" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9844F"/><stop offset="1" stop-color="#A56E3F"/></linearGradient>
+    <linearGradient id="frente" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8C5B33"/><stop offset="1" stop-color="#875632"/></linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#pared)"/>
+  <!-- la ventana, de noche -->
+  <rect x="80" y="260" width="360" height="430" rx="10" fill="#151A22"/>
+  <rect x="96" y="276" width="328" height="398" fill="url(#noche)"/>
+  <circle cx="365" cy="590" r="32" fill="#F4F1DE"/><circle cx="380" cy="580" r="28" fill="#21406F"/>
+  <g fill="#DCE6F5"><circle cx="150" cy="320" r="3"/><circle cx="215" cy="380" r="2.5"/><circle cx="130" cy="430" r="2"/><circle cx="300" cy="420" r="2.5"/><circle cx="390" cy="530" r="2"/><circle cx="170" cy="560" r="2.5"/><circle cx="240" cy="300" r="2"/></g>
+  <rect x="257" y="276" width="10" height="398" fill="#151A22"/><rect x="96" y="469" width="328" height="10" fill="#151A22"/>
+  <polygon points="100,690 440,690 720,1180 300,1180" fill="url(#cono)"/>
+  <!-- el cuadro, el reloj (21:40) y la estantería -->
+  <rect x="655" y="405" width="130" height="100" fill="#1C2536" stroke="#12161D" stroke-width="10"/>
+  <polygon points="670,492 712,450 732,470 762,438 772,492" fill="#14B8A6"/>
+  <circle cx="880" cy="450" r="50" fill="#EEF1F5" stroke="#12161D" stroke-width="9"/>
+  <g stroke="#12161D" stroke-linecap="round"><line x1="880" y1="450" x2="851" y2="440" stroke-width="7"/><line x1="880" y1="450" x2="859" y2="487" stroke-width="5.5"/></g>
+  <circle cx="880" cy="450" r="5" fill="#12161D"/>
+  <rect x="640" y="640" width="380" height="16" rx="8" fill="#7A4A2E"/>
+  <rect x="660" y="560" width="26" height="80" rx="3" fill="#14B8A6"/><rect x="690" y="580" width="22" height="60" rx="3" fill="#FACC15"/><rect x="716" y="570" width="24" height="70" rx="3" fill="#EC4899"/>
+  <rect x="800" y="590" width="68" height="50" rx="7" fill="#EEF1F5"/><rect x="808" y="598" width="52" height="30" rx="3" fill="#60A5FA"/>
+  <path d="M972,640 C918,640 925,585 948,540 C955,560 965,560 975,548 C990,580 990,640 972,640Z" fill="#3BA66B"/>
+  <polygon points="944,640 1000,640 992,680 952,680" fill="#C75B3A"/>
+  <!-- el calendario, con el 30 en rojo -->
+  <g id="calendario">
+    <rect x="828" y="704" width="160" height="176" rx="10" fill="#EEF1F5" stroke="#12161D" stroke-width="6"/>
+    <rect x="831" y="707" width="154" height="36" rx="6" fill="#E5484D"/>
+    <rect x="860" y="694" width="8" height="24" rx="4" fill="#12161D"/><rect x="948" y="694" width="8" height="24" rx="4" fill="#12161D"/>
+    <g id="cal-dias" fill="#B9C2CD"></g>
+    <circle id="cal-30" cx="958" cy="854" r="19" fill="none" stroke="#E5484D" stroke-width="5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 958 854)"/>
+    <text x="958" y="862" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600" font-size="21" fill="#C81E1E">30</text>
+  </g>
+  <!-- la luz de la lámpara y la franja de detrás de la mesa -->
+  <rect x="0" y="1180" width="1080" height="140" fill="#1A1F2A"/>
+  <rect width="1080" height="1920" fill="url(#calor)"/>
+
+  <!-- Dani -->
+  <g id="dani">
+    <g data-brazos="relax" fill="none" stroke="#0FA595" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M455,1112 L368,940 L470,872"/><path d="M625,1112 L712,940 L610,872"/></g>
+    <path d="M385,1200 C392,1140 412,1098 455,1088 L625,1088 C668,1098 688,1140 695,1200 Z" fill="#14B8A6"/>
+    <rect x="515" y="1036" width="50" height="50" fill="#E9BE97"/>
+    <rect x="500" y="1074" width="80" height="40" rx="20" fill="#F0C9A4"/>
+    <g id="cabeza" transform="translate(540 960)">
+      <path d="M-118,6 C-118,-160 118,-160 118,6" fill="none" stroke="#161C25" stroke-width="22"/>
+      <ellipse cx="0" cy="0" rx="88" ry="92" fill="#F0C9A4"/>
+      <path d="M-89,-8 C-90,-72 -50,-108 0,-108 C50,-108 90,-72 89,-8 C70,-30 42,-45 0,-45 C-42,-45 -70,-30 -89,-8Z" fill="#2E1D15"/>
+      <rect x="-132" y="-26" width="44" height="84" rx="20" fill="#161C25"/><rect x="88" y="-26" width="44" height="84" rx="20" fill="#161C25"/>
+      <g fill="#1B1B1B"><circle cx="-34" cy="0" r="9.5"/><circle cx="34" cy="0" r="9.5"/></g>
+      <g fill="none" stroke="#1B1B1B" stroke-width="9" stroke-linecap="round">
+        <g data-cara="neutra"><path d="M-56,-30 L-20,-28"/><path d="M20,-28 L56,-30"/><path d="M-24,52 L24,52"/></g>
+        <g data-cara="duda"><path d="M-58,-38 Q-40,-50 -20,-36"/><path d="M20,-26 L56,-22"/><path d="M-22,54 Q0,46 22,58" stroke-width="7"/></g>
+        <g data-cara="enfadado"><path d="M-58,-34 L-20,-18"/><path d="M20,-18 L58,-34"/><path d="M-28,58 Q0,44 28,58" stroke-width="7"/></g>
+        <g data-cara="agobio"><path d="M-58,-22 L-20,-36"/><path d="M20,-36 L58,-22"/><path d="M-27,56 q9,-9 18,0 q9,9 18,0 q9,-9 18,0" stroke-width="6.5"/></g>
+        <g data-cara="sonrie"><path d="M-56,-34 Q-38,-44 -20,-34"/><path d="M20,-34 Q38,-44 56,-34"/><path d="M-30,40 Q0,72 30,40" stroke-width="7"/></g>
+      </g>
+      <path id="gota" d="M72,-30 C64,-16 62,-6 72,-2 C82,-6 80,-16 72,-30Z" fill="#7DD3FC"/>
+    </g>
+    <g data-brazos="rascar">
+      <path d="M630,1112 L716,990 L628,880" fill="none" stroke="#0FA595" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle id="mano-rasca" cx="612" cy="872" r="29" fill="#F0C9A4"/></g>
+    <g data-brazos="cabeza">
+      <g fill="none" stroke="#0FA595" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"><path d="M450,1112 L382,990 L460,905"/><path d="M630,1112 L698,990 L620,905"/></g>
+      <circle cx="462" cy="904" r="29" fill="#F0C9A4"/><circle cx="618" cy="904" r="29" fill="#F0C9A4"/></g>
+  </g>
+
+  <!-- la lámpara, el portátil, la taza y la mesa -->
+  <polygon points="78,1120 146,1120 166,1190 58,1190" fill="#14B8A6"/>
+  <rect x="105" y="1196" width="14" height="126" fill="#2A3140"/>
+  <ellipse cx="112" cy="1196" rx="70" ry="11" fill="#D9C08A"/>
+  <rect x="290" y="1190" width="500" height="132" rx="14" fill="url(#tapa)" stroke="#8C97A6" stroke-width="3"/>
+  <rect x="520" y="1230" width="40" height="40" rx="9" fill="#14B8A6"/>
+  <path d="M547,1258 A10,10 0 1 1 548,1243" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <rect x="885" y="1262" width="62" height="58" rx="8" fill="#F4F6F8"/><rect x="893" y="1270" width="46" height="7" rx="3" fill="#6B4226"/>
+  <path d="M947,1276 q22,4 14,24 q-6,12 -14,14" fill="none" stroke="#F4F6F8" stroke-width="7"/>
+  <rect x="0" y="1320" width="1080" height="44" fill="url(#encimera)"/>
+  <rect x="0" y="1362" width="1080" height="12" fill="#7A4A2A"/>
+  <rect x="0" y="1374" width="1080" height="546" fill="url(#frente)"/>
+  <polygon points="262,1320 818,1320 830,1336 250,1336" fill="#8C97A6"/>
+  <g fill="none" stroke="#6B4226" stroke-width="5"><rect x="68" y="1448" width="444" height="202" rx="16"/><rect x="568" y="1448" width="444" height="202" rx="16"/></g>
+</svg>
+
+<!-- gancho -->
+<div class="titulo" id="titulo"><h1><span>Este es Dani,</span><span class="am">a fin de mes</span></h1><p>DÍA 30 · 21:40</p></div>
+
+<!-- lío -->
+<div class="badge" id="badge">12</div>
+<div class="badge-et" id="badge-et">CLIENTES</div>
+<div class="pegatina" id="pegatina">¿Quién ha pagado?</div>
+<div class="duda-q" id="q1" style="left:270px;top:830px;font-size:110px">?</div>
+<div class="duda-q" id="q2" style="left:770px;top:790px;font-size:96px">?</div>
+<div class="duda-q" id="q3" style="left:505px;top:680px;font-size:150px">?</div>
+
+<div class="tarjeta" id="banco" style="top:1092px">
+  <div class="t-cab"><span>MOVIMIENTOS · CUENTA</span><span>NOV</span></div>
+  <div class="mov"><time>28 nov</time><b><small>Transferencia</small>L. FERNÁNDEZ</b><span class="mas">+60,00 €</span></div>
+  <div class="mov"><time>29 nov</time><b><small>Tarjeta</small>SUPERMERCADO</b><span>−23,15 €</span></div>
+  <div class="mov" id="javi"><time>29 nov</time><b><small>Bizum</small>JAVI GYM</b><span class="mas">+45,00 €</span></div>
+  <div class="mov"><time>30 nov</time><b><small>Recibo</small>LUZ</b><span>−38,90 €</span></div>
+</div>
+
+<div class="tarjeta" id="chat" style="top:1130px">
+  <div class="chat-cab"><span class="av">AP</span><div><b>Andrés Pardo</b><small>en línea</small></div></div>
+  <div class="caja"><div class="entrada"><span id="chat-txt"></span><span class="cursor" id="cursor"></span></div>
+    <span class="enviar"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg></span></div>
+</div>
+
+<!-- con Coachera -->
+<div class="pildora-c" id="pildora">Con Coachera</div>
+<div class="panel" id="panel"><div class="camara" id="camara">
+  <img src="../recursos/panel-facturacion.png" alt="">
+  <div class="foco" id="f-fact" style="left:20px;top:662px;width:405px;height:78px"></div>
+  <div class="foco" id="f-c1" style="left:493px;top:287px;width:493px;height:255px"></div>
+  <div class="foco" id="f-c2" style="left:1002px;top:287px;width:493px;height:255px"></div>
+  <div class="foco" id="f-c3" style="left:1513px;top:287px;width:493px;height:255px"></div>
+  <div class="foco" id="f-and" style="left:1770px;top:682px;width:722px;height:174px"></div>
+  <div class="foco" id="f-rec" style="left:2152px;top:772px;width:177px;height:73px;border-radius:14px"></div>
+  <div class="toque" id="toque" style="left:2240px;top:808px"></div>
+</div></div>
+<div class="borrador" id="borrador">
+  <p>BORRADOR · ANDRÉS PARDO · 45 €</p>
+  <div class="fila"><div class="b-txt" id="b-txt"></div><span class="b-env"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg></span></div>
+</div>
+
+<div class="subs" id="subs"></div>
+
+<!-- cierre -->
+<div class="cierre" id="cierre">
+  <div class="logo-p" id="logo"><svg viewBox="8 24 85 66"><path pathLength="1" d="M60.93,69.45 A23.5,23.5 0 1 1 41.00,33.50 L83.50,33.50"/></svg><span class="txt">oachera</span></div>
+  <h2 id="cierre-t">Tu fin de mes,<br><em>sin abrir el banco</em>.</h2>
+  <div class="cta" id="cierre-cta">Gratis hasta 5 clientes · Enlace en la bio</div>
+</div>
+</div>
+
+<script src="../motor/reel.js"></script>
+<script>
+// ============================================================================
+// LOS TIEMPOS: el segundo en que EMPIEZA cada frase de la locución. Solo hay que tocar esto.
+// ============================================================================
+const TIEMPOS = {
+  // [gancho]
+  dani:     0.30,   // «Este es Dani.»
+  dia:      1.45,   // «Es día treinta.»
+  // [lio]
+  doce:     2.70,   // «Doce clientes… y no sabe quién le ha pagado.»
+  banco:    6.05,   // «Abre el banco: un Bizum de «Javi gym».»
+  quejavi:  8.90,   // «¿Qué Javi?»
+  andres:   9.80,   // «Y a Andrés, que va con retraso…»
+  fatal:   12.30,   // «¿cómo se lo dice sin quedar fatal?»
+  // [con]
+  coachera:14.85,   // «Con Coachera, abre Facturación.»
+  // [remate]
+  cobrado: 16.60,   // «Lo cobrado, lo que falta y quién debe.»
+  recordar:19.40,   // «Toca «Recordar»…»
+  escrito: 20.40,   // «y el mensaje ya está escrito.»
+  // [cierre]
+  cierre:  22.30,   // «Tu fin de mes, sin abrir el banco.»
+  fin:     25.40,   // duración total del vídeo
+};
+const RITMO = 3.1;   // palabras por segundo de la voz (reparte el karaoke dentro de cada frase)
+
+// Las frases tal como salen en el subtítulo: «/» separa los trozos que se iluminan a la vez y
+// «*» marca la palabra clave (se queda en amarillo). La del cierre no lleva subtítulo (como m9).
+const FRASES = [
+  ["dani", "Este/es/Dani."],
+  ["dia", "Es/*día treinta."],
+  ["doce", "Doce/clientes…/y no/sabe/*quién/le ha/pagado."],
+  ["banco", "Abre/el banco:/un Bizum/de/«Javi gym»."],
+  ["quejavi", "*¿Qué Javi?"],
+  ["andres", "Y a/Andrés,/que va/con retraso…"],
+  ["fatal", "¿cómo/se lo/dice/sin quedar/fatal?"],
+  ["coachera", "Con/*Coachera,/abre/Facturación."],
+  ["cobrado", "Lo/cobrado,/lo que/falta/y quién/debe."],
+  ["recordar", "Toca/*«Recordar»…"],
+  ["escrito", "y el/mensaje/ya está/escrito."],
+  ["cierre", null],
+];
+
+// ---- cuándo dice cada trozo (para el karaoke y para sincronizar lo de la pantalla) ----
+const T = TIEMPOS;
+const FR = FRASES.map(([k, txt], i) => {
+  const ini = T[k], sig = i + 1 < FRASES.length ? T[FRASES[i + 1][0]] : T.fin;
+  const trozos = (txt || "").split("/").filter(Boolean).map((s) => ({ clave: s[0] === "*", txt: s.replace(/^\*/, "") }));
+  const palabras = trozos.reduce((n, p) => n + p.txt.split(" ").length, 0);
+  const dur = Math.min(palabras / RITMO, sig - ini - 0.1);
+  const peso = (p) => p.txt.replace(/[^\p{L}\d]/gu, "").length + 3 + (p.txt.includes("…") ? 6 : 0);
+  const tot = trozos.reduce((n, p) => n + peso(p), 0);
+  let acc = 0;
+  trozos.forEach((p) => { p.t = ini + dur * acc / tot; acc += peso(p); });
+  return { k, ini, fin: sig, dur, trozos };
+});
+const frase = (k) => FR.find((f) => f.k === k);
+const tc = (k, i) => frase(k).trozos[i].t;      // cuándo empieza el trozo i de la frase k
+
+// ---- ayudas de animación ----
+const clamp = (x) => Math.min(1, Math.max(0, x));
+const sale = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const suave = (x) => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const muelle = (x) => { x = clamp(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const ent = (t, a, d = .3) => sale((t - a) / d);                       // 0→1 al entrar
+const vis = (t, a, b, d = .25, e = .25) => Math.min(ent(t, a, d), 1 - clamp((t - b) / e));   // entra en a, sale en b
+const $ = (id) => document.getElementById(id);
+const css = (el, o, tr) => { el.style.opacity = o; if (tr !== undefined) el.style.transform = tr; };
+
+// ---- la escena: momentos derivados de TIEMPOS ----
+const M = {
+  tituloFuera: T.doce - 0.15,
+  calendario: T.dia + 0.35,
+  cuenta: T.doce + 0.05,
+  pegatina: tc("doce", 4) - 0.1,                // «quién»
+  bancoEntra: T.banco + 0.15,
+  javi: tc("banco", 4),                        // «Javi gym»
+  chatEntra: T.andres + 0.05,
+  con: T.coachera - 0.1,
+  facturacion: tc("coachera", 3),
+  c1: tc("cobrado", 1), c2: tc("cobrado", 3), c3: tc("cobrado", 4),
+  andres: T.recordar - 0.1,
+  rec: tc("recordar", 1) + 0.05,
+  borrador: T.escrito - 0.05,
+  cierre: T.cierre - 0.35,
+};
+
+// la cámara sobre la captura: x, y (px de la captura, esquina de arriba a la izquierda) y escala
+const VISTA = 1020;
+const CAM = [
+  [M.con, { x: 0, y: 12, s: VISTA / 2560 }],               // la pantalla entera: «abre Facturación»
+  [T.cobrado - 0.15, { x: 0, y: 12, s: VISTA / 2560 }],
+  [T.cobrado + 0.55, { x: 478, y: 140, s: 1 }],             // las dos primeras cifras
+  [M.c3 - 0.45, { x: 478, y: 140, s: 1 }],
+  [M.c3 + 0.05, { x: 1012, y: 140, s: 1 }],                 // la tercera
+  [M.andres, { x: 1012, y: 140, s: 1 }],
+  [M.andres + 0.6, { x: 1724, y: 566, s: 1.25 }],           // «Quién debe»
+];
+function camara(t) {
+  let a = CAM[0];
+  for (let i = 1; i < CAM.length; i++) {
+    const b = CAM[i];
+    if (t < b[0]) { const k = suave((t - a[0]) / (b[0] - a[0])), p = a[1], q = b[1]; return { x: p.x + (q.x - p.x) * k, y: p.y + (q.y - p.y) * k, s: p.s + (q.s - p.s) * k }; }
+    a = b;
+  }
+  return a[1];
+}
+
+// el chat del lío: se escribe, se borra y se vuelve a escribir
+const CHAT = "Hola Andrés, oye, que…";
+const TECLEO = (() => {
+  const seg = [], cps = 17, borra = 42;
+  let t = T.andres + 0.4;
+  const escribe = (n) => { seg.push({ a: t, b: t + n / cps, de: 0, a_n: n }); t += n / cps; };
+  const quita = (n) => { seg.push({ a: t, b: t + n / borra, de: n, a_n: 0 }); t += n / borra; };
+  escribe(CHAT.length); t += .3; quita(CHAT.length); t += .25;
+  escribe(CHAT.length); t += .3; quita(CHAT.length); t += .2;
+  escribe(Math.min(CHAT.length, Math.floor((M.con - .2 - t) * cps)));
+  return seg;
+})();
+function letras(t) {
+  let n = 0;
+  for (const s of TECLEO) {
+    if (t < s.a) break;
+    n = Math.round(s.de + (s.a_n - s.de) * clamp((t - s.a) / (s.b - s.a)));
+  }
+  return n;
+}
+const BORRADOR = "Hola Andrés, te escribo por la cuota: todavía no me consta el pago. ¿Me dices cuándo puedes hacerlo? ¡Gracias!";
+
+// ---- los subtítulos ----
+const subs = $("subs");
+FR.forEach((f) => {
+  if (!f.trozos.length) return;
+  const p = document.createElement("p"); p.className = "sub";
+  f.trozos.forEach((tr, i) => { const s = document.createElement("span"); s.textContent = tr.txt; if (tr.clave) s.classList.add("clave"); p.appendChild(s); if (i < f.trozos.length - 1) p.appendChild(document.createTextNode(" ")); });
+  subs.appendChild(p); f.el = p;
+});
+// los días del calendario
+(() => { const g = $("cal-dias"); let h = "";
+  for (let i = 0; i < 30; i++) { const c = i % 7, r = Math.floor(i / 7); if (i === 29) continue; h += `<rect x="${842 + c * 20}" y="${754 + r * 24}" width="12" height="12" rx="2"/>`; }
+  g.innerHTML = h; })();
+
+const caras = [...document.querySelectorAll("[data-cara]")], brazos = [...document.querySelectorAll("[data-brazos]")];
+function dani(t) {
+  let cara = "neutra", br = "abajo", baja = 0;
+  if (t >= T.doce) { cara = "duda"; br = "rascar"; }
+  if (t >= M.javi) { cara = "duda"; br = "abajo"; }
+  if (t >= T.andres) { cara = "enfadado"; br = "abajo"; }
+  if (t >= T.fatal) { cara = "agobio"; br = "cabeza"; }
+  if (t >= M.con + 0.25) { cara = "sonrie"; br = "relax"; baja = 80 * sale((t - M.con - .25) / .5); }
+  caras.forEach((g) => g.style.display = g.dataset.cara === cara ? "" : "none");
+  brazos.forEach((g) => g.style.display = g.dataset.brazos === br ? "" : "none");
+  const resp = Math.sin(t * 2.4) * 3;
+  $("dani").setAttribute("transform", `translate(0 ${(baja + resp).toFixed(1)})`);
+  $("mano-rasca").setAttribute("cx", (612 + Math.sin(t * 34) * 14).toFixed(1));
+  $("gota").style.display = (t >= T.andres && t < M.con + .25) ? "" : "none";
+  $("gota").setAttribute("transform", `translate(0 ${((t * 40) % 30).toFixed(1)})`);
+  const tiembla = cara === "agobio" ? Math.sin(t * 60) * 3 : 0;
+  $("cabeza").setAttribute("transform", `translate(${(540 + tiembla).toFixed(1)} 960)`);
+}
+
+window.alTiempoReel = function (t) {
+  // gancho
+  const ti = Math.min(ent(t, 0, .35), 1 - clamp((t - M.tituloFuera) / .3));
+  css($("titulo"), ti, `translateY(${(-50 * clamp((t - M.tituloFuera) / .3)).toFixed(1)}px)`);
+  $("cal-30").style.strokeDashoffset = 1 - sale((t - M.calendario) / .45);
+  const cal = ent(t, M.calendario, .2) * (1 - clamp((t - M.calendario - .5) / .4));
+  $("calendario").setAttribute("transform", `translate(958 854) scale(${1 + .12 * cal}) translate(-958 -854)`);
+
+  // lío: la cifra, la pegatina, los «?»
+  const b = vis(t, M.cuenta, M.con - .15, .3, .25);
+  css($("badge"), b, `scale(${(.6 + .4 * muelle((t - M.cuenta) / .4)).toFixed(3)})`);
+  $("badge").textContent = Math.max(1, Math.min(12, 1 + Math.floor((t - M.cuenta) / .9 * 11)));
+  css($("badge-et"), b);
+  const pg = vis(t, M.pegatina, M.con - .15, .3, .25);
+  css($("pegatina"), pg, `rotate(-3deg) scale(${(.7 + .3 * muelle((t - M.pegatina) / .35)).toFixed(3)})`);
+  [["q1", T.quejavi - .05], ["q2", T.quejavi + .15], ["q3", T.quejavi + .3]].forEach(([id, a]) => {
+    const o = vis(t, a, T.andres, .25, .25);
+    css($(id), o, `translateY(${(Math.sin((t - a) * 3) * 10).toFixed(1)}px) scale(${(.5 + .5 * muelle((t - a) / .35)).toFixed(3)}) rotate(${id === "q2" ? 12 : -8}deg)`);
+  });
+
+  // el banco
+  const bo = vis(t, M.bancoEntra, T.andres - .1, .4, .3);
+  css($("banco"), bo, `translateY(${(140 * (1 - sale((t - M.bancoEntra) / .45)) + 60 * clamp((t - T.andres + .1) / .3)).toFixed(1)}px) rotate(-1.5deg)`);
+  $("javi").classList.toggle("encontrado", t >= M.javi);
+
+  // el chat que no se atreve
+  const co = vis(t, M.chatEntra, M.con - .1, .35, .25);
+  css($("chat"), co, `translateY(${(140 * (1 - sale((t - M.chatEntra) / .45))).toFixed(1)}px) rotate(1deg)`);
+  $("chat-txt").textContent = CHAT.slice(0, letras(t));
+  $("cursor").style.opacity = (Math.floor(t * 3) % 2 === 0 || (t > TECLEO[0].a && letras(t) !== letras(t - .05))) ? 1 : 0;
+
+  // con Coachera
+  const pi = vis(t, M.con, M.cierre, .35, .3);
+  css($("pildora"), pi, `translateX(-50%) scale(${(.6 + .4 * muelle((t - M.con) / .4)).toFixed(3)})`);
+  const pa = vis(t, M.con + .05, M.cierre, .6, .3);
+  css($("panel"), clamp(pa * 1.4), `translateY(${(900 * (1 - sale((t - M.con - .05) / .6))).toFixed(1)}px)`);
+  const c = camara(t);
+  $("camara").style.transform = `scale(${c.s}) translate(${-c.x}px, ${-c.y}px)`;
+  [["f-fact", M.facturacion, T.cobrado], ["f-c1", M.c1, M.c2], ["f-c2", M.c2, M.c3], ["f-c3", M.c3, M.andres + .2],
+   ["f-and", M.andres + .55, M.rec], ["f-rec", M.rec, M.cierre]].forEach(([id, a, z]) => {
+    const o = vis(t, a, z, .2, .2);
+    css($(id), o, `scale(${(1 + .06 * Math.sin(Math.PI * clamp((t - a) / .5))).toFixed(3)})`);
+  });
+  const tq = (t - M.rec - .05) / .55;
+  css($("toque"), tq < 0 || tq > 1 ? 0 : (tq < .15 ? tq / .15 : 1 - (tq - .15) / .85), `scale(${(.5 + tq).toFixed(2)})`);
+  const bd = vis(t, M.borrador, M.cierre, .45, .3);
+  css($("borrador"), bd, `translateY(${(300 * (1 - sale((t - M.borrador) / .45))).toFixed(1)}px)`);
+  $("b-txt").textContent = BORRADOR.slice(0, Math.max(0, Math.floor((t - M.borrador - .2) * 95)));
+
+  // subtítulos (karaoke: el trozo que suena en amarillo; las claves se quedan en amarillo)
+  FR.forEach((f) => {
+    if (!f.el) return;
+    const fin = f.k === "escrito" ? M.cierre : f.fin;
+    f.el.style.opacity = (t >= f.ini - .05 && t < fin - .02) ? 1 : 0;
+    const spans = f.el.querySelectorAll("span");
+    let ahora = -1; f.trozos.forEach((tr, i) => { if (t >= tr.t) ahora = i; });
+    spans.forEach((s, i) => { s.classList.toggle("ahora", i === ahora); s.classList.toggle("ya", i <= ahora); });
+  });
+
+  // cierre
+  const ci = clamp((t - M.cierre) / .35);
+  $("cierre").style.opacity = ci;
+  $("logo").style.setProperty("--dib", 1 - sale((t - T.cierre) / .6));
+  const lt = ent(t, T.cierre + .05, .5);
+  css($("logo").querySelector(".txt"), lt, `translateX(${(-30 * (1 - lt)).toFixed(1)}px)`);
+  const ht = ent(t, T.cierre + .25, .5);
+  css($("cierre-t"), ht, `translateY(${(40 * (1 - ht)).toFixed(1)}px)`);
+  css($("cierre-cta"), ent(t, T.cierre + .9, .5));
+
+  dani(t);
+};
+
+// ---- el sonido, también desde TIEMPOS ----
+const SONIDOS = [
+  { t: M.calendario, tipo: "pop", vol: .5 },
+  ...[0, .3, .6, .9].map((d) => ({ t: M.cuenta + d, tipo: "pop", vol: .4 })),
+  { t: M.pegatina, tipo: "pop", vol: .5 },
+  { t: M.bancoEntra, tipo: "barrido", vol: .35 },
+  { t: M.javi, tipo: "toque", vol: .6 },
+  { t: T.quejavi, tipo: "pop", vol: .45 }, { t: T.quejavi + .3, tipo: "pop", vol: .4 },
+  { t: M.chatEntra, tipo: "barrido", vol: .3 },
+  { t: M.con, tipo: "barrido", vol: .55 }, { t: M.con + .05, tipo: "pop", vol: .45 },
+  { t: M.facturacion, tipo: "toque", vol: .45 },
+  { t: M.c1, tipo: "toque", vol: .45 }, { t: M.c2, tipo: "toque", vol: .45 }, { t: M.c3, tipo: "toque", vol: .45 },
+  { t: M.andres + .55, tipo: "toque", vol: .4 },
+  { t: M.rec, tipo: "toque", vol: .8 },
+  { t: M.borrador + .5, tipo: "ok", vol: .6 },
+  { t: M.cierre, tipo: "barrido", vol: .5 },
+  { t: T.cierre, tipo: "marca", vol: .8 },
+];
+for (const s of TECLEO) {   // una tecla cada dos letras (escribir y borrar)
+  const n = Math.abs(s.a_n - s.de);
+  for (let i = 0; i < n; i += 2) SONIDOS.push({ t: +(s.a + (s.b - s.a) * i / n).toFixed(3), tipo: "tecla", vol: .28 });
+}
+
+window.REEL = {
+  duracion: T.fin,
+  musica: { estilo: "pulso", caida: T.coachera, vol: .25 },
+  sonidos: SONIDOS.sort((a, b) => a.t - b.t),
+  // la voz de Arlo (ver el comentario de arriba): quita las // cuando tengas el WAV
+  // voz: "instagram/munecos/voz/m10-dani-fin-de-mes.wav",
+  // vol_voz: 1.7,
+};
+</script>
+</body></html>

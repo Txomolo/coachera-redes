@@ -53,11 +53,14 @@ está en `guiones/m10-dani-fin-de-mes.md`.
    `{"reels":[{"nombre":"m10-dani-fin-de-mes","voz":[{"texto":…,"marca":"gancho"},…]}]}`, con las
    frases y marcas de `guiones/m10-dani-fin-de-mes.md`. El resultado es un WAV y un `.tiempos.json`.
 
-**3. Poner esos tiempos en el vídeo.** `reels/m10-dani-fin-de-mes.html` (lo está haciendo un agente en
-   la nube; mira abajo) tiene un objeto `TIEMPOS` al principio, con el segundo en que empieza cada
-   frase. Sustitúyelos por los del `.tiempos.json` y añade la voz a `window.REEL` (`"voz": <wav>`,
-   `"vol_voz": 1.7`, como en `motor/cortos.py`). Las instrucciones exactas están en el comentario de
-   la cabecera del HTML.
+**3. Poner esos tiempos en el vídeo.** `reels/m10-dani-fin-de-mes.html` ya está hecho, con una versión sin voz
+   para revisar el diseño: `instagram/munecos/m10-dani-fin-de-mes-sin-voz.mp4`, de 25,4 s con tiempos estimados.
+   Todo se calcula desde el objeto `TIEMPOS` del principio del script: el segundo en que empieza cada frase,
+   más `fin` para la duración total. Ahí van los tiempos del `.tiempos.json`. Si Arlo habla bastante más
+   deprisa, cambia también `RITMO`, que reparte el karaoke dentro de cada frase.
+   Para la voz, guarda el WAV (empezando en el segundo 0) en `instagram/munecos/voz/m10-dani-fin-de-mes.wav`
+   y quita el `//` de `voz:` y `vol_voz: 1.7` en `window.REEL`. La música baja sola mientras habla.
+   Los mismos pasos están en el comentario de la cabecera del HTML.
 
 **4. Renderizar y revisar:**
    ```bash

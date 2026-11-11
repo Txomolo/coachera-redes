@@ -6,7 +6,7 @@ Esta vez, los cobros.
 
 - **Voz:** Arlo, con la configuración de m9: «español de España, grave, cercano, un poco más rápido
   de lo normal». Al publicarlo, hay que activar la etiqueta de «contenido creado con IA».
-- **Duración:** unos 19 s. La locución tiene unas 50 palabras.
+- **Duración:** unos 22-25 s. La locución tiene 66 palabras: con la voz «un poco más rápida» de Arlo, se queda más cerca de 22.
 - **Pantalla de la app:** `recursos/panel-facturacion.png` (Facturación: «Cobrado en octubre 340 €»,
   «Por cobrar 270 €», «Vencido 45 €» y «Quién debe», con los botones «Recordar» y «Cobrar»). Es una
   captura real con datos inventados; el reel no enseña nada que la app no tenga.
