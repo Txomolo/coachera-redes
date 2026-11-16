@@ -1,0 +1,5 @@
+[
+ {"nombre":"cliente-semana","escena":"cliente","alto":812,"datos":{"vista":"c-entrenamiento","semanaEntreno":true},"escala":3},
+ {"nombre":"cliente-cierre","escena":"cliente","alto":812,"datos":{"vista":"c-entrenamiento","faltaUna":true,"tiempo":true,"abrir":"cierre"},"escala":3},
+ {"nombre":"cliente-registro","escena":"cliente","alto":812,"datos":{"vista":"c-entrenamiento","semanaEntreno":true,"sesiones":6,"abrir":"registro"},"escala":3}
+]
